@@ -17,27 +17,29 @@ namespace Simple_Web_Browser
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void menuButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void backPageButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void forwardPageButton_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void resultDisplay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void refreshPageButon_Click(object sender, EventArgs e)
         {
 
         }

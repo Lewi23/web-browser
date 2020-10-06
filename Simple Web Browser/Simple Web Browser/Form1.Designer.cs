@@ -47,7 +47,7 @@
             this.menuButton.TabIndex = 0;
             this.menuButton.Text = "Menu";
             this.menuButton.UseVisualStyleBackColor = true;
-            this.menuButton.Click += new System.EventHandler(this.button1_Click);
+            this.menuButton.Click += new System.EventHandler(this.menuButton_Click);
             // 
             // resultDisplay
             // 
@@ -67,6 +67,7 @@
             this.searchButton.TabIndex = 2;
             this.searchButton.Text = "Go";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // inputBox
             // 
@@ -75,6 +76,7 @@
             this.inputBox.Name = "inputBox";
             this.inputBox.Size = new System.Drawing.Size(447, 26);
             this.inputBox.TabIndex = 3;
+            this.inputBox.TextChanged += new System.EventHandler(this.resultDisplay_TextChanged);
             // 
             // backPageButton
             // 
@@ -86,7 +88,7 @@
             this.backPageButton.Text = "⬅️";
             this.backPageButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.backPageButton.UseVisualStyleBackColor = true;
-            this.backPageButton.Click += new System.EventHandler(this.button3_Click);
+            this.backPageButton.Click += new System.EventHandler(this.backPageButton_Click);
             // 
             // forwardPageButton
             // 
@@ -96,7 +98,7 @@
             this.forwardPageButton.TabIndex = 5;
             this.forwardPageButton.Text = "fwd";
             this.forwardPageButton.UseVisualStyleBackColor = true;
-            this.forwardPageButton.Click += new System.EventHandler(this.button4_Click_1);
+            this.forwardPageButton.Click += new System.EventHandler(this.forwardPageButton_Click);
             // 
             // refreshPageButon
             // 
@@ -106,6 +108,7 @@
             this.refreshPageButon.TabIndex = 6;
             this.refreshPageButon.Text = "refresh";
             this.refreshPageButon.UseVisualStyleBackColor = true;
+            this.refreshPageButon.Click += new System.EventHandler(this.refreshPageButon_Click);
             // 
             // Form1
             // 
