@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 
 namespace Simple_Web_Browser
 {
@@ -37,8 +38,7 @@ namespace Simple_Web_Browser
         {
 
         }
-        private
-            void resultDisplay_TextChanged(object sender, EventArgs e)
+        void resultDisplay_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -64,6 +64,21 @@ namespace Simple_Web_Browser
         {
             manager = new Manager();
             resultDisplay.Text = await manager.getWebsite(manager.currentURL);
+            inputBox.Text = manager.currentURL;
+            // ref this
+            titleHolder.Text = manager.title;
+            HTTPHolder.Text = manager.request;
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

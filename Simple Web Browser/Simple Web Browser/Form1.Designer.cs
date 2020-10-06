@@ -35,6 +35,10 @@
             this.backPageButton = new System.Windows.Forms.Button();
             this.forwardPageButton = new System.Windows.Forms.Button();
             this.refreshPageButon = new System.Windows.Forms.Button();
+            this.HTTPlabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.titleHolder = new System.Windows.Forms.Label();
+            this.HTTPHolder = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // menuButton
@@ -51,9 +55,10 @@
             // 
             // resultDisplay
             // 
-            this.resultDisplay.Location = new System.Drawing.Point(13, 51);
+            this.resultDisplay.BackColor = System.Drawing.SystemColors.Control;
+            this.resultDisplay.Location = new System.Drawing.Point(13, 124);
             this.resultDisplay.Name = "resultDisplay";
-            this.resultDisplay.Size = new System.Drawing.Size(754, 483);
+            this.resultDisplay.Size = new System.Drawing.Size(754, 473);
             this.resultDisplay.TabIndex = 1;
             this.resultDisplay.Text = "";
             this.resultDisplay.TextChanged += new System.EventHandler(this.resultDisplay_TextChanged);
@@ -110,11 +115,57 @@
             this.refreshPageButon.UseVisualStyleBackColor = true;
             this.refreshPageButon.Click += new System.EventHandler(this.refreshPageButon_Click);
             // 
+            // HTTPlabel
+            // 
+            this.HTTPlabel.AutoSize = true;
+            this.HTTPlabel.BackColor = System.Drawing.SystemColors.Info;
+            this.HTTPlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.HTTPlabel.Location = new System.Drawing.Point(12, 62);
+            this.HTTPlabel.Name = "HTTPlabel";
+            this.HTTPlabel.Size = new System.Drawing.Size(146, 20);
+            this.HTTPlabel.TabIndex = 7;
+            this.HTTPlabel.Text = "HTTP Status Code:";
+            this.HTTPlabel.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.Info;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label1.Location = new System.Drawing.Point(16, 91);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 20);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Title:";
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // titleHolder
+            // 
+            this.titleHolder.AutoSize = true;
+            this.titleHolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.titleHolder.Location = new System.Drawing.Point(64, 91);
+            this.titleHolder.Name = "titleHolder";
+            this.titleHolder.Size = new System.Drawing.Size(0, 20);
+            this.titleHolder.TabIndex = 9;
+            // 
+            // HTTPHolder
+            // 
+            this.HTTPHolder.AutoSize = true;
+            this.HTTPHolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.HTTPHolder.Location = new System.Drawing.Point(159, 62);
+            this.HTTPHolder.Name = "HTTPHolder";
+            this.HTTPHolder.Size = new System.Drawing.Size(0, 20);
+            this.HTTPHolder.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 544);
+            this.ClientSize = new System.Drawing.Size(784, 609);
+            this.Controls.Add(this.HTTPHolder);
+            this.Controls.Add(this.titleHolder);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.HTTPlabel);
             this.Controls.Add(this.refreshPageButon);
             this.Controls.Add(this.forwardPageButton);
             this.Controls.Add(this.backPageButton);
@@ -139,6 +190,10 @@
         private System.Windows.Forms.Button backPageButton;
         private System.Windows.Forms.Button forwardPageButton;
         private System.Windows.Forms.Button refreshPageButon;
+        private System.Windows.Forms.Label HTTPlabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label titleHolder;
+        private System.Windows.Forms.Label HTTPHolder;
     }
 }
 
