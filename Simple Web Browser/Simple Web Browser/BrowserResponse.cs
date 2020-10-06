@@ -20,6 +20,7 @@ namespace Simple_Web_Browser
         }
         public async Task<string> getContent()
         {
+            response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
 
             return responseBody;

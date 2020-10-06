@@ -14,15 +14,18 @@ namespace Simple_Web_Browser
     public partial class Form1 : Form
     {
 
- 
+        Manager manager;
+
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private void menuButton_Click(object sender, EventArgs e)
         {
-
+            Form2 frm = new Form2(this);
+            frm.Show();
         }
 
         private void backPageButton_Click(object sender, EventArgs e)
@@ -34,19 +37,33 @@ namespace Simple_Web_Browser
         {
 
         }
-        private void resultDisplay_TextChanged(object sender, EventArgs e)
+        private
+            void resultDisplay_TextChanged(object sender, EventArgs e)
         {
 
         }
         private async void searchButton_Click(object sender, EventArgs e)
         {
-            Manager test = new Manager();
-            Console.WriteLine(test.getWebsite(inputBox.Text));
-            resultDisplay.Text = await test.getWebsite(inputBox.Text);
-        }
-        private void refreshPageButon_Click(object sender, EventArgs e)
-        {
+            
 
+            try
+            {
+                resultDisplay.Text = await manager.getWebsite(inputBox.Text);
+            }
+            catch (Exception exp) { 
+            
+                resultDisplay.Text = exp.Message;
+            }
+        }
+        private async void refreshPageButon_Click(object sender, EventArgs e)
+        {
+            resultDisplay.Text = await manager.getWebsite(manager.currentURL);
+        }
+
+        private async void Form1_Load(object sender, EventArgs e)
+        {
+            manager = new Manager();
+            resultDisplay.Text = await manager.getWebsite(manager.currentURL);
         }
     }
 }

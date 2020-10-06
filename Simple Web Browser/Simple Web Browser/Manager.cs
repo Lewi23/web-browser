@@ -4,34 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using System.Security.Policy;
 
 namespace Simple_Web_Browser
 {
     class Manager
     {
 
-        String result;
+        private string result;
+        public string currentURL;
+        HTTP test = new HTTP();
+
+        XML homepage = new XML("Data");
 
         public Manager()
         {
+            currentURL = getHomeURL();
         }
 
-        HTTP test = new HTTP();
-        HttpResponseMessage responseMessage;
-
-        private async Task<String> get_data(String URL)
+  
+        public string getHomeURL()
         {
-            HttpResponseMessage responseMessage = await HTTP.Get(URL);
-            BrowserResponse browser = new BrowserResponse(responseMessage);
-
-            result = await browser.getContent();
-            return result;
+            return homepage.getHomePageURI();
         }
 
-        public async Task<string> getWebsite(String URL)
-        {
-            return await get_data(URL);
-            //return result;
+        public async Task<String> getWebsite(String URL) {
+
+                currentURL = URL;   
+
+                HttpResponseMessage responseMessage = await HTTP.Get(URL);
+                BrowserResponse browser = new BrowserResponse(responseMessage);
+                result = await browser.getContent();
+
+                return result;
         }
 
     }

@@ -117,7 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Homepage" xml:space="preserve">
-    <value>C:\Users\lewis\Desktop\Industrial Programming\CW1\Simple-Web-Browser\Simple Web Browser\Simple Web Browser\Data\Homepage.xml</value>
-  </data>
 </root>

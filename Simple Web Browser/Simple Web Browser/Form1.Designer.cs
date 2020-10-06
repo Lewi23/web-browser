@@ -124,6 +124,7 @@
             this.Controls.Add(this.menuButton);
             this.Name = "Form1";
             this.Text = "Simple Web Browser";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,7 +133,7 @@
         #endregion
 
         private System.Windows.Forms.Button menuButton;
-        private System.Windows.Forms.RichTextBox resultDisplay;
+        public System.Windows.Forms.RichTextBox resultDisplay;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox inputBox;
         private System.Windows.Forms.Button backPageButton;
