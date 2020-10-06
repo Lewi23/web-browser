@@ -16,5 +16,30 @@ namespace Simple_Web_Browser
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void resultDisplay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
