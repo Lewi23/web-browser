@@ -33,8 +33,8 @@ namespace Simple_Web_Browser
         private async void backPageButton_Click(object sender, EventArgs e)
         {
 
-            manager.getWebsite(manager.historyManager.getPreviousPage(), false);
-            manager.RequestComplete += m_RequestComplete;
+            manager.getWebsite(manager.historyManager.getPreviousPage(), true);
+
 
             // resultDisplay.Text = await manager.getWebsite(manager.historyManager.getPreviousPage(), true);
             //inputBox.Text = manager.currentURL;
@@ -60,8 +60,7 @@ namespace Simple_Web_Browser
             //titleHolder.Text = manager.title;
             //HTTPHolder.Text = manager.request;
 
-            manager.getWebsite(manager.historyManager.getNextPage(), false);
-            manager.RequestComplete += m_RequestComplete;
+            manager.getWebsite(manager.historyManager.getNextPage(), true);
 
             /*
 
@@ -86,7 +85,6 @@ namespace Simple_Web_Browser
             {
 
                 manager.getWebsite(inputBox.Text, false);
-                manager.RequestComplete += m_RequestComplete;
 
                 // resultDisplay.Text = await manager.getWebsite(inputBox.Text, false);
                 //titleHolder.Text = manager.title;
@@ -115,9 +113,9 @@ namespace Simple_Web_Browser
 
         void m_RequestComplete(object sender, RequestCompleteArgs e)
         {
-            Console.WriteLine(e.pageData);
-            Console.WriteLine(e.request);
-            Console.WriteLine(e.title);
+            //Console.WriteLine(e.pageData);
+            //Console.WriteLine(e.request);
+            //Console.WriteLine(e.title);
 
             resultDisplay.Text = e.pageData;
             inputBox.Text = e.URL;
