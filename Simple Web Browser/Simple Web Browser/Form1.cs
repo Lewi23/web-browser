@@ -21,6 +21,7 @@ namespace Simple_Web_Browser
         {
             InitializeComponent();
             manager = new Manager();
+            manager.RequestComplete += m_RequestComplete;
         }
 
         private void menuButton_Click(object sender, EventArgs e)
@@ -32,10 +33,13 @@ namespace Simple_Web_Browser
         private async void backPageButton_Click(object sender, EventArgs e)
         {
 
-            resultDisplay.Text = await manager.getWebsite(manager.historyManager.getPreviousPage(), true);
-            inputBox.Text = manager.currentURL;
-            titleHolder.Text = manager.title;
-            HTTPHolder.Text = manager.request;
+            manager.getWebsite(manager.historyManager.getPreviousPage(), false);
+            manager.RequestComplete += m_RequestComplete;
+
+            // resultDisplay.Text = await manager.getWebsite(manager.historyManager.getPreviousPage(), true);
+            //inputBox.Text = manager.currentURL;
+            //titleHolder.Text = manager.title;
+            // HTTPHolder.Text = manager.request;
 
             /*
             if (manager.historyManager.CanStepBack == false)
@@ -51,10 +55,13 @@ namespace Simple_Web_Browser
 
         private async void forwardPageButton_Click(object sender, EventArgs e)
         {
-            resultDisplay.Text = await manager.getWebsite(manager.historyManager.getNextPage(), true);
-            inputBox.Text = manager.currentURL;
-            titleHolder.Text = manager.title;
-            HTTPHolder.Text = manager.request;
+            // resultDisplay.Text = await manager.getWebsite(manager.historyManager.getNextPage(), true);
+            //inputBox.Text = manager.currentURL;
+            //titleHolder.Text = manager.title;
+            //HTTPHolder.Text = manager.request;
+
+            manager.getWebsite(manager.historyManager.getNextPage(), false);
+            manager.RequestComplete += m_RequestComplete;
 
             /*
 
@@ -77,9 +84,16 @@ namespace Simple_Web_Browser
 
             try
             {
-                resultDisplay.Text = await manager.getWebsite(inputBox.Text, false);
-                titleHolder.Text = manager.title;
-                HTTPHolder.Text = manager.request;
+
+                manager.getWebsite(inputBox.Text, false);
+                manager.RequestComplete += m_RequestComplete;
+
+                // resultDisplay.Text = await manager.getWebsite(inputBox.Text, false);
+                //titleHolder.Text = manager.title;
+                //HTTPHolder.Text = manager.request;
+
+                // manager.PageUpdate += m_PageUpdate;
+                //manager.RequestComplete += m_RequestComplete;
 
                 // you have no searched something so can go backwords at least once
                 /*
@@ -98,18 +112,45 @@ namespace Simple_Web_Browser
 
             
         }
+
+        void m_RequestComplete(object sender, RequestCompleteArgs e)
+        {
+            Console.WriteLine(e.pageData);
+            Console.WriteLine(e.request);
+            Console.WriteLine(e.title);
+
+            resultDisplay.Text = e.pageData;
+            inputBox.Text = e.URL;
+            titleHolder.Text = e.title;
+            HTTPHolder.Text = e.request;
+
+        }
+
+
         private async void refreshPageButon_Click(object sender, EventArgs e)
         {
-            resultDisplay.Text = await manager.getWebsite(manager.currentURL, true);
+            // resultDisplay.Text = await manager.getWebsite(manager.currentURL, true);
+            // refreshPageButon.Click += new EventHandler(NameButtonClicked);
         }
+        /*
+        private void NameButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("We fired off an event!");
+        }
+
+        */
 
         private async void Form1_Load(object sender, EventArgs e)
         {
 
-            resultDisplay.Text = await manager.getWebsite(manager.currentURL, false);
-            inputBox.Text = manager.currentURL;
-            titleHolder.Text = manager.title;
-            HTTPHolder.Text = manager.request;
+            manager.getWebsite(manager.currentURL, false);
+            
+
+
+
+            //inputBox.Text = manager.currentURL;
+            //titleHolder.Text = manager.title;
+            //HTTPHolder.Text = manager.request;
 
             /*
             // When the form loads you can't step forwards or backwords (haven't gone anywhere)
@@ -128,5 +169,8 @@ namespace Simple_Web_Browser
         {
 
         }
+
+
+
     }
 }

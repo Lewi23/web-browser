@@ -13,6 +13,8 @@ namespace Simple_Web_Browser
 
         // History stuff
 
+        public event EventHandler getNpage;
+
         public static List<string> item = new List<string>();
         static public int index = 0;
         static string url = "";

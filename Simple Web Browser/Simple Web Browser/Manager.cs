@@ -13,6 +13,8 @@ namespace Simple_Web_Browser
     class Manager
     {
 
+        public event EventHandler<string> gotUrlEvent;
+
         private string result;
         public string title;
         public string currentURL;
@@ -37,7 +39,7 @@ namespace Simple_Web_Browser
             return homepageXML.getHomePageURI();
         }
 
-        public async Task<String> getWebsite(String URL, bool historyItem) {
+        public async void getWebsite(String URL, bool historyItem) {
 
             currentURL = URL;
 
@@ -46,26 +48,38 @@ namespace Simple_Web_Browser
                 historyManager.addToHistory(URL);
             }
 
-            try
-            {
-                HttpResponseMessage responseMessage = await HTTP.Get(URL);
-                BrowserResponse browser = new BrowserResponse(responseMessage);
-                result = await browser.getContent();
-            } catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-
-                
-
-                this.title = Regex.Match(result, "<title>([^<]*)</title>").Groups[1].Value;
-                // if an exception isn't thrown we are 200 OK (I think)
-                this.request = "200 OK";
-
-                return result;
+            
+            HttpResponseMessage responseMessage = await HTTP.Get(URL);
+            BrowserResponse browser = new BrowserResponse(responseMessage);
+            result = await browser.getContent();
+            
+            RequestCompleteArgs args = new RequestCompleteArgs();
+            args.pageData = result;
+            args.title = Regex.Match(result, "<title>([^<]*)</title>").Groups[1].Value;
+            args.request = "200 OK";
+            args.URL = currentURL;
+            OnRequestComplete(args);
+    
         }
 
-     
+        protected virtual void OnRequestComplete(RequestCompleteArgs e)
+        {
+            EventHandler<RequestCompleteArgs> handler = RequestComplete;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
 
+        public event EventHandler<RequestCompleteArgs> RequestComplete;
     }
+    public class RequestCompleteArgs : EventArgs
+    {
+        public string pageData { get; set; }
+        public string title { get; set; }
+        public string request { get; set; }
+
+        public string URL { get; set; }
+    }
+
 }
