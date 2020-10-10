@@ -20,7 +20,7 @@ namespace Simple_Web_Browser
         public Form1()
         {
             InitializeComponent();
-            
+            manager = new Manager();
         }
 
         private void menuButton_Click(object sender, EventArgs e)
@@ -29,14 +29,44 @@ namespace Simple_Web_Browser
             frm.Show();
         }
 
-        private void backPageButton_Click(object sender, EventArgs e)
+        private async void backPageButton_Click(object sender, EventArgs e)
         {
 
+            resultDisplay.Text = await manager.getWebsite(manager.historyManager.getPreviousPage(), true);
+            inputBox.Text = manager.currentURL;
+            titleHolder.Text = manager.title;
+            HTTPHolder.Text = manager.request;
+
+            /*
+            if (manager.historyManager.CanStepBack == false)
+            {
+                backPageButton.Enabled = false;
+            }
+            if (manager.historyManager.CanStepForward == true)
+            {
+                forwardPageButton.Enabled = true;
+            }
+            */
         }
 
-        private void forwardPageButton_Click(object sender, EventArgs e)
+        private async void forwardPageButton_Click(object sender, EventArgs e)
         {
+            resultDisplay.Text = await manager.getWebsite(manager.historyManager.getNextPage(), true);
+            inputBox.Text = manager.currentURL;
+            titleHolder.Text = manager.title;
+            HTTPHolder.Text = manager.request;
 
+            /*
+
+            if (manager.historyManager.CanStepForward == false)
+            {
+                forwardPageButton.Enabled = false;
+            }
+            if (manager.historyManager.CanStepBack == true)
+            {
+                backPageButton.Enabled = true;
+            }
+            */
         }
         void resultDisplay_TextChanged(object sender, EventArgs e)
         {
@@ -44,31 +74,49 @@ namespace Simple_Web_Browser
         }
         private async void searchButton_Click(object sender, EventArgs e)
         {
-            
 
             try
             {
-                resultDisplay.Text = await manager.getWebsite(inputBox.Text);
+                resultDisplay.Text = await manager.getWebsite(inputBox.Text, false);
+                titleHolder.Text = manager.title;
+                HTTPHolder.Text = manager.request;
+
+                // you have no searched something so can go backwords at least once
+                /*
+                if (manager.historyManager.addedURL)
+                {
+                    backPageButton.Enabled = true;
+                }
+
+                */
+
             }
             catch (Exception exp) { 
             
                 resultDisplay.Text = exp.Message;
             }
+
+            
         }
         private async void refreshPageButon_Click(object sender, EventArgs e)
         {
-            resultDisplay.Text = await manager.getWebsite(manager.currentURL);
+            resultDisplay.Text = await manager.getWebsite(manager.currentURL, true);
         }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            manager = new Manager();
-            resultDisplay.Text = await manager.getWebsite(manager.currentURL);
+
+            resultDisplay.Text = await manager.getWebsite(manager.currentURL, false);
             inputBox.Text = manager.currentURL;
-            // ref this
             titleHolder.Text = manager.title;
             HTTPHolder.Text = manager.request;
 
+            /*
+            // When the form loads you can't step forwards or backwords (haven't gone anywhere)
+            backPageButton.Enabled = false;
+            forwardPageButton.Enabled = false;
+          
+            */
         }
 
         private void label1_Click(object sender, EventArgs e)

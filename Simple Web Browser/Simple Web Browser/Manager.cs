@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Security.Policy;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Simple_Web_Browser
 {
@@ -18,23 +19,32 @@ namespace Simple_Web_Browser
         public string request;
 
         HTTP test = new HTTP();
+        XML homepageXML = new XML("Data");
+        public History historyManager;
 
-        XML homepage = new XML("Data");
+
 
         public Manager()
         {
             currentURL = getHomeURL();
+            historyManager = new History(currentURL);
         }
 
-  
+        
+
         public string getHomeURL()
         {
-            return homepage.getHomePageURI();
+            return homepageXML.getHomePageURI();
         }
 
-        public async Task<String> getWebsite(String URL) {
+        public async Task<String> getWebsite(String URL, bool historyItem) {
 
-                currentURL = URL;
+            currentURL = URL;
+
+            if (!historyItem)
+            {
+                historyManager.addToHistory(URL);
+            }
 
             try
             {

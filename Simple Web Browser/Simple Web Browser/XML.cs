@@ -33,7 +33,7 @@ namespace Simple_Web_Browser
 
         public static void setHomePageURI(String URI)
         {
-            
+           
         }
 
 
