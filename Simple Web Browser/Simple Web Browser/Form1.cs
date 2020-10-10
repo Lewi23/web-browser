@@ -81,10 +81,9 @@ namespace Simple_Web_Browser
         private async void searchButton_Click(object sender, EventArgs e)
         {
 
-            try
-            {
-
                 manager.getWebsite(inputBox.Text, false);
+
+                backPageButton.Enabled = true;
 
                 // resultDisplay.Text = await manager.getWebsite(inputBox.Text, false);
                 //titleHolder.Text = manager.title;
@@ -102,12 +101,7 @@ namespace Simple_Web_Browser
 
                 */
 
-            }
-            catch (Exception exp) { 
-            
-                resultDisplay.Text = exp.Message;
-            }
-
+         
             
         }
 
@@ -142,20 +136,10 @@ namespace Simple_Web_Browser
         {
 
             manager.getWebsite(manager.currentURL, false);
-            
 
-
-
-            //inputBox.Text = manager.currentURL;
-            //titleHolder.Text = manager.title;
-            //HTTPHolder.Text = manager.request;
-
-            /*
             // When the form loads you can't step forwards or backwords (haven't gone anywhere)
             backPageButton.Enabled = false;
             forwardPageButton.Enabled = false;
-          
-            */
         }
 
         private void label1_Click(object sender, EventArgs e)

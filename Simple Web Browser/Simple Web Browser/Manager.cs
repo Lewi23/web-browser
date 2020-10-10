@@ -39,6 +39,11 @@ namespace Simple_Web_Browser
             return homepageXML.getHomePageURI();
         }
 
+        public bool buttonControl()
+        {
+        
+        }
+
         public async void getWebsite(String URL, bool historyItem) {
 
             currentURL = URL;
@@ -56,7 +61,7 @@ namespace Simple_Web_Browser
             RequestCompleteArgs args = new RequestCompleteArgs();
             args.pageData = result;
             args.title = Regex.Match(result, "<title>([^<]*)</title>").Groups[1].Value;
-            args.request = "200 OK";
+            args.request = "200 OK"; // need to fix this it's hardcoded
             args.URL = currentURL;
             OnRequestComplete(args);
     
