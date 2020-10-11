@@ -22,6 +22,7 @@ namespace Simple_Web_Browser
             InitializeComponent();
             manager = new Manager();
             manager.RequestComplete += m_RequestComplete;
+            manager.historyManager.HistoryItem += HistoryManager_HistoryItem;
         }
 
         private void menuButton_Click(object sender, EventArgs e)
@@ -33,7 +34,7 @@ namespace Simple_Web_Browser
         private async void backPageButton_Click(object sender, EventArgs e)
         {
 
-            manager.getWebsite(manager.historyManager.getPreviousPage(), true);
+            manager.getWebsite(manager.historyManager.getPreviousPage(), false);
 
 
             // resultDisplay.Text = await manager.getWebsite(manager.historyManager.getPreviousPage(), true);
@@ -60,7 +61,7 @@ namespace Simple_Web_Browser
             //titleHolder.Text = manager.title;
             //HTTPHolder.Text = manager.request;
 
-            manager.getWebsite(manager.historyManager.getNextPage(), true);
+            manager.getWebsite(manager.historyManager.getNextPage(), false);
 
             /*
 
@@ -81,7 +82,7 @@ namespace Simple_Web_Browser
         private async void searchButton_Click(object sender, EventArgs e)
         {
 
-                manager.getWebsite(inputBox.Text, false);
+                manager.getWebsite(inputBox.Text, true);
 
                 backPageButton.Enabled = true;
 
@@ -132,14 +133,14 @@ namespace Simple_Web_Browser
 
         */
 
-        private async void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
 
-            manager.getWebsite(manager.currentURL, false);
+            manager.getWebsite(manager.currentURL, true);
 
             // When the form loads you can't step forwards or backwords (haven't gone anywhere)
-            backPageButton.Enabled = false;
-            forwardPageButton.Enabled = false;
+            //backPageButton.Enabled = false;
+            //forwardPageButton.Enabled = false;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -150,6 +151,20 @@ namespace Simple_Web_Browser
         private void label1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void HistoryManager_HistoryItem(object sender, HistoryItemArgs e)
+        {
+            System.Console.WriteLine("EVENT CALLED");
+
+            HistoryItemArgs item = new HistoryItemArgs();
+            item.pageURL = e.pageURL;
+            item.CurrentTime = e.CurrentTime;
+
+            System.Console.WriteLine(item.pageURL);
+            System.Console.WriteLine(item.CurrentTime);
+
+            manager.historyManager.HistoryList.Add(item);
         }
 
 

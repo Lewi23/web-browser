@@ -12,9 +12,6 @@ namespace Simple_Web_Browser
     {
 
         // History stuff
-
-        public event EventHandler getNpage;
-
         public static List<string> item = new List<string>();
         static public int index = 0;
         static string url = "";
@@ -25,21 +22,12 @@ namespace Simple_Web_Browser
 
         public History()
         {
-
         }
 
         public History(string initalURI)
         {
-
             item.Add(initalURI);
             url = initalURI;
-
-            /*a
-            foreach (string x in item)
-            {
-                Console.WriteLine(x);
-            }
-            */
         }
         
 
@@ -62,8 +50,11 @@ namespace Simple_Web_Browser
         public void addToHistory(string URL)
         {
             // don't add an element to history if the same URL is trying to be added again 
-            if(item.ElementAt(item.Count -1) != URL)
-            {
+            //if(item.ElementAt(item.Count -1) != URL)
+            //{
+            Console.WriteLine("Inside history class (addToHistory)");
+            Console.WriteLine("URL :  {0} ", URL);
+
                 index++;
                 item.Add(URL);
                 addedURL = true;
@@ -71,14 +62,19 @@ namespace Simple_Web_Browser
                 HistoryItemArgs args = new HistoryItemArgs();
                 args.pageURL = URL;
                 args.CurrentTime = DateTime.Now;
+                Console.WriteLine("Calling OnHistoryItem now");
                 OnHistoryItem(args);
+            
 
-            } else
-            {
-                addedURL = false;
-            }
+            //} else
+            //{
+            //    addedURL = false;
+            //}
 
         }
+
+        public List<HistoryItemArgs> HistoryList = new List<HistoryItemArgs>();
+
 
         protected virtual void OnHistoryItem(HistoryItemArgs e)
         {
@@ -90,8 +86,6 @@ namespace Simple_Web_Browser
         }
 
         public event EventHandler<HistoryItemArgs> HistoryItem;
-
-        public List<HistoryItemArgs> HistoryList = new List<HistoryItemArgs>();
 
     }
 

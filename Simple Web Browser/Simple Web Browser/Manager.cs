@@ -13,8 +13,6 @@ namespace Simple_Web_Browser
     public class Manager
     {
 
-        public event EventHandler<string> gotUrlEvent;
-
         private string result;
         public string title;
         public string currentURL;
@@ -45,8 +43,10 @@ namespace Simple_Web_Browser
 
             currentURL = URL;
 
-            if (!historyItem)
+            if (historyItem)
             {
+                Console.WriteLine("Yes, add this to hisotry");
+                Console.WriteLine("Passing in {0} " ,URL);
                 historyManager.addToHistory(URL);
             }
 
