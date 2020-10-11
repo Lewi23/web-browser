@@ -89,6 +89,8 @@ namespace Simple_Web_Browser
         private void historySearch_Click(object sender, EventArgs e)
         {
             System.Console.WriteLine(historyBox.SelectedIndex);
+            //Trying to control pointer when we jump around history
+            this.mainForm.manager.historyManager.setIndex(historyBox.SelectedIndex);
             this.mainForm.manager.loadSelected(historyBox.SelectedIndex + 1);
 
         }

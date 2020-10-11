@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Simple_Web_Browser
         public static List<string> item = new List<string>();
 
         // used for history
-        public static List<string> URLS = new List<string>();
+        //public static List<string> URLS = new List<string>();
 
         static public int index = 0;
         static string url = "";
@@ -32,6 +33,10 @@ namespace Simple_Web_Browser
         {
         }
 
+        public void setIndex(int n)
+        {
+            index = n + 1;
+        }
        
 
         public History(string initalURI)
@@ -45,14 +50,15 @@ namespace Simple_Web_Browser
 
         public string historyURL(int index)
         {
-            System.Console.WriteLine("returning {0}", URLS[index]);
-            return URLS[index];
+            System.Console.WriteLine("returning {0}", item[index]);
+            return item[index];
         }
 
         public string getNextPage()
         {
-
+                
                 index++;
+            Console.WriteLine("INDEX : {0} ", index);
                 Console.WriteLine("Returning {0} at index {1}", item[index], index);
                 return item[index];
         }
@@ -62,7 +68,8 @@ namespace Simple_Web_Browser
         {
         
                 index--;
-                Console.WriteLine("Returning {0} at index {1}", item[index], index);
+            Console.WriteLine("INDEX : {0} ", index);
+            Console.WriteLine("Returning {0} at index {1}", item[index], index);
                 return item[index];
    
         }
@@ -71,7 +78,7 @@ namespace Simple_Web_Browser
         {
             System.Console.WriteLine(item.Count);
 
-            foreach (string x in URLS)
+            foreach (string x in item)
             {
                 System.Console.WriteLine(x);
             }
@@ -89,7 +96,7 @@ namespace Simple_Web_Browser
 
                 index++;
                 item.Add(URL);
-                URLS.Add(URL);
+                //URLS.Add(URL);
                 //addedURL = true;
 
                 HistoryItemArgs args = new HistoryItemArgs();
