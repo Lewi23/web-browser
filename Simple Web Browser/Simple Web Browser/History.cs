@@ -35,6 +35,7 @@ namespace Simple_Web_Browser
 
         public void setIndex(int n)
         {
+            // this fixed it
             index = n + 1;
         }
        
@@ -82,6 +83,11 @@ namespace Simple_Web_Browser
             {
                 System.Console.WriteLine(x);
             }
+        }
+
+        public void removeAt(int index)
+        {
+            HistoryList.RemoveAt(index);
         }
         
         public void addToHistory(string URL)

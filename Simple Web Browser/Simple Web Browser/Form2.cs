@@ -89,7 +89,7 @@ namespace Simple_Web_Browser
         private void historySearch_Click(object sender, EventArgs e)
         {
             System.Console.WriteLine(historyBox.SelectedIndex);
-            //Trying to control pointer when we jump around history
+            //Trying to control pointer when we jump around 
             this.mainForm.manager.historyManager.setIndex(historyBox.SelectedIndex);
             this.mainForm.manager.loadSelected(historyBox.SelectedIndex + 1);
 
@@ -98,6 +98,11 @@ namespace Simple_Web_Browser
         private void button2_Click(object sender, EventArgs e)
         {
             this.mainForm.manager.historyManager.printAllItem();
+        }
+
+        private void deleteHistory_Click(object sender, EventArgs e)
+        {
+            this.mainForm.manager.historyManager.removeAt(historyBox.SelectedIndex);
         }
     }
 }
