@@ -23,6 +23,11 @@ namespace Simple_Web_Browser
         public bool CanStepForward = item.ElementAtOrDefault(index + 1) != null ? true : false;
         public bool addedURL;
 
+        public History()
+        {
+
+        }
+
         public History(string initalURI)
         {
 
@@ -62,15 +67,37 @@ namespace Simple_Web_Browser
                 index++;
                 item.Add(URL);
                 addedURL = true;
-                  
+
+                HistoryItemArgs args = new HistoryItemArgs();
+                args.pageURL = URL;
+                args.CurrentTime = DateTime.Now;
+                OnHistoryItem(args);
+
             } else
             {
                 addedURL = false;
             }
 
-            
         }
 
-        
+        protected virtual void OnHistoryItem(HistoryItemArgs e)
+        {
+            EventHandler<HistoryItemArgs> handler = HistoryItem;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        public event EventHandler<HistoryItemArgs> HistoryItem;
+
+        public List<HistoryItemArgs> HistoryList = new List<HistoryItemArgs>();
+
+    }
+
+    public class HistoryItemArgs : EventArgs
+    {
+        public string pageURL { get; set; }
+        public DateTime CurrentTime { get; set; }
     }
 }

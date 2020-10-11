@@ -55,6 +55,9 @@
             // 
             // resultDisplay
             // 
+            this.resultDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.resultDisplay.BackColor = System.Drawing.SystemColors.Control;
             this.resultDisplay.Location = new System.Drawing.Point(13, 124);
             this.resultDisplay.Name = "resultDisplay";
@@ -161,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 609);
+            this.ClientSize = new System.Drawing.Size(776, 600);
             this.Controls.Add(this.HTTPHolder);
             this.Controls.Add(this.titleHolder);
             this.Controls.Add(this.label1);

@@ -15,7 +15,7 @@ namespace Simple_Web_Browser
     public partial class Form1 : Form
     {
 
-        Manager manager;
+        public Manager manager;
 
         public Form1()
         {

@@ -13,6 +13,8 @@ namespace Simple_Web_Browser
 {
     public partial class Form2 : Form
     {
+        //History historyManager = new History;
+
         public Form2()
         {
             InitializeComponent();
@@ -25,19 +27,48 @@ namespace Simple_Web_Browser
         {
             mainForm = callingForm as Form1;
             InitializeComponent();
+            this.mainForm.manager.historyManager.HistoryItem += updateList;
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            
 
+            foreach(HistoryItemArgs item in this.mainForm.manager.historyManager.HistoryList)
+            {
+                string builder = "URL: " + item.pageURL + " | Accessed: " + item.CurrentTime;
+                Console.WriteLine("Bulder : {0}", builder);
+
+                
+                    historyBox.Items.Add(builder);
+                
+
+                
+            }
+        }
+
+        void updateList(Object sender, HistoryItemArgs e)
+        {
+            HistoryItemArgs item = new HistoryItemArgs();
+            item.pageURL = e.pageURL;
+            item.CurrentTime = e.CurrentTime;
+            this.mainForm.manager.historyManager.HistoryList.Add(item);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.mainForm.resultDisplay.Text = "hello world";
+
+            historyBox.Items.Add("hello");
+
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

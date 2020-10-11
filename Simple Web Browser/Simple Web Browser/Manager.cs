@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Simple_Web_Browser
 {
-    class Manager
+    public class Manager
     {
 
         public event EventHandler<string> gotUrlEvent;
@@ -39,10 +39,7 @@ namespace Simple_Web_Browser
             return homepageXML.getHomePageURI();
         }
 
-        public bool buttonControl()
-        {
-        
-        }
+
 
         public async void getWebsite(String URL, bool historyItem) {
 
