@@ -37,17 +37,25 @@ namespace Simple_Web_Browser
             return homepageXML.getHomePageURI();
         }
 
+        public void loadSelected(int index)
+        {
+            getWebsite(historyManager.historyURL(index), false);
+        }
 
-
+        /// <summary>
+        /// return the website
+        /// </summary>
+        /// <param name="URL">The URL that has been requested</param>
+        /// <param name="historyItem"> True (yes the item should be added to history) False (do not add to history) </param>
         public async void getWebsite(String URL, bool historyItem) {
 
             currentURL = URL;
 
             if (historyItem)
             {
-                Console.WriteLine("Yes, add this to hisotry");
-                Console.WriteLine("Passing in {0} " ,URL);
+                Console.WriteLine("HISTORY ADDED");
                 historyManager.addToHistory(URL);
+
             }
 
             

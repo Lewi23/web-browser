@@ -31,6 +31,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.historyBox = new System.Windows.Forms.ListBox();
+            this.historySearch = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -66,11 +68,34 @@
             this.historyBox.TabIndex = 2;
             this.historyBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
+            // historySearch
+            // 
+            this.historySearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.historySearch.Location = new System.Drawing.Point(204, 82);
+            this.historySearch.Name = "historySearch";
+            this.historySearch.Size = new System.Drawing.Size(76, 34);
+            this.historySearch.TabIndex = 3;
+            this.historySearch.Text = "Search";
+            this.historySearch.UseVisualStyleBackColor = true;
+            this.historySearch.Click += new System.EventHandler(this.historySearch_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(298, 82);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(640, 372);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.historySearch);
             this.Controls.Add(this.historyBox);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button1);
@@ -87,5 +112,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.ListBox historyBox;
+        private System.Windows.Forms.Button historySearch;
+        private System.Windows.Forms.Button button2;
     }
 }

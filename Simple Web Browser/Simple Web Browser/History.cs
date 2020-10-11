@@ -12,7 +12,12 @@ namespace Simple_Web_Browser
     {
 
         // History stuff
+        // back and forward buttons
         public static List<string> item = new List<string>();
+
+        // used for history
+        public static List<string> URLS = new List<string>();
+
         static public int index = 0;
         static string url = "";
 
@@ -20,49 +25,76 @@ namespace Simple_Web_Browser
         public bool CanStepForward = item.ElementAtOrDefault(index + 1) != null ? true : false;
         public bool addedURL;
 
+        // List of items used to display the history list
+        public List<HistoryItemArgs> HistoryList = new List<HistoryItemArgs>();
+
         public History()
         {
         }
 
+       
+
         public History(string initalURI)
         {
-            item.Add(initalURI);
+            //item.Add(initalURI);
+            addToHistory(initalURI);
             url = initalURI;
+
+            Console.Write("Inital item count: {0}", item.Count);
         }
-        
+
+        public string historyURL(int index)
+        {
+            System.Console.WriteLine("returning {0}", URLS[index]);
+            return URLS[index];
+        }
 
         public string getNextPage()
         {
 
-            index++;
-            Console.WriteLine("Returning {0} at index {1}",item[index], index);
-            return item[index];
+                index++;
+                Console.WriteLine("Returning {0} at index {1}", item[index], index);
+                return item[index];
         }
 
         
         public string getPreviousPage()
-        { 
-            index--;
-            Console.WriteLine("Returning {0} at index {1}", item[index], index);
-            return item[index];
+        {
+        
+                index--;
+                Console.WriteLine("Returning {0} at index {1}", item[index], index);
+                return item[index];
+   
         }
 
+        public void printAllItem()
+        {
+            System.Console.WriteLine(item.Count);
+
+            foreach (string x in URLS)
+            {
+                System.Console.WriteLine(x);
+            }
+        }
+        
         public void addToHistory(string URL)
         {
+            //if(item[item.Count - 1] == URL)
+            //{
+            //}
             // don't add an element to history if the same URL is trying to be added again 
             //if(item.ElementAt(item.Count -1) != URL)
             //{
-            Console.WriteLine("Inside history class (addToHistory)");
-            Console.WriteLine("URL :  {0} ", URL);
+            Console.WriteLine("Added to history is being called");
 
                 index++;
                 item.Add(URL);
-                addedURL = true;
+                URLS.Add(URL);
+                //addedURL = true;
 
                 HistoryItemArgs args = new HistoryItemArgs();
                 args.pageURL = URL;
-                args.CurrentTime = DateTime.Now;
-                Console.WriteLine("Calling OnHistoryItem now");
+            args.CurrentTime = DateTime.Now;
                 OnHistoryItem(args);
             
 
@@ -73,7 +105,7 @@ namespace Simple_Web_Browser
 
         }
 
-        public List<HistoryItemArgs> HistoryList = new List<HistoryItemArgs>();
+        
 
 
         protected virtual void OnHistoryItem(HistoryItemArgs e)
@@ -88,7 +120,7 @@ namespace Simple_Web_Browser
         public event EventHandler<HistoryItemArgs> HistoryItem;
 
     }
-
+    
     public class HistoryItemArgs : EventArgs
     {
         public string pageURL { get; set; }

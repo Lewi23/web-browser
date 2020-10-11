@@ -84,7 +84,6 @@
             this.inputBox.Name = "inputBox";
             this.inputBox.Size = new System.Drawing.Size(447, 26);
             this.inputBox.TabIndex = 3;
-            this.inputBox.TextChanged += new System.EventHandler(this.resultDisplay_TextChanged);
             // 
             // backPageButton
             // 
@@ -128,7 +127,6 @@
             this.HTTPlabel.Size = new System.Drawing.Size(146, 20);
             this.HTTPlabel.TabIndex = 7;
             this.HTTPlabel.Text = "HTTP Status Code:";
-            this.HTTPlabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // label1
             // 
@@ -140,7 +138,6 @@
             this.label1.Size = new System.Drawing.Size(42, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Title:";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // titleHolder
             // 

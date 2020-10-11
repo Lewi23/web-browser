@@ -31,7 +31,7 @@ namespace Simple_Web_Browser
             frm.Show();
         }
 
-        private async void backPageButton_Click(object sender, EventArgs e)
+        private void backPageButton_Click(object sender, EventArgs e)
         {
 
             manager.getWebsite(manager.historyManager.getPreviousPage(), false);
@@ -54,7 +54,7 @@ namespace Simple_Web_Browser
             */
         }
 
-        private async void forwardPageButton_Click(object sender, EventArgs e)
+        private void forwardPageButton_Click(object sender, EventArgs e)
         {
             // resultDisplay.Text = await manager.getWebsite(manager.historyManager.getNextPage(), true);
             //inputBox.Text = manager.currentURL;
@@ -75,10 +75,7 @@ namespace Simple_Web_Browser
             }
             */
         }
-        void resultDisplay_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+      
         private async void searchButton_Click(object sender, EventArgs e)
         {
 
@@ -136,22 +133,13 @@ namespace Simple_Web_Browser
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            manager.getWebsite(manager.currentURL, true);
+            manager.getWebsite(manager.currentURL, false);
 
             // When the form loads you can't step forwards or backwords (haven't gone anywhere)
             //backPageButton.Enabled = false;
             //forwardPageButton.Enabled = false;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void HistoryManager_HistoryItem(object sender, HistoryItemArgs e)
         {
@@ -167,7 +155,9 @@ namespace Simple_Web_Browser
             manager.historyManager.HistoryList.Add(item);
         }
 
+        private void resultDisplay_TextChanged(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

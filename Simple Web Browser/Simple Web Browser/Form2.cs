@@ -85,5 +85,17 @@ namespace Simple_Web_Browser
         {
 
         }
+
+        private void historySearch_Click(object sender, EventArgs e)
+        {
+            System.Console.WriteLine(historyBox.SelectedIndex);
+            this.mainForm.manager.loadSelected(historyBox.SelectedIndex + 1);
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.mainForm.manager.historyManager.printAllItem();
+        }
     }
 }
