@@ -34,7 +34,14 @@ namespace Simple_Web_Browser
         private void backPageButton_Click(object sender, EventArgs e)
         {
 
-            manager.getWebsite(manager.historyManager.getPreviousPage(), false);
+           
+                manager.getWebsite(manager.historyManager.getPreviousPage(), false);
+
+
+
+            
+
+
 
 
             // resultDisplay.Text = await manager.getWebsite(manager.historyManager.getPreviousPage(), true);
@@ -61,19 +68,14 @@ namespace Simple_Web_Browser
             //titleHolder.Text = manager.title;
             //HTTPHolder.Text = manager.request;
 
-            manager.getWebsite(manager.historyManager.getNextPage(), false);
+         
+                manager.getWebsite(manager.historyManager.getNextPage(), false);
+                
+            
 
-            /*
+            
 
-            if (manager.historyManager.CanStepForward == false)
-            {
-                forwardPageButton.Enabled = false;
-            }
-            if (manager.historyManager.CanStepBack == true)
-            {
-                backPageButton.Enabled = true;
-            }
-            */
+            
         }
       
         private async void searchButton_Click(object sender, EventArgs e)
@@ -81,7 +83,7 @@ namespace Simple_Web_Browser
 
                 manager.getWebsite(inputBox.Text, true);
 
-                backPageButton.Enabled = true;
+                
 
                 // resultDisplay.Text = await manager.getWebsite(inputBox.Text, false);
                 //titleHolder.Text = manager.title;
@@ -136,8 +138,11 @@ namespace Simple_Web_Browser
             manager.getWebsite(manager.currentURL, false);
 
             // When the form loads you can't step forwards or backwords (haven't gone anywhere)
-            //backPageButton.Enabled = false;
-            //forwardPageButton.Enabled = false;
+            backPageButton.Enabled = true;
+            forwardPageButton.Enabled = true;
+
+            
+
         }
 
 

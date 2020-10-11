@@ -59,6 +59,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.resultDisplay.BackColor = System.Drawing.SystemColors.Control;
+            this.resultDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.resultDisplay.Location = new System.Drawing.Point(13, 124);
             this.resultDisplay.Name = "resultDisplay";
             this.resultDisplay.Size = new System.Drawing.Size(754, 473);

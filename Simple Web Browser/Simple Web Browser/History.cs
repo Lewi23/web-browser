@@ -15,11 +15,8 @@ namespace Simple_Web_Browser
         // History stuff
         // back and forward buttons
         public static List<string> item = new List<string>();
-
-        // used for history
-        //public static List<string> URLS = new List<string>();
-
         static public int index = 0;
+
         static string url = "";
 
         public bool CanStepBack = item.ElementAtOrDefault(index - 1) != null ? true : false;
@@ -67,8 +64,8 @@ namespace Simple_Web_Browser
         
         public string getPreviousPage()
         {
-        
-                index--;
+
+            index = index - 1;
             Console.WriteLine("INDEX : {0} ", index);
             Console.WriteLine("Returning {0} at index {1}", item[index], index);
                 return item[index];
@@ -87,6 +84,7 @@ namespace Simple_Web_Browser
 
         public void removeAt(int index)
         {
+            // removing from history only, not back and forward
             HistoryList.RemoveAt(index);
         }
         
@@ -107,7 +105,7 @@ namespace Simple_Web_Browser
 
                 HistoryItemArgs args = new HistoryItemArgs();
                 args.pageURL = URL;
-            args.CurrentTime = DateTime.Now;
+                args.CurrentTime = DateTime.Now;
                 OnHistoryItem(args);
             
 
