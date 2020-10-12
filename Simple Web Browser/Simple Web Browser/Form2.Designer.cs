@@ -33,13 +33,14 @@
             this.button2 = new System.Windows.Forms.Button();
             this.deleteHistory = new System.Windows.Forms.Button();
             this.bookmarkBox = new System.Windows.Forms.ListBox();
-            this.bookmarkName = new System.Windows.Forms.TextBox();
-            this.bookmarkURL = new System.Windows.Forms.TextBox();
+            this.bookmarkNameEntry = new System.Windows.Forms.TextBox();
+            this.bookmarkURLEntry = new System.Windows.Forms.TextBox();
             this.addBookmarkButton = new System.Windows.Forms.Button();
             this.deleteBookmarkButton = new System.Windows.Forms.Button();
             this.searchBookMarkButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.bookmarkLabel = new System.Windows.Forms.Label();
+            this.editBookmarkButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // historyBox
@@ -92,55 +93,58 @@
             this.bookmarkBox.FormattingEnabled = true;
             this.bookmarkBox.HorizontalScrollbar = true;
             this.bookmarkBox.ItemHeight = 20;
-            this.bookmarkBox.Location = new System.Drawing.Point(12, 471);
+            this.bookmarkBox.Location = new System.Drawing.Point(12, 462);
             this.bookmarkBox.Name = "bookmarkBox";
             this.bookmarkBox.Size = new System.Drawing.Size(578, 224);
             this.bookmarkBox.TabIndex = 6;
+            this.bookmarkBox.SelectedIndexChanged += new System.EventHandler(this.bookmarkBox_SelectedIndexChanged);
             // 
-            // bookmarkName
+            // bookmarkNameEntry
             // 
-            this.bookmarkName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.bookmarkName.Location = new System.Drawing.Point(12, 430);
-            this.bookmarkName.Name = "bookmarkName";
-            this.bookmarkName.Size = new System.Drawing.Size(279, 26);
-            this.bookmarkName.TabIndex = 7;
-            this.bookmarkName.Text = "Bookmark name";
+            this.bookmarkNameEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.bookmarkNameEntry.Location = new System.Drawing.Point(12, 430);
+            this.bookmarkNameEntry.Name = "bookmarkNameEntry";
+            this.bookmarkNameEntry.Size = new System.Drawing.Size(280, 26);
+            this.bookmarkNameEntry.TabIndex = 7;
+            this.bookmarkNameEntry.Text = "Bookmark name";
             // 
-            // bookmarkURL
+            // bookmarkURLEntry
             // 
-            this.bookmarkURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.bookmarkURL.Location = new System.Drawing.Point(297, 430);
-            this.bookmarkURL.Name = "bookmarkURL";
-            this.bookmarkURL.Size = new System.Drawing.Size(293, 26);
-            this.bookmarkURL.TabIndex = 8;
-            this.bookmarkURL.Text = "Bookmark URL";
+            this.bookmarkURLEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.bookmarkURLEntry.Location = new System.Drawing.Point(308, 430);
+            this.bookmarkURLEntry.Name = "bookmarkURLEntry";
+            this.bookmarkURLEntry.Size = new System.Drawing.Size(280, 26);
+            this.bookmarkURLEntry.TabIndex = 8;
+            this.bookmarkURLEntry.Text = "Bookmark URL";
             // 
             // addBookmarkButton
             // 
             this.addBookmarkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.addBookmarkButton.Location = new System.Drawing.Point(12, 393);
+            this.addBookmarkButton.Location = new System.Drawing.Point(12, 692);
             this.addBookmarkButton.Name = "addBookmarkButton";
             this.addBookmarkButton.Size = new System.Drawing.Size(190, 31);
             this.addBookmarkButton.TabIndex = 9;
             this.addBookmarkButton.Text = "Add";
             this.addBookmarkButton.UseVisualStyleBackColor = true;
+            this.addBookmarkButton.Click += new System.EventHandler(this.addBookmarkButton_Click);
             // 
             // deleteBookmarkButton
             // 
             this.deleteBookmarkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.deleteBookmarkButton.Location = new System.Drawing.Point(208, 393);
+            this.deleteBookmarkButton.Location = new System.Drawing.Point(408, 692);
             this.deleteBookmarkButton.Name = "deleteBookmarkButton";
-            this.deleteBookmarkButton.Size = new System.Drawing.Size(190, 31);
+            this.deleteBookmarkButton.Size = new System.Drawing.Size(182, 31);
             this.deleteBookmarkButton.TabIndex = 10;
             this.deleteBookmarkButton.Text = "Delete";
             this.deleteBookmarkButton.UseVisualStyleBackColor = true;
+            this.deleteBookmarkButton.Click += new System.EventHandler(this.deleteBookmarkButton_Click);
             // 
             // searchBookMarkButton
             // 
             this.searchBookMarkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.searchBookMarkButton.Location = new System.Drawing.Point(400, 393);
+            this.searchBookMarkButton.Location = new System.Drawing.Point(12, 393);
             this.searchBookMarkButton.Name = "searchBookMarkButton";
-            this.searchBookMarkButton.Size = new System.Drawing.Size(190, 31);
+            this.searchBookMarkButton.Size = new System.Drawing.Size(578, 31);
             this.searchBookMarkButton.TabIndex = 11;
             this.searchBookMarkButton.Text = "Search";
             this.searchBookMarkButton.UseVisualStyleBackColor = true;
@@ -166,18 +170,30 @@
             this.bookmarkLabel.TabIndex = 13;
             this.bookmarkLabel.Text = "Bookmarks";
             // 
+            // editBookmarkButton
+            // 
+            this.editBookmarkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.editBookmarkButton.Location = new System.Drawing.Point(208, 692);
+            this.editBookmarkButton.Name = "editBookmarkButton";
+            this.editBookmarkButton.Size = new System.Drawing.Size(194, 31);
+            this.editBookmarkButton.TabIndex = 14;
+            this.editBookmarkButton.Text = "Edit";
+            this.editBookmarkButton.UseVisualStyleBackColor = true;
+            this.editBookmarkButton.Click += new System.EventHandler(this.editBookmarkButton_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(607, 737);
+            this.ClientSize = new System.Drawing.Size(598, 744);
+            this.Controls.Add(this.editBookmarkButton);
             this.Controls.Add(this.bookmarkLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchBookMarkButton);
             this.Controls.Add(this.deleteBookmarkButton);
             this.Controls.Add(this.addBookmarkButton);
-            this.Controls.Add(this.bookmarkURL);
-            this.Controls.Add(this.bookmarkName);
+            this.Controls.Add(this.bookmarkURLEntry);
+            this.Controls.Add(this.bookmarkNameEntry);
             this.Controls.Add(this.bookmarkBox);
             this.Controls.Add(this.deleteHistory);
             this.Controls.Add(this.button2);
@@ -198,12 +214,13 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button deleteHistory;
         private System.Windows.Forms.ListBox bookmarkBox;
-        private System.Windows.Forms.TextBox bookmarkName;
-        private System.Windows.Forms.TextBox bookmarkURL;
+        private System.Windows.Forms.TextBox bookmarkNameEntry;
+        private System.Windows.Forms.TextBox bookmarkURLEntry;
         private System.Windows.Forms.Button addBookmarkButton;
         private System.Windows.Forms.Button deleteBookmarkButton;
         private System.Windows.Forms.Button searchBookMarkButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label bookmarkLabel;
+        private System.Windows.Forms.Button editBookmarkButton;
     }
 }

@@ -24,7 +24,9 @@ namespace Simple_Web_Browser
             manager = new Manager();
             manager.RequestComplete += m_RequestComplete;
             manager.historyManager.HistoryItem += HistoryManager_HistoryItem;
+
         }
+
 
         private void menuButton_Click(object sender, EventArgs e)
         {
@@ -37,10 +39,12 @@ namespace Simple_Web_Browser
 
            
                 // manager.getWebsite(manager.historyManager.getPreviousPage(), false);
-
+                /*
             if (manager.historyManager.CanStepBack())
             {
+                */
                 manager.getWebsite(manager.historyManager.getPreviousPage(), false);
+            /*
                 forwardPageButton.Enabled = true;
             } else
             {
@@ -48,7 +52,7 @@ namespace Simple_Web_Browser
                 backPageButton.Enabled = false;
                 forwardPageButton.Enabled = true;
             }
-
+            */
             
 
 
@@ -73,11 +77,13 @@ namespace Simple_Web_Browser
 
          
                 // manager.getWebsite(manager.historyManager.getNextPage(), false);
-
+                /*
             if (manager.historyManager.CanStepForward())
             {
                 Console.WriteLine("can step forward");
+                */
                 manager.getWebsite(manager.historyManager.getNextPage(), false);
+            /*
                 backPageButton.Enabled = true;
                 
             } else
@@ -86,7 +92,7 @@ namespace Simple_Web_Browser
                 forwardPageButton.Enabled = false;
             }
                 
-            
+            */
 
             
 
@@ -98,7 +104,7 @@ namespace Simple_Web_Browser
 
                 manager.getWebsite(inputBox.Text, true);
 
-                backPageButton.Enabled = true;
+                //backPageButton.Enabled = true;
 
                 
 
@@ -155,8 +161,8 @@ namespace Simple_Web_Browser
             manager.getWebsite(manager.currentURL, false);
 
             // When the form loads you can't step forwards or backwords (haven't gone anywhere)
-            backPageButton.Enabled = false;
-            forwardPageButton.Enabled = false;
+            //backPageButton.Enabled = false;
+            //forwardPageButton.Enabled = false;
 
             
 
@@ -176,6 +182,8 @@ namespace Simple_Web_Browser
 
             manager.historyManager.HistoryList.Add(item);
         }
+
+
 
         private void resultDisplay_TextChanged(object sender, EventArgs e)
         {

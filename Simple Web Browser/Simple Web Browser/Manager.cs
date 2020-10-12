@@ -22,6 +22,8 @@ namespace Simple_Web_Browser
         XML homepageXML = new XML("Data");
         public History historyManager;
 
+        Bookmark bookmark = new Bookmark();
+
 
 
         public Manager()
@@ -30,7 +32,17 @@ namespace Simple_Web_Browser
             historyManager = new History(currentURL);
         }
 
-        
+        public void searchBookmark(int index)
+        {
+            try
+            {
+                getWebsite(Bookmark.bookmarkList[index].bookmarkURL, true);
+            } catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+        }
         
 
         public string getHomeURL()
