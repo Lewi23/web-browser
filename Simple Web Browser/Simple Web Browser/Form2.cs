@@ -18,17 +18,30 @@ namespace Simple_Web_Browser
         // communcatiing between two forms
         private Form1 mainForm = null;
 
+        public Bookmark bookmarkManager = new Bookmark();
+
+
         public Form2()
         {
             InitializeComponent();
-            //this.mainForm.manager.historyManager.HistoryItem += updateList;
-            this.mainForm.manager.historyManager.HistoryItem += HistoryManager_HistoryItem;
+          
+            
         }
 
-        private void HistoryManager_HistoryItem(object sender, HistoryItemArgs e)
+        private void BookmarkManager_bookmarkItem(object sender, EventArgs e)
         {
-            System.Console.WriteLine("called");
+            Console.WriteLine("triggered");
+            bookmarkBox.Items.Clear();
+            foreach (BookmarkArgs bookmark in Bookmark.bookmarkList)
+            { 
+                bookmarkBox.Items.Add(bookmark.bookmarkName);
+            }
         }
+
+        //private void HistoryManager_HistoryItem(object sender, HistoryItemArgs e)
+        //{
+        //    System.Console.WriteLine("called");
+        //}
 
         public Form2(Form callingForm)
         {
@@ -40,14 +53,19 @@ namespace Simple_Web_Browser
         {
 
             System.Console.WriteLine("Form2 loaded");
+            bookmarkManager.bookmarkItem += BookmarkManager_bookmarkItem;
+
+            bookmarkManager.loadBookmarks();
+
             
+
             foreach (HistoryItemArgs item in this.mainForm.manager.historyManager.HistoryList)
             {
                 string builder = "URL: " + item.pageURL + " | Accessed: " + item.CurrentTime;
                 System.Console.WriteLine("Bulder : {0}", builder);
                 historyBox.Items.Add(builder);
             }
-
+            //bookmarkManager.bookmarkItem += BookmarkManager_bookmarkItem;
             
         }
 
@@ -107,7 +125,36 @@ namespace Simple_Web_Browser
 
         private void searchBookMarkButton_Click(object sender, EventArgs e)
         {
+            this.mainForm.manager.searchBookmark(bookmarkBox.SelectedIndex);
+        }
+
+        private void addBookmarkButton_Click(object sender, EventArgs e)
+        { 
+            bookmarkManager.addBookmark(bookmarkNameEntry.Text, bookmarkURLEntry.Text);
+            bookmarkNameEntry.Text = "Bookmark name";
+            bookmarkURLEntry.Text = "Bookmark URL";
 
         }
+
+        private void bookmarkBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // THIS CAN ERROR CLICK BELOW BOOKMARK 
+            bookmarkNameEntry.Text = Bookmark.bookmarkList[bookmarkBox.SelectedIndex].bookmarkName;
+            bookmarkURLEntry.Text = Bookmark.bookmarkList[bookmarkBox.SelectedIndex].bookmarkURL;
+        }
+
+        private void deleteBookmarkButton_Click(object sender, EventArgs e)
+        {
+            bookmarkManager.deleteBookmark(bookmarkBox.SelectedIndex);
+            bookmarkNameEntry.Text = "Bookmark name";
+            bookmarkURLEntry.Text = "Bookmark URL";
+        }
+
+        private void editBookmarkButton_Click(object sender, EventArgs e)
+        {
+            bookmarkManager.editBookmark(bookmarkBox.SelectedIndex, bookmarkNameEntry.Text, bookmarkURLEntry.Text);
+        }
+
+       
     }
 }
