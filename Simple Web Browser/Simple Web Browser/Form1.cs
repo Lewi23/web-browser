@@ -16,6 +16,7 @@ namespace Simple_Web_Browser
     {
 
         public Manager manager;
+        // History historyManager = manager.historyManager;
 
         public Form1()
         {
@@ -35,9 +36,18 @@ namespace Simple_Web_Browser
         {
 
            
+                // manager.getWebsite(manager.historyManager.getPreviousPage(), false);
+
+            if (manager.historyManager.CanStepBack())
+            {
                 manager.getWebsite(manager.historyManager.getPreviousPage(), false);
-
-
+                forwardPageButton.Enabled = true;
+            } else
+            {
+                Console.WriteLine("cant step back");
+                backPageButton.Enabled = false;
+                forwardPageButton.Enabled = true;
+            }
 
             
 
@@ -50,14 +60,7 @@ namespace Simple_Web_Browser
             // HTTPHolder.Text = manager.request;
 
             /*
-            if (manager.historyManager.CanStepBack == false)
-            {
-                backPageButton.Enabled = false;
-            }
-            if (manager.historyManager.CanStepForward == true)
-            {
-                forwardPageButton.Enabled = true;
-            }
+        
             */
         }
 
@@ -69,7 +72,19 @@ namespace Simple_Web_Browser
             //HTTPHolder.Text = manager.request;
 
          
+                // manager.getWebsite(manager.historyManager.getNextPage(), false);
+
+            if (manager.historyManager.CanStepForward())
+            {
+                Console.WriteLine("can step forward");
                 manager.getWebsite(manager.historyManager.getNextPage(), false);
+                backPageButton.Enabled = true;
+                
+            } else
+            {
+                backPageButton.Enabled = true;
+                forwardPageButton.Enabled = false;
+            }
                 
             
 
@@ -82,6 +97,8 @@ namespace Simple_Web_Browser
         {
 
                 manager.getWebsite(inputBox.Text, true);
+
+                backPageButton.Enabled = true;
 
                 
 
@@ -138,8 +155,8 @@ namespace Simple_Web_Browser
             manager.getWebsite(manager.currentURL, false);
 
             // When the form loads you can't step forwards or backwords (haven't gone anywhere)
-            backPageButton.Enabled = true;
-            forwardPageButton.Enabled = true;
+            backPageButton.Enabled = false;
+            forwardPageButton.Enabled = false;
 
             
 

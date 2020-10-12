@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bookmark.cs" />
     <Compile Include="BrowserResponse.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Form2.cs">

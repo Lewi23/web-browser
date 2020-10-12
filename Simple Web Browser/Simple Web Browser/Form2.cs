@@ -104,5 +104,10 @@ namespace Simple_Web_Browser
         {
             this.mainForm.manager.historyManager.removeAt(historyBox.SelectedIndex);
         }
+
+        private void searchBookMarkButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -15,12 +15,13 @@ namespace Simple_Web_Browser
         // History stuff
         // back and forward buttons
         public static List<string> item = new List<string>();
-        static public int index = 0;
+        static public int index = -1;
 
         static string url = "";
 
-        public bool CanStepBack = item.ElementAtOrDefault(index - 1) != null ? true : false;
-        public bool CanStepForward = item.ElementAtOrDefault(index + 1) != null ? true : false;
+        //public bool CanStepBack = item.ElementAtOrDefault(index - 1) != null ? true : false;
+        public bool canStep;
+        //public bool CanStepForward = item.ElementAtOrDefault(index + 1) != null ? true : false;
         public bool addedURL;
 
         // List of items used to display the history list
@@ -28,6 +29,20 @@ namespace Simple_Web_Browser
 
         public History()
         {
+        }
+
+        /// <summary>
+        /// Does a previous page exisist for the user to go to
+        /// </summary>
+        /// <returns></returns>
+        public bool CanStepBack()
+        {
+            return item.ElementAtOrDefault(index - 1) != null ? true : false;
+        }
+
+        public bool CanStepForward()
+        {
+            return item.ElementAtOrDefault(index + 1) != null ? true : false;
         }
 
         public void setIndex(int n)
@@ -54,21 +69,17 @@ namespace Simple_Web_Browser
 
         public string getNextPage()
         {
-                
-                index++;
             Console.WriteLine("INDEX : {0} ", index);
-                Console.WriteLine("Returning {0} at index {1}", item[index], index);
-                return item[index];
+            index++;
+            return item[index];
         }
 
         
         public string getPreviousPage()
         {
-
-            index = index - 1;
             Console.WriteLine("INDEX : {0} ", index);
-            Console.WriteLine("Returning {0} at index {1}", item[index], index);
-                return item[index];
+            index = index - 1;
+            return item[index];
    
         }
 
@@ -100,8 +111,7 @@ namespace Simple_Web_Browser
 
                 index++;
                 item.Add(URL);
-                //URLS.Add(URL);
-                //addedURL = true;
+            Console.WriteLine("History item added index now : {0}", index);
 
                 HistoryItemArgs args = new HistoryItemArgs();
                 args.pageURL = URL;
