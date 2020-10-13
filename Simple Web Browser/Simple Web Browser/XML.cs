@@ -65,15 +65,44 @@ namespace Simple_Web_Browser
             file.Close();
         }
 
+        public static BookmarkArgs FromXML<BookmarkArgs>()
+        {
+            using (StringReader stringReader = new StringReader(Properties.Resources.Bookmarks))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(BookmarkArgs));
+                return (BookmarkArgs)serializer.Deserialize(stringReader);
+            }
+        }
+
         public void readXML()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(Properties.Resources.Bookmarks);
+            /*
+            XmlSerializer serializer = new XmlSerializer(typeof(BookmarkArgs));
+            FileStream fs = new FileStream(Properties.Resources.Bookmarks, FileMode.Open);
 
-            foreach (XmlNode node in doc.DocumentElement.ChildNodes)
+            BookmarkArgs list;
+
+            list = (BookmarkArgs)serializer.Deserialize(fs);
+
+            System.Console.WriteLine(list.bookmarkName);
+
+            */
+
+            List<BookmarkArgs> adlist = new List<BookmarkArgs>();
+
+            using (FileStream fileStream = File.OpenRead(Properties.Resources.Bookmarks))
             {
-                Console.WriteLine(node["bookmarkName"].ChildNodes); //or loop through its children as well
+                XmlSerializer serializer = new XmlSerializer(typeof(List<BookmarkArgs>));
+                adlist = (List<BookmarkArgs>)serializer.Deserialize(fileStream);
             }
+
+            foreach(BookmarkArgs item in adlist)
+            {
+                System.Console.WriteLine(item.bookmarkName);
+                System.Console.WriteLine(item.bookmarkURL);
+            }
+
+            
         }
 
         /*
