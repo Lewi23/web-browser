@@ -59,11 +59,12 @@ namespace Simple_Web_Browser
             historyManager.historyItem += HistoryManager_historyItem;
 
             historyManager.loadHistory();
-            bookmarkManager.loadBookmarks();
-            bookmarkManager.readXML();
-
-
             
+
+            // bookmarkManager.loadLocalHisotry();
+            bookmarkManager.loadBookmarks();
+
+
             /*
             foreach (HistoryItemArgs item in this.mainForm.manager.historyManager.HistoryList)
             {
@@ -136,7 +137,7 @@ namespace Simple_Web_Browser
             bookmarkNameEntry.Text = "Bookmark name";
             bookmarkURLEntry.Text = "Bookmark URL";
 
-            bookmarkManager.saveLocal();
+            bookmarkManager.saveToLocalHistory();
 
         }
 
