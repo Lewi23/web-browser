@@ -14,7 +14,8 @@ namespace Simple_Web_Browser
 
         public static List<HistoryItem> historyList;
         public event EventHandler historyItem;
-        public static int pagePointer = -1;
+        //public static int pagePointer = -1;
+        public static int pagePointer;
         XML<HistoryItem> xml = new XML<HistoryItem>();
 
         public History1()
@@ -28,6 +29,7 @@ namespace Simple_Web_Browser
         public void loadHistory()
         {
             OnHistoryUpdate(EventArgs.Empty);
+            pagePointer = historyList.Count - 1;
         }
 
         public void addToHistory(string url)

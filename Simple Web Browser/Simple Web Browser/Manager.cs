@@ -21,7 +21,7 @@ namespace Simple_Web_Browser
 
         HTTP test = new HTTP();
         
-        public History historyManager;
+        //public History historyManager;
 
         //Bookmark & History manager
         Bookmark bookmark = new Bookmark();
@@ -37,7 +37,7 @@ namespace Simple_Web_Browser
         public Manager()
         {
             currentURL = getHomeURL();
-            historyManager = new History(currentURL);
+            //historyManager = new History(currentURL);
         }
 
         public void getNextPage()
@@ -83,10 +83,7 @@ namespace Simple_Web_Browser
             homepageXML.writeListToXML<string>(homepage, Resources.Homepage);
         }
 
-        public void loadSelected(int index)
-        {
-            getWebsite(historyManager.historyURL(index), false);
-        }
+        
 
         /// <summary>
         /// return the website
@@ -100,7 +97,7 @@ namespace Simple_Web_Browser
             if (historyItem)
             {
                 //Console.WriteLine("HISTORY ADDED");
-                historyManager.addToHistory(URL);
+                //historyManager.addToHistory(URL);
                 hm1.addToHistory(URL);
 
             }

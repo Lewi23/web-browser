@@ -25,7 +25,7 @@ namespace Simple_Web_Browser
             manager = new Manager();
             historyManager = new History1();
             manager.RequestComplete += m_RequestComplete;
-            manager.historyManager.HistoryItem += HistoryManager_HistoryItem;
+            //manager.historyManager.HistoryItem += HistoryManager_HistoryItem;
 
         }
 
@@ -99,7 +99,7 @@ namespace Simple_Web_Browser
             // In theory you shouldn't ever be able to go forward but might be able to go backwords if history loads
         }
 
-
+        /*
         private void HistoryManager_HistoryItem(object sender, HistoryItemArgs e)
         {
            // System.Console.WriteLine("EVENT CALLED");
@@ -113,7 +113,7 @@ namespace Simple_Web_Browser
 
             manager.historyManager.HistoryList.Add(item);
         }
-
+        */
 
 
         private void resultDisplay_TextChanged(object sender, EventArgs e)

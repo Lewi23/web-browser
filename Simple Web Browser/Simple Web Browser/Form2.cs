@@ -67,10 +67,6 @@ namespace Simple_Web_Browser
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.mainForm.manager.historyManager.printAllItem();
-        }
 
         private void historySearch_Click(object sender, EventArgs e)
         {
