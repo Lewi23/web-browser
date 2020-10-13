@@ -11,19 +11,11 @@ namespace Simple_Web_Browser
 {
     class XML<T>
     {
-        private XmlDocument doc;
-        private string URI;
-
-        
-
-        private XmlDocument bookmarks;
-
+    
         public XML()
         {
-            bookmarks = new XmlDocument();
+            
         }
-
-
         // https://stackoverflow.com/questions/8334527/save-listt-to-xml-file
         // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/serialization/how-to-write-object-data-to-an-xml-file
 
