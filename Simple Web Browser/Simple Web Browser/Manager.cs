@@ -90,7 +90,7 @@ namespace Simple_Web_Browser
 
             if (historyItem)
             {
-                Console.WriteLine("HISTORY ADDED");
+                //Console.WriteLine("HISTORY ADDED");
                 historyManager.addToHistory(URL);
                 hm1.addToHistory(URL);
 

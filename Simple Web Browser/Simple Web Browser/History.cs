@@ -58,12 +58,12 @@ namespace Simple_Web_Browser
             addToHistory(initalURI);
             url = initalURI;
 
-            Console.Write("Inital item count: {0}", item.Count);
+            //Console.Write("Inital item count: {0}", item.Count);
         }
 
         public string historyURL(int index)
         {
-            System.Console.WriteLine("returning {0}", item[index]);
+            //System.Console.WriteLine("returning {0}", item[index]);
             return item[index];
         }
 
@@ -107,11 +107,11 @@ namespace Simple_Web_Browser
             // don't add an element to history if the same URL is trying to be added again 
             //if(item.ElementAt(item.Count -1) != URL)
             //{
-            Console.WriteLine("Added to history is being called");
+            //Console.WriteLine("Added to history is being called");
 
                 index++;
                 item.Add(URL);
-            Console.WriteLine("History item added index now : {0}", index);
+            //Console.WriteLine("History item added index now : {0}", index);
 
                 HistoryItemArgs args = new HistoryItemArgs();
                 args.pageURL = URL;

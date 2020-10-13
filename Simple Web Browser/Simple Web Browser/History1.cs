@@ -44,7 +44,13 @@ namespace Simple_Web_Browser
         {
             historyList.RemoveAt(index);
 
-            pagePointer--;
+            // This is handling an edge case of deletion ( if you delete the page you are on with only 1 other page)
+            if(pagePointer < 1)
+            {
+                pagePointer--;
+            }
+            
+            Console.WriteLine("THE PAGE POINTER : " + pagePointer);
 
             OnHistoryUpdate(EventArgs.Empty);
         }

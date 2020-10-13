@@ -101,7 +101,7 @@ namespace Simple_Web_Browser
 
         private void HistoryManager_HistoryItem(object sender, HistoryItemArgs e)
         {
-            System.Console.WriteLine("EVENT CALLED");
+           // System.Console.WriteLine("EVENT CALLED");
 
             HistoryItemArgs item = new HistoryItemArgs();
             item.pageURL = e.pageURL;
@@ -119,11 +119,11 @@ namespace Simple_Web_Browser
         {
 
         }
-        /*
+        
         private void button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Step back : " + hm1.canStepBack());
-            if (hm1.canStepBack())
+            Console.WriteLine("Step back : " + historyManager.canStepBack());
+            if (historyManager.canStepBack())
             {
                 manager.getPreviousPage();
             }
@@ -131,13 +131,11 @@ namespace Simple_Web_Browser
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Step forward : " + hm1.canStepForward());
-            if (hm1.canStepForward())
+            Console.WriteLine("Step forward : " + historyManager.canStepForward());
+            if (historyManager.canStepForward())
             {
                 manager.getNextPage();
             }
         }
-
-        */
     }
 }
