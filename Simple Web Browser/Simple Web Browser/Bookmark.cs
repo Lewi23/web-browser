@@ -14,7 +14,7 @@ namespace Simple_Web_Browser
         public event EventHandler bookmarkItem;
         public static List<BookmarkArgs> bookmarkList = new List<BookmarkArgs>();
 
-        XML xml = new XML();
+        XML<BookmarkArgs> xml = new XML<BookmarkArgs>();
 
         public Bookmark()
         {
@@ -56,7 +56,14 @@ namespace Simple_Web_Browser
 
         public void readXML()
         {
-            xml.readXML();
+            List<BookmarkArgs> list;
+            list = xml.readXML();
+
+            foreach(BookmarkArgs bookmark in list)
+            {
+                Console.WriteLine(bookmark.bookmarkName);
+                Console.WriteLine(bookmark.bookmarkURL);
+            }
         }
 
         protected virtual void OnBookmarkUpdate(EventArgs e)

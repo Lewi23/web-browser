@@ -27,7 +27,7 @@ namespace Simple_Web_Browser
         public History1 hm1 = new History1();
 
         //Write and read to the XML files
-        XML homepageXML = new XML("Data");
+        XML<String> homepageXML = new XML<String>("Data");
 
         // HTTP and web browsing 
 

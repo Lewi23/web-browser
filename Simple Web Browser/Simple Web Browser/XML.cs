@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace Simple_Web_Browser
 {
-    class XML
+    class XML<T>
     {
         private XmlDocument doc;
         private string URI;
@@ -65,66 +65,22 @@ namespace Simple_Web_Browser
             file.Close();
         }
 
-        public static BookmarkArgs FromXML<BookmarkArgs>()
+        public List<T> readXML()
         {
-            using (StringReader stringReader = new StringReader(Properties.Resources.Bookmarks))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(BookmarkArgs));
-                return (BookmarkArgs)serializer.Deserialize(stringReader);
-            }
-        }
 
-        public void readXML()
-        {
-            /*
-            XmlSerializer serializer = new XmlSerializer(typeof(BookmarkArgs));
-            FileStream fs = new FileStream(Properties.Resources.Bookmarks, FileMode.Open);
-
-            BookmarkArgs list;
-
-            list = (BookmarkArgs)serializer.Deserialize(fs);
-
-            System.Console.WriteLine(list.bookmarkName);
-
-            */
-
-            List<BookmarkArgs> adlist = new List<BookmarkArgs>();
+            List<T> localList = new List<T>();
 
             using (FileStream fileStream = File.OpenRead(Properties.Resources.Bookmarks))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(List<BookmarkArgs>));
-                adlist = (List<BookmarkArgs>)serializer.Deserialize(fileStream);
+                XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
+                localList = (List<T>)serializer.Deserialize(fileStream);
             }
 
-            foreach(BookmarkArgs item in adlist)
-            {
-                System.Console.WriteLine(item.bookmarkName);
-                System.Console.WriteLine(item.bookmarkURL);
-            }
-
+            return localList;
             
         }
 
-        /*
-        public List<bookmarkArgs> ReadXML<bookmarkArgs>()
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<bookmarkArgs>));
-            List<bookmarkArgs> list;
-
-            using (FileStream stream = File.OpenWrite(Properties.Resources.Bookmarks))
-            {
-                list = new List<bookmarkArgs>();
-                serializer.Serialize(stream, list);
-            }
-
-            using (FileStream stream = File.OpenRead(Properties.Resources.Bookmarks))
-            {
-                List<bookmarkArgs> dezerializedList = (List<bookmarkArgs>)serializer.Deserialize(stream);
-            }
-
-            return list;
-        }
-        */
+     
 
     }
 }
