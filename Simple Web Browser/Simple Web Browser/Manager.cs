@@ -25,7 +25,7 @@ namespace Simple_Web_Browser
 
         //Bookmark & History manager
         Bookmark bookmark = new Bookmark();
-        public History1 hm1 = new History1();
+        public History hm1 = new History();
 
         //Write and read to the XML files
         XML<string> homepageXML = new XML<string>();
@@ -42,19 +42,19 @@ namespace Simple_Web_Browser
 
         public void getNextPage()
         {
-            History1.pagePointer++;
-            getWebsite(History1.historyList[History1.pagePointer].historyURL, false);
+            History.pagePointer++;
+            getWebsite(History.historyList[History.pagePointer].historyURL, false);
         }
 
         public void getPreviousPage()
         {
-            History1.pagePointer--;
-            getWebsite(History1.historyList[History1.pagePointer].historyURL, false);
+            History.pagePointer--;
+            getWebsite(History.historyList[History.pagePointer].historyURL, false);
         }
 
         public void searchHistory(int index)
         {
-            getWebsite(History1.historyList[index].historyURL, true);
+            getWebsite(History.historyList[index].historyURL, true);
         }
 
         public void searchBookmark(int index)

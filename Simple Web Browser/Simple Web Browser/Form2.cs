@@ -19,7 +19,7 @@ namespace Simple_Web_Browser
         private Form1 mainForm = null;
 
         public Bookmark bookmarkManager = new Bookmark();
-        public History1 historyManager = new History1();
+        public History historyManager = new History();
 
 
         public Form2()
@@ -60,7 +60,7 @@ namespace Simple_Web_Browser
         {
 
             historyBox.Items.Clear();
-            foreach (HistoryItem historyItem in History1.historyList)
+            foreach (HistoryItem historyItem in History.historyList)
             {
                 historyBox.Items.Add(historyItem.historyURL + historyItem.accessTime);
             }

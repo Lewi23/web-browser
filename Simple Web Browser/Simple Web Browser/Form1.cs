@@ -16,14 +16,14 @@ namespace Simple_Web_Browser
     {
 
         public Manager manager;
-        public History1 historyManager;
+        public History historyManager;
         // History historyManager = manager.historyManager;
 
         public Form1()
         {
             InitializeComponent();
             manager = new Manager();
-            historyManager = new History1();
+            historyManager = new History();
             manager.RequestComplete += m_RequestComplete;
             //manager.historyManager.HistoryItem += HistoryManager_HistoryItem;
 
