@@ -30,7 +30,6 @@
         {
             this.historyBox = new System.Windows.Forms.ListBox();
             this.historySearch = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.deleteHistory = new System.Windows.Forms.Button();
             this.bookmarkBox = new System.Windows.Forms.ListBox();
             this.bookmarkNameEntry = new System.Windows.Forms.TextBox();
@@ -54,7 +53,6 @@
             this.historyBox.Name = "historyBox";
             this.historyBox.Size = new System.Drawing.Size(578, 224);
             this.historyBox.TabIndex = 2;
-            this.historyBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // historySearch
             // 
@@ -66,16 +64,6 @@
             this.historySearch.Text = "Search";
             this.historySearch.UseVisualStyleBackColor = true;
             this.historySearch.Click += new System.EventHandler(this.historySearch_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(269, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // deleteHistory
             // 
@@ -209,7 +197,6 @@
             this.Controls.Add(this.bookmarkNameEntry);
             this.Controls.Add(this.bookmarkBox);
             this.Controls.Add(this.deleteHistory);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.historySearch);
             this.Controls.Add(this.historyBox);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -224,7 +211,6 @@
         #endregion
         private System.Windows.Forms.ListBox historyBox;
         private System.Windows.Forms.Button historySearch;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button deleteHistory;
         private System.Windows.Forms.ListBox bookmarkBox;
         private System.Windows.Forms.TextBox bookmarkNameEntry;

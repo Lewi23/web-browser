@@ -52,6 +52,11 @@ namespace Simple_Web_Browser
             getWebsite(History1.historyList[History1.pagePointer].historyURL, false);
         }
 
+        public void searchHistory(int index)
+        {
+            getWebsite(History1.historyList[index].historyURL, true);
+        }
+
         public void searchBookmark(int index)
         {
             try
@@ -64,10 +69,7 @@ namespace Simple_Web_Browser
 
         }
 
-        public void searchHistory(int index)
-        {
-            getWebsite(History1.historyList[index].historyURL, true);
-        }
+        
         
 
         public string getHomeURL()

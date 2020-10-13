@@ -39,11 +39,6 @@ namespace Simple_Web_Browser
             }
         }
 
-        //private void HistoryManager_HistoryItem(object sender, HistoryItemArgs e)
-        //{
-        //    System.Console.WriteLine("called");
-        //}
-
         public Form2(Form callingForm)
         {
             mainForm = callingForm as Form1;
@@ -53,55 +48,22 @@ namespace Simple_Web_Browser
         private void Form2_Load(object sender, EventArgs e)
         {
 
-            System.Console.WriteLine("Form2 loaded");
-
             bookmarkManager.bookmarkItem += BookmarkManager_bookmarkItem;
             historyManager.historyItem += HistoryManager_historyItem;
 
             historyManager.loadHistory();
-            
-
-            // bookmarkManager.loadLocalHisotry();
             bookmarkManager.loadBookmarks();
 
-
-            /*
-            foreach (HistoryItemArgs item in this.mainForm.manager.historyManager.HistoryList)
-            {
-                string builder = "URL: " + item.pageURL + " | Accessed: " + item.CurrentTime;
-                System.Console.WriteLine("Bulder : {0}", builder);
-                historyBox.Items.Add(builder);
-            }
-            //bookmarkManager.bookmarkItem += BookmarkManager_bookmarkItem;
-            */
         }
 
         private void HistoryManager_historyItem(object sender, EventArgs e)
         {
-            Console.WriteLine("HISTORY MANAGER EVENT TRIGGERD");
+
             historyBox.Items.Clear();
             foreach (HistoryItem historyItem in History1.historyList)
             {
                 historyBox.Items.Add(historyItem.historyURL + historyItem.accessTime);
             }
-        }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.mainForm.resultDisplay.Text = "hello world";
-
-            historyBox.Items.Add("hello");
-
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
 
