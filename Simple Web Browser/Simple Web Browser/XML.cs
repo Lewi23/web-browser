@@ -33,10 +33,11 @@ namespace Simple_Web_Browser
 
         public string getHomePageURI()
         {
-            XmlNode node = doc.SelectSingleNode("//link");
-            URI = node.InnerText;
-         
-            return URI;
+            //XmlNode node = doc.SelectSingleNode("//link");
+            //URI = node.InnerText;
+
+            return "https://www.google.com/";
+            //return URI;
 
         }
 
@@ -79,6 +80,19 @@ namespace Simple_Web_Browser
             
         }
 
+        public T readXML(string filePath)
+        {
+            T value;
+
+            using (FileStream fileStream = File.OpenRead(filePath))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                value = (T)serializer.Deserialize(fileStream);
+            }
+
+            return value;
+
+        }
      
 
     }

@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Simple_Web_Browser.Properties;
 
 namespace Simple_Web_Browser
 {
@@ -27,7 +28,7 @@ namespace Simple_Web_Browser
         public History1 hm1 = new History1();
 
         //Write and read to the XML files
-        XML<String> homepageXML = new XML<String>("Data");
+        XML<string> homepageXML = new XML<string>();
 
         // HTTP and web browsing 
 
@@ -71,7 +72,13 @@ namespace Simple_Web_Browser
 
         public string getHomeURL()
         {
-            return homepageXML.getHomePageURI();
+            //return homepageXML.getHomePageURI();
+            return homepageXML.readXML(Resources.Homepage);
+        }
+
+        public void setHomePage(string homepage)
+        {
+            homepageXML.writeListToXML<string>(homepage, Resources.Homepage);
         }
 
         public void loadSelected(int index)

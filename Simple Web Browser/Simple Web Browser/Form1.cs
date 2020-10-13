@@ -93,6 +93,7 @@ namespace Simple_Web_Browser
         {
 
             // Load the users preset form
+            manager.setHomePage("https://www.google.com/");
             manager.getWebsite(manager.currentURL, true);
 
             // In theory you shouldn't ever be able to go forward but might be able to go backwords if history loads
