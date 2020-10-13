@@ -73,7 +73,7 @@ namespace Simple_Web_Browser
         public string getHomeURL()
         {
             //return homepageXML.getHomePageURI();
-            return homepageXML.readXML(Resources.Homepage);
+            return homepageXML.readXMLToGenericType(Resources.Homepage);
         }
 
         public void setHomePage(string homepage)
