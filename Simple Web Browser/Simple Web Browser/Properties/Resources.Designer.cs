@@ -77,5 +77,14 @@ namespace Simple_Web_Browser.Properties {
                 return ResourceManager.GetString("Homepage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\Users\lewis\Desktop\Industrial Programming\CW1\Simple-Web-Browser\Simple Web Browser\Simple Web Browser\Data\SearchHistory.xml.
+        /// </summary>
+        internal static string SearchHistory {
+            get {
+                return ResourceManager.GetString("SearchHistory", resourceCulture);
+            }
+        }
     }
 }

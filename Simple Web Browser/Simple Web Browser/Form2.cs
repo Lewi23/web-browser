@@ -137,7 +137,7 @@ namespace Simple_Web_Browser
             bookmarkNameEntry.Text = "Bookmark name";
             bookmarkURLEntry.Text = "Bookmark URL";
 
-            bookmarkManager.saveToLocalHistory();
+            bookmarkManager.saveBookmarksLocally();
 
         }
 

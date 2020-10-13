@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple_Web_Browser.Properties;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace Simple_Web_Browser
         public static List<HistoryItem> historyList = new List<HistoryItem>();
         public event EventHandler historyItem;
         public static int pagePointer = -1;
+        XML<HistoryItem> xml = new XML<HistoryItem>();
 
         public History1()
         {
@@ -36,6 +38,7 @@ namespace Simple_Web_Browser
             historyList.Add(historyItem);
 
             pagePointer++;
+            saveHistoryLocally();
 
             OnHistoryUpdate(EventArgs.Empty);
         }
@@ -53,6 +56,20 @@ namespace Simple_Web_Browser
             Console.WriteLine("THE PAGE POINTER : " + pagePointer);
 
             OnHistoryUpdate(EventArgs.Empty);
+        }
+
+        public void saveHistoryLocally()
+        {
+            xml.writeListToXML(historyList, Resources.SearchHistory);
+        }
+
+        public List<HistoryItem> loadLocalHistory()
+        {
+            List<HistoryItem> list;
+            list = xml.readXMLToList(Resources.SearchHistory);
+
+            return list;
+
         }
 
         protected virtual void OnHistoryUpdate(EventArgs e)

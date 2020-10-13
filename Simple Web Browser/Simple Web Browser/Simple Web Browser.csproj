@@ -102,6 +102,7 @@
   <ItemGroup>
     <Content Include="Data\Homepage.xml" />
     <Content Include="Data\Bookmarks.xml" />
+    <Content Include="Data\SearchHistory.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -19,7 +19,7 @@ namespace Simple_Web_Browser
 
         public Bookmark()
         {
-            bookmarkList = loadLocalHisotry();
+            bookmarkList = loadLocalBookmarks();
         }
 
         public void loadBookmarks()
@@ -40,7 +40,7 @@ namespace Simple_Web_Browser
         public void deleteBookmark(int index)
         {
             bookmarkList.RemoveAt(index);
-            saveToLocalHistory();
+            saveBookmarksLocally();
             OnBookmarkUpdate(EventArgs.Empty);
         }
         
@@ -48,16 +48,16 @@ namespace Simple_Web_Browser
         {
             bookmarkList[index].bookmarkName = bookmarkName;
             bookmarkList[index].bookmarkURL = bookmarkURL;
-            saveToLocalHistory();
+            saveBookmarksLocally();
             OnBookmarkUpdate(EventArgs.Empty);
         }
 
-        public void saveToLocalHistory()
+        public void saveBookmarksLocally()
         {
             xml.writeListToXML(bookmarkList, Resources.Bookmarks);
         }
 
-        public List<BookmarkArgs> loadLocalHisotry()
+        public List<BookmarkArgs> loadLocalBookmarks()
         {
             List<BookmarkArgs> list;
             list = xml.readXMLToList(Resources.Bookmarks);
