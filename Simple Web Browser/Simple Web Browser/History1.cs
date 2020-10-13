@@ -12,14 +12,14 @@ namespace Simple_Web_Browser
     public class History1
     {
 
-        public static List<HistoryItem> historyList = new List<HistoryItem>();
+        public static List<HistoryItem> historyList;
         public event EventHandler historyItem;
         public static int pagePointer = -1;
         XML<HistoryItem> xml = new XML<HistoryItem>();
 
         public History1()
         {
-
+            historyList = loadLocalHistory();
         }
 
         public bool canStepBack() => historyList.ElementAtOrDefault(pagePointer - 1) != null ? true : false;
@@ -48,13 +48,14 @@ namespace Simple_Web_Browser
             historyList.RemoveAt(index);
 
             // This is handling an edge case of deletion ( if you delete the page you are on with only 1 other page)
-            if(pagePointer < 1)
+            if(pagePointer > 1)
             {
                 pagePointer--;
             }
             
             Console.WriteLine("THE PAGE POINTER : " + pagePointer);
 
+            saveHistoryLocally();
             OnHistoryUpdate(EventArgs.Empty);
         }
 
