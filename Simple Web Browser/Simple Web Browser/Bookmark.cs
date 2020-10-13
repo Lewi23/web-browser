@@ -52,13 +52,13 @@ namespace Simple_Web_Browser
 
         public void saveLocal()
         {
-            xml.ToXML(bookmarkList);
+            xml.writeListToXML(bookmarkList, Resources.Bookmarks);
         }
 
         public void readXML()
         {
             List<BookmarkArgs> list;
-            list = xml.readXML(Resources.Bookmarks);
+            list = xml.readXMLToList(Resources.Bookmarks);
 
             foreach(BookmarkArgs bookmark in list)
             {

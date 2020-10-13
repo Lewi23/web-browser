@@ -52,19 +52,19 @@ namespace Simple_Web_Browser
         // https://stackoverflow.com/questions/8334527/save-listt-to-xml-file
         // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/serialization/how-to-write-object-data-to-an-xml-file
 
-        public void ToXML<T>(T obj)
+        public void writeListToXML<T>(T obj, string filePath)
         {
             
             XmlSerializer writer = new XmlSerializer(typeof(T));
 
-            var path = Properties.Resources.Bookmarks;
-            FileStream file = File.Create(path);
+            //var path = Properties.Resources.Bookmarks;
+            FileStream file = File.Create(filePath);
 
             writer.Serialize(file, obj);
             file.Close();
         }
 
-        public List<T> readXML(String filePath)
+        public List<T> readXMLToList(string filePath)
         {
 
             List<T> localList = new List<T>();
