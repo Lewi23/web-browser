@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple_Web_Browser.Properties;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -57,7 +58,7 @@ namespace Simple_Web_Browser
         public void readXML()
         {
             List<BookmarkArgs> list;
-            list = xml.readXML();
+            list = xml.readXML(Resources.Bookmarks);
 
             foreach(BookmarkArgs bookmark in list)
             {

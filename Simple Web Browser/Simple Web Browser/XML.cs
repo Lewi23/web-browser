@@ -55,8 +55,7 @@ namespace Simple_Web_Browser
         public void ToXML<BookmarkArgs>(BookmarkArgs obj)
         {
             
-            System.Xml.Serialization.XmlSerializer writer =
-                new System.Xml.Serialization.XmlSerializer(typeof(BookmarkArgs));
+            XmlSerializer writer =new XmlSerializer(typeof(BookmarkArgs));
 
             var path = Properties.Resources.Bookmarks;
             System.IO.FileStream file = System.IO.File.Create(path);
@@ -65,12 +64,12 @@ namespace Simple_Web_Browser
             file.Close();
         }
 
-        public List<T> readXML()
+        public List<T> readXML(String filePath)
         {
 
             List<T> localList = new List<T>();
 
-            using (FileStream fileStream = File.OpenRead(Properties.Resources.Bookmarks))
+            using (FileStream fileStream = File.OpenRead(filePath))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
                 localList = (List<T>)serializer.Deserialize(fileStream);
