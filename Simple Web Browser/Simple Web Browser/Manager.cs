@@ -19,14 +19,19 @@ namespace Simple_Web_Browser
         public string request;
 
         HTTP test = new HTTP();
-        XML homepageXML = new XML("Data");
+        
         public History historyManager;
 
+        //Bookmark & History manager
         Bookmark bookmark = new Bookmark();
-
         public History1 hm1 = new History1();
 
+        //Write and read to the XML files
+        XML homepageXML = new XML("Data");
 
+        // HTTP and web browsing 
+
+        public event EventHandler<RequestCompleteArgs> RequestComplete;
 
         public Manager()
         {
@@ -36,14 +41,14 @@ namespace Simple_Web_Browser
 
         public void getNextPage()
         {
-            History1.index++;
-            getWebsite(History1.historyList[History1.index].historyURL, false);
+            History1.pagePointer++;
+            getWebsite(History1.historyList[History1.pagePointer].historyURL, false);
         }
 
         public void getPreviousPage()
         {
-            History1.index--;
-            getWebsite(History1.historyList[History1.index].historyURL, false);
+            History1.pagePointer--;
+            getWebsite(History1.historyList[History1.pagePointer].historyURL, false);
         }
 
         public void searchBookmark(int index)
@@ -114,14 +119,13 @@ namespace Simple_Web_Browser
             }
         }
 
-        public event EventHandler<RequestCompleteArgs> RequestComplete;
+        
     }
     public class RequestCompleteArgs : EventArgs
     {
         public string pageData { get; set; }
         public string title { get; set; }
         public string request { get; set; }
-
         public string URL { get; set; }
     }
 

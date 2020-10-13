@@ -13,40 +13,16 @@ namespace Simple_Web_Browser
 
         public static List<HistoryItem> historyList = new List<HistoryItem>();
         public event EventHandler historyItem;
-        public static int index = -1;
+        public static int pagePointer = -1;
 
         public History1()
         {
 
         }
 
-        public bool canStepBack()
-        {
-            bool result = false;
-
-            if(historyList.ElementAtOrDefault(index - 1) != null)
-            {
-                result = true;
-                //index--;
-            } 
-
-            return result;
-        }
-
-        public bool canStepForward()
-        {
-            bool result = false;
-
-            if (historyList.ElementAtOrDefault(index + 1) != null)
-            {
-                result = true;
-                //index++;
-            }
-
-            return result;
-        }
-
-
+        public bool canStepBack() => historyList.ElementAtOrDefault(pagePointer - 1) != null ? true : false;
+        public bool canStepForward() => historyList.ElementAtOrDefault(pagePointer + 1) != null ? true : false;
+      
         public void loadHistory()
         {
             OnHistoryUpdate(EventArgs.Empty);
@@ -59,7 +35,7 @@ namespace Simple_Web_Browser
             historyItem.accessTime = DateTime.Now;
             historyList.Add(historyItem);
 
-            index++;
+            pagePointer++;
 
             OnHistoryUpdate(EventArgs.Empty);
         }
@@ -68,7 +44,7 @@ namespace Simple_Web_Browser
         {
             historyList.RemoveAt(index);
 
-            index--;
+            pagePointer--;
 
             OnHistoryUpdate(EventArgs.Empty);
         }

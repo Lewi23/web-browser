@@ -16,12 +16,14 @@ namespace Simple_Web_Browser
     {
 
         public Manager manager;
+        public History1 historyManager;
         // History historyManager = manager.historyManager;
 
         public Form1()
         {
             InitializeComponent();
             manager = new Manager();
+            historyManager = new History1();
             manager.RequestComplete += m_RequestComplete;
             manager.historyManager.HistoryItem += HistoryManager_HistoryItem;
 
@@ -37,96 +39,32 @@ namespace Simple_Web_Browser
         private void backPageButton_Click(object sender, EventArgs e)
         {
 
-           
-                // manager.getWebsite(manager.historyManager.getPreviousPage(), false);
-                /*
-            if (manager.historyManager.CanStepBack())
+            // manager.getWebsite(manager.historyManager.getPreviousPage(), false);
+            if (historyManager.canStepBack())
             {
-                */
-                manager.getWebsite(manager.historyManager.getPreviousPage(), false);
-            /*
-                forwardPageButton.Enabled = true;
-            } else
-            {
-                Console.WriteLine("cant step back");
-                backPageButton.Enabled = false;
-                forwardPageButton.Enabled = true;
+                manager.getPreviousPage();
             }
-            */
-            
 
-
-
-
-            // resultDisplay.Text = await manager.getWebsite(manager.historyManager.getPreviousPage(), true);
-            //inputBox.Text = manager.currentURL;
-            //titleHolder.Text = manager.title;
-            // HTTPHolder.Text = manager.request;
-
-            /*
-        
-            */
         }
 
         private void forwardPageButton_Click(object sender, EventArgs e)
         {
-            // resultDisplay.Text = await manager.getWebsite(manager.historyManager.getNextPage(), true);
-            //inputBox.Text = manager.currentURL;
-            //titleHolder.Text = manager.title;
-            //HTTPHolder.Text = manager.request;
 
-         
-                // manager.getWebsite(manager.historyManager.getNextPage(), false);
-                /*
-            if (manager.historyManager.CanStepForward())
+            //manager.getWebsite(manager.historyManager.getNextPage(), false);
+            if (historyManager.canStepForward())
             {
-                Console.WriteLine("can step forward");
-                */
-                manager.getWebsite(manager.historyManager.getNextPage(), false);
-            /*
-                backPageButton.Enabled = true;
-                
-            } else
-            {
-                backPageButton.Enabled = true;
-                forwardPageButton.Enabled = false;
+                manager.getNextPage();
             }
-                
-            */
-
             
 
-            
         }
 
-        History1 hm1 = new History1();
+      
 
-        private async void searchButton_Click(object sender, EventArgs e)
+        private void searchButton_Click(object sender, EventArgs e)
         {
-            hm1.loadHistory();
+           
             manager.getWebsite(inputBox.Text, true);
-            
-            //backPageButton.Enabled = true;
-
-
-
-            // resultDisplay.Text = await manager.getWebsite(inputBox.Text, false);
-            //titleHolder.Text = manager.title;
-            //HTTPHolder.Text = manager.request;
-
-            // manager.PageUpdate += m_PageUpdate;
-            //manager.RequestComplete += m_RequestComplete;
-
-            // you have no searched something so can go backwords at least once
-            /*
-            if (manager.historyManager.addedURL)
-            {
-                backPageButton.Enabled = true;
-            }
-
-            */
-
-
 
         }
 
@@ -149,25 +87,15 @@ namespace Simple_Web_Browser
             // resultDisplay.Text = await manager.getWebsite(manager.currentURL, true);
             // refreshPageButon.Click += new EventHandler(NameButtonClicked);
         }
-        /*
-        private void NameButtonClicked(object sender, EventArgs e)
-        {
-            Console.WriteLine("We fired off an event!");
-        }
-
-        */
+      
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            // Load the users preset form
             manager.getWebsite(manager.currentURL, true);
 
-            // When the form loads you can't step forwards or backwords (haven't gone anywhere)
-            //backPageButton.Enabled = false;
-            //forwardPageButton.Enabled = false;
-
-            
-
+            // In theory you shouldn't ever be able to go forward but might be able to go backwords if history loads
         }
 
 
@@ -191,7 +119,7 @@ namespace Simple_Web_Browser
         {
 
         }
-
+        /*
         private void button1_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Step back : " + hm1.canStepBack());
@@ -209,5 +137,7 @@ namespace Simple_Web_Browser
                 manager.getNextPage();
             }
         }
+
+        */
     }
 }
