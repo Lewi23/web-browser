@@ -19,6 +19,7 @@ namespace Simple_Web_Browser
         private Form1 mainForm = null;
 
         public Bookmark bookmarkManager = new Bookmark();
+        public History1 historyManager = new History1();
 
 
         public Form2()
@@ -53,12 +54,17 @@ namespace Simple_Web_Browser
         {
 
             System.Console.WriteLine("Form2 loaded");
-            bookmarkManager.bookmarkItem += BookmarkManager_bookmarkItem;
 
+            bookmarkManager.bookmarkItem += BookmarkManager_bookmarkItem;
+            historyManager.historyItem += HistoryManager_historyItem;
+
+            historyManager.loadHistory();
             bookmarkManager.loadBookmarks();
+            bookmarkManager.readXML();
+
 
             
-
+            /*
             foreach (HistoryItemArgs item in this.mainForm.manager.historyManager.HistoryList)
             {
                 string builder = "URL: " + item.pageURL + " | Accessed: " + item.CurrentTime;
@@ -66,25 +72,19 @@ namespace Simple_Web_Browser
                 historyBox.Items.Add(builder);
             }
             //bookmarkManager.bookmarkItem += BookmarkManager_bookmarkItem;
-            
-        }
-
-        void updateList(Object sender, HistoryItemArgs e)
-        { 
-            System.Console.WriteLine("Does the event get called?");
-            
-            /*
-            HistoryItemArgs item = new HistoryItemArgs();
-            item.pageURL = e.pageURL;
-            item.CurrentTime = e.CurrentTime;
-
-            System.Console.WriteLine(item.pageURL);
-            System.Console.WriteLine(item.CurrentTime);
-
-            this.mainForm.manager.historyManager.HistoryList.Add(item);
             */
-
         }
+
+        private void HistoryManager_historyItem(object sender, EventArgs e)
+        {
+            Console.WriteLine("HISTORY MANAGER EVENT TRIGGERD");
+            historyBox.Items.Clear();
+            foreach (HistoryItem historyItem in History1.historyList)
+            {
+                historyBox.Items.Add(historyItem.historyURL + historyItem.accessTime);
+            }
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -104,23 +104,25 @@ namespace Simple_Web_Browser
 
         }
 
-        private void historySearch_Click(object sender, EventArgs e)
-        {
-            System.Console.WriteLine(historyBox.SelectedIndex);
-            //Trying to control pointer when we jump around 
-            this.mainForm.manager.historyManager.setIndex(historyBox.SelectedIndex);
-            this.mainForm.manager.loadSelected(historyBox.SelectedIndex + 1);
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             this.mainForm.manager.historyManager.printAllItem();
         }
 
+        private void historySearch_Click(object sender, EventArgs e)
+        {
+            System.Console.WriteLine(historyBox.SelectedIndex);
+            //Trying to control pointer when we jump around 
+            //this.mainForm.manager.historyManager.setIndex(historyBox.SelectedIndex);
+            //this.mainForm.manager.loadSelected(historyBox.SelectedIndex + 1);
+
+            this.mainForm.manager.searchHistory(historyBox.SelectedIndex);
+
+        }
+
         private void deleteHistory_Click(object sender, EventArgs e)
         {
-            this.mainForm.manager.historyManager.removeAt(historyBox.SelectedIndex);
+            historyManager.deleteHistoryItem(historyBox.SelectedIndex);
         }
 
         private void searchBookMarkButton_Click(object sender, EventArgs e)
@@ -133,6 +135,8 @@ namespace Simple_Web_Browser
             bookmarkManager.addBookmark(bookmarkNameEntry.Text, bookmarkURLEntry.Text);
             bookmarkNameEntry.Text = "Bookmark name";
             bookmarkURLEntry.Text = "Bookmark URL";
+
+            bookmarkManager.saveLocal();
 
         }
 
@@ -155,6 +159,9 @@ namespace Simple_Web_Browser
             bookmarkManager.editBookmark(bookmarkBox.SelectedIndex, bookmarkNameEntry.Text, bookmarkURLEntry.Text);
         }
 
-       
+        private void historyRefreshButton_Click(object sender, EventArgs e)
+        {
+            historyManager.loadHistory();
+        }
     }
 }

@@ -98,34 +98,36 @@ namespace Simple_Web_Browser
 
             
         }
-      
+
+        History1 hm1 = new History1();
+
         private async void searchButton_Click(object sender, EventArgs e)
         {
-
-                manager.getWebsite(inputBox.Text, true);
-
-                //backPageButton.Enabled = true;
-
-                
-
-                // resultDisplay.Text = await manager.getWebsite(inputBox.Text, false);
-                //titleHolder.Text = manager.title;
-                //HTTPHolder.Text = manager.request;
-
-                // manager.PageUpdate += m_PageUpdate;
-                //manager.RequestComplete += m_RequestComplete;
-
-                // you have no searched something so can go backwords at least once
-                /*
-                if (manager.historyManager.addedURL)
-                {
-                    backPageButton.Enabled = true;
-                }
-
-                */
-
-         
+            hm1.loadHistory();
+            manager.getWebsite(inputBox.Text, true);
             
+            //backPageButton.Enabled = true;
+
+
+
+            // resultDisplay.Text = await manager.getWebsite(inputBox.Text, false);
+            //titleHolder.Text = manager.title;
+            //HTTPHolder.Text = manager.request;
+
+            // manager.PageUpdate += m_PageUpdate;
+            //manager.RequestComplete += m_RequestComplete;
+
+            // you have no searched something so can go backwords at least once
+            /*
+            if (manager.historyManager.addedURL)
+            {
+                backPageButton.Enabled = true;
+            }
+
+            */
+
+
+
         }
 
         void m_RequestComplete(object sender, RequestCompleteArgs e)
@@ -158,7 +160,7 @@ namespace Simple_Web_Browser
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            manager.getWebsite(manager.currentURL, false);
+            manager.getWebsite(manager.currentURL, true);
 
             // When the form loads you can't step forwards or backwords (haven't gone anywhere)
             //backPageButton.Enabled = false;
@@ -188,6 +190,24 @@ namespace Simple_Web_Browser
         private void resultDisplay_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Step back : " + hm1.canStepBack());
+            if (hm1.canStepBack())
+            {
+                manager.getPreviousPage();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Step forward : " + hm1.canStepForward());
+            if (hm1.canStepForward())
+            {
+                manager.getNextPage();
+            }
         }
     }
 }

@@ -41,6 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.bookmarkLabel = new System.Windows.Forms.Label();
             this.editBookmarkButton = new System.Windows.Forms.Button();
+            this.historyRefreshButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // historyBox
@@ -58,9 +59,9 @@
             // historySearch
             // 
             this.historySearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.historySearch.Location = new System.Drawing.Point(12, 59);
+            this.historySearch.Location = new System.Drawing.Point(12, 64);
             this.historySearch.Name = "historySearch";
-            this.historySearch.Size = new System.Drawing.Size(279, 34);
+            this.historySearch.Size = new System.Drawing.Size(188, 33);
             this.historySearch.TabIndex = 3;
             this.historySearch.Text = "Search";
             this.historySearch.UseVisualStyleBackColor = true;
@@ -68,7 +69,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(265, 12);
+            this.button2.Location = new System.Drawing.Point(269, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 4;
@@ -79,9 +80,9 @@
             // deleteHistory
             // 
             this.deleteHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.deleteHistory.Location = new System.Drawing.Point(297, 59);
+            this.deleteHistory.Location = new System.Drawing.Point(406, 63);
             this.deleteHistory.Name = "deleteHistory";
-            this.deleteHistory.Size = new System.Drawing.Size(293, 34);
+            this.deleteHistory.Size = new System.Drawing.Size(182, 34);
             this.deleteHistory.TabIndex = 5;
             this.deleteHistory.Text = "Delete";
             this.deleteHistory.UseVisualStyleBackColor = true;
@@ -154,7 +155,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.label1.Location = new System.Drawing.Point(9, 8);
+            this.label1.Location = new System.Drawing.Point(12, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 26);
             this.label1.TabIndex = 12;
@@ -181,11 +182,23 @@
             this.editBookmarkButton.UseVisualStyleBackColor = true;
             this.editBookmarkButton.Click += new System.EventHandler(this.editBookmarkButton_Click);
             // 
+            // historyRefreshButton
+            // 
+            this.historyRefreshButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.historyRefreshButton.Location = new System.Drawing.Point(206, 64);
+            this.historyRefreshButton.Name = "historyRefreshButton";
+            this.historyRefreshButton.Size = new System.Drawing.Size(194, 33);
+            this.historyRefreshButton.TabIndex = 15;
+            this.historyRefreshButton.Text = "Refresh";
+            this.historyRefreshButton.UseVisualStyleBackColor = true;
+            this.historyRefreshButton.Click += new System.EventHandler(this.historyRefreshButton_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(598, 744);
+            this.ClientSize = new System.Drawing.Size(596, 737);
+            this.Controls.Add(this.historyRefreshButton);
             this.Controls.Add(this.editBookmarkButton);
             this.Controls.Add(this.bookmarkLabel);
             this.Controls.Add(this.label1);
@@ -222,5 +235,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label bookmarkLabel;
         private System.Windows.Forms.Button editBookmarkButton;
+        private System.Windows.Forms.Button historyRefreshButton;
     }
 }

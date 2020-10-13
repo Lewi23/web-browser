@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Simple_Web_Browser
 {
@@ -11,6 +13,8 @@ namespace Simple_Web_Browser
 
         public event EventHandler bookmarkItem;
         public static List<BookmarkArgs> bookmarkList = new List<BookmarkArgs>();
+
+        XML xml = new XML();
 
         public Bookmark()
         {
@@ -44,7 +48,16 @@ namespace Simple_Web_Browser
             bookmarkList[index].bookmarkURL = bookmarkURL;
             OnBookmarkUpdate(EventArgs.Empty);
         }
-        
+
+        public void saveLocal()
+        {
+            xml.ToXML(bookmarkList);
+        }
+
+        public void readXML()
+        {
+            xml.readXML();
+        }
 
         protected virtual void OnBookmarkUpdate(EventArgs e)
         {

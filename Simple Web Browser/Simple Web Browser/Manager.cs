@@ -24,12 +24,26 @@ namespace Simple_Web_Browser
 
         Bookmark bookmark = new Bookmark();
 
+        public History1 hm1 = new History1();
+
 
 
         public Manager()
         {
             currentURL = getHomeURL();
             historyManager = new History(currentURL);
+        }
+
+        public void getNextPage()
+        {
+            History1.index++;
+            getWebsite(History1.historyList[History1.index].historyURL, false);
+        }
+
+        public void getPreviousPage()
+        {
+            History1.index--;
+            getWebsite(History1.historyList[History1.index].historyURL, false);
         }
 
         public void searchBookmark(int index)
@@ -42,6 +56,11 @@ namespace Simple_Web_Browser
                 Console.WriteLine(e);
             }
 
+        }
+
+        public void searchHistory(int index)
+        {
+            getWebsite(History1.historyList[index].historyURL, true);
         }
         
 
@@ -68,10 +87,11 @@ namespace Simple_Web_Browser
             {
                 Console.WriteLine("HISTORY ADDED");
                 historyManager.addToHistory(URL);
+                hm1.addToHistory(URL);
 
             }
 
-            
+
             HttpResponseMessage responseMessage = await HTTP.Get(URL);
             BrowserResponse browser = new BrowserResponse(responseMessage);
             result = await browser.getContent();
