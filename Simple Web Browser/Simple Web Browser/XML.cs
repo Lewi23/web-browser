@@ -52,13 +52,13 @@ namespace Simple_Web_Browser
         // https://stackoverflow.com/questions/8334527/save-listt-to-xml-file
         // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/serialization/how-to-write-object-data-to-an-xml-file
 
-        public void ToXML<BookmarkArgs>(BookmarkArgs obj)
+        public void ToXML<T>(T obj)
         {
             
-            XmlSerializer writer =new XmlSerializer(typeof(BookmarkArgs));
+            XmlSerializer writer = new XmlSerializer(typeof(T));
 
             var path = Properties.Resources.Bookmarks;
-            System.IO.FileStream file = System.IO.File.Create(path);
+            FileStream file = File.Create(path);
 
             writer.Serialize(file, obj);
             file.Close();
