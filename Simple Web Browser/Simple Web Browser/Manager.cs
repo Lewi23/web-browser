@@ -8,6 +8,8 @@ using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Simple_Web_Browser.Properties;
+using System.Collections;
+using System.Net;
 
 namespace Simple_Web_Browser
 {
@@ -94,25 +96,56 @@ namespace Simple_Web_Browser
 
             currentURL = URL;
 
-            if (historyItem)
+            try
             {
-                //Console.WriteLine("HISTORY ADDED");
-                //historyManager.addToHistory(URL);
-                hm1.addToHistory(URL);
+                
+
+                HttpResponseMessage responseMessage = await HTTP.Get(URL);
+
+                if(responseMessage.StatusCode == HttpStatusCode.OK)
+                {
+                    BrowserResponse browser = new BrowserResponse(responseMessage);
+                    result = await browser.getContent();
+                Console.WriteLine();
+
+                    if (historyItem)
+                    {
+                        //Console.WriteLine("HISTORY ADDED");
+                        //historyManager.addToHistory(URL);
+                        hm1.addToHistory(URL);
+                    }
+
+                    RequestCompleteArgs args = new RequestCompleteArgs();
+                    args.pageData = result;
+                    args.title = Regex.Match(result, "<title>([^<]*)</title>").Groups[1].Value;
+                    args.request = responseMessage.StatusCode.ToString(); // need to fix this it's hardcoded
+                    args.URL = currentURL;
+                    OnRequestComplete(args);
+                } else {
+
+                    switch (responseMessage.StatusCode)
+                    {
+                        case HttpStatusCode.BadRequest:
+                            throw new Exception("Bad Request");
+                            break;
+                        case HttpStatusCode.Forbidden:
+                            throw new Exception("Forbidden");
+                            break;
+                        case HttpStatusCode.NotFound:
+                            throw new Exception("Not Found");
+                            break;
+                        default:
+                            throw new Exception(responseMessage.StatusCode.ToString());
+                            break;
+                    }
+                }
+
+            } catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                System.Windows.Forms.MessageBox.Show(e.Message, "Error");
 
             }
-
-
-            HttpResponseMessage responseMessage = await HTTP.Get(URL);
-            BrowserResponse browser = new BrowserResponse(responseMessage);
-            result = await browser.getContent();
-            
-            RequestCompleteArgs args = new RequestCompleteArgs();
-            args.pageData = result;
-            args.title = Regex.Match(result, "<title>([^<]*)</title>").Groups[1].Value;
-            args.request = "200 OK"; // need to fix this it's hardcoded
-            args.URL = currentURL;
-            OnRequestComplete(args);
     
         }
 
