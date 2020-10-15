@@ -175,5 +175,26 @@ namespace Simple_Web_Browser
                 editBookmarkButton.Enabled = false;
             }
         }
+
+        private void setHomepageButton_Click(object sender, EventArgs e)
+        {
+
+            // https://docs.microsoft.com/en-us/dotnet/api/system.uri.iswellformeduristring?redirectedfrom=MSDN&view=netcore-3.1#System_Uri_IsWellFormedUriString_System_String_System_UriKind_
+            if (Uri.IsWellFormedUriString(homepageURLBox.Text, UriKind.Absolute))
+            {
+                this.mainForm.manager.setHomePage(homepageURLBox.Text);
+                setHomepageButton.Enabled = false;
+            } else
+            {
+                // throw a custom pop-up here
+            }
+
+                
+        }
+
+        private void homepageURLBox_TextChanged(object sender, EventArgs e)
+        {
+            setHomepageButton.Enabled = true;
+        }
     }
 }
