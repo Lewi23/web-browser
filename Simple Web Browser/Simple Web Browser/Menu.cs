@@ -49,6 +49,16 @@ namespace Simple_Web_Browser
             searchBookmarkButton.Enabled = false;
             editBookmarkButton.Enabled = false;
             deleteBookmarkButton.Enabled = false;
+
+            //Hompeage
+            homepageURLBox.Text = this.mainForm.manager.getHomeURL(); 
+
+            // Set hompeage
+
+            if(this.mainForm.manager.getHomeURL() == homepageURLBox.Text)
+            {
+                setHomepageButton.Enabled = false;
+            }
         }
 
         private void HistoryManager_historyItem(object sender, EventArgs e)
