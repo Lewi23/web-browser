@@ -141,7 +141,7 @@
             this.searchBookmarkButton.TabIndex = 11;
             this.searchBookmarkButton.Text = "Search";
             this.searchBookmarkButton.UseVisualStyleBackColor = true;
-            this.searchBookmarkButton.Click += new System.EventHandler(this.searchBookMarkButton_Click);
+            this.searchBookmarkButton.Click += new System.EventHandler(this.searchBookmarkButton_Click);
             // 
             // historyLabel
             // 

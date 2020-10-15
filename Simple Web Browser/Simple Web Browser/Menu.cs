@@ -20,8 +20,7 @@ namespace Simple_Web_Browser
 
         public Bookmark bookmarkManager = new Bookmark();
         public History historyManager = new History();
-        List<HistoryItem> reversedList;
-
+        
         public Menu()
         {
             InitializeComponent();
@@ -47,27 +46,13 @@ namespace Simple_Web_Browser
             historySearchButton.Enabled = false;
             deleteHistoryButton.Enabled = false;
 
+            searchBookmarkButton.Enabled = false;
             editBookmarkButton.Enabled = false;
             deleteBookmarkButton.Enabled = false;
         }
 
-        private void BookmarkManager_bookmarkItem(object sender, EventArgs e)
-        {
-            Console.WriteLine("triggered");
-            bookmarkBox.Items.Clear();
-            foreach (BookmarkArgs bookmark in Bookmark.bookmarkList)
-            { 
-                bookmarkBox.Items.Add(bookmark.bookmarkName);
-            }
-        }
-
-        
-
-        
-
         private void HistoryManager_historyItem(object sender, EventArgs e)
         {
-
             historyBox.Items.Clear();
             //Reversing the list 
             for (int i = History.historyList.Count - 1; i > 0; i--)
@@ -109,9 +94,21 @@ namespace Simple_Web_Browser
             }
         }
 
-        private void searchBookMarkButton_Click(object sender, EventArgs e)
+        private void BookmarkManager_bookmarkItem(object sender, EventArgs e)
         {
-            this.mainForm.manager.searchBookmark(bookmarkBox.SelectedIndex);
+            bookmarkBox.Items.Clear();
+            foreach (BookmarkArgs bookmark in Bookmark.bookmarkList)
+            {
+                bookmarkBox.Items.Add(bookmark.bookmarkName);
+            }
+        }
+
+        private void searchBookmarkButton_Click(object sender, EventArgs e)
+        {
+            if (bookmarkBox.SelectedItem != null)
+            {
+                this.mainForm.manager.searchBookmark(bookmarkBox.SelectedIndex);
+            }
         }
 
         private void addBookmarkButton_Click(object sender, EventArgs e)
@@ -120,17 +117,20 @@ namespace Simple_Web_Browser
             bookmarkNameEntry.Text = "Bookmark name";
             bookmarkURLEntry.Text = "Bookmark URL";
 
-            bookmarkManager.saveBookmarksLocally();
+            deleteBookmarkButton.Enabled = false;
+            searchBookmarkButton.Enabled = false;
+            editBookmarkButton.Enabled = false;
 
+            bookmarkManager.saveBookmarksLocally();
         }
 
         private void bookmarkBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // THIS CAN ERROR CLICK BELOW BOOKMARK 
             if (bookmarkBox.SelectedIndex != -1)
             {
                 editBookmarkButton.Enabled = true;
                 deleteBookmarkButton.Enabled = true;
+                searchBookmarkButton.Enabled = true;
 
                 bookmarkNameEntry.Text = Bookmark.bookmarkList[bookmarkBox.SelectedIndex].bookmarkName;
                 bookmarkURLEntry.Text = Bookmark.bookmarkList[bookmarkBox.SelectedIndex].bookmarkURL;
@@ -139,14 +139,16 @@ namespace Simple_Web_Browser
 
         private void deleteBookmarkButton_Click(object sender, EventArgs e)
         {
-
             if(bookmarkBox.SelectedItem != null)
             {
                 bookmarkManager.deleteBookmark(bookmarkBox.SelectedIndex);
                 bookmarkNameEntry.Text = "Bookmark name";
                 bookmarkURLEntry.Text = "Bookmark URL";
+
+                deleteBookmarkButton.Enabled = false;
+                searchBookmarkButton.Enabled = false;
+                editBookmarkButton.Enabled = false;
             }
-           
         }
 
         private void editBookmarkButton_Click(object sender, EventArgs e)
@@ -154,12 +156,14 @@ namespace Simple_Web_Browser
             if (bookmarkBox.SelectedItem != null)
             {
                 bookmarkManager.editBookmark(bookmarkBox.SelectedIndex, bookmarkNameEntry.Text, bookmarkURLEntry.Text);
+
+                bookmarkNameEntry.Text = "Bookmark name";
+                bookmarkURLEntry.Text = "Bookmark URL";
+
+                deleteBookmarkButton.Enabled = false;
+                searchBookmarkButton.Enabled = false;
+                editBookmarkButton.Enabled = false;
             }
-                
         }
-
-        
-
-        
     }
 }
