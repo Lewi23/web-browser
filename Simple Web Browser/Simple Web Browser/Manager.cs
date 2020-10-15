@@ -37,7 +37,7 @@ namespace Simple_Web_Browser
 
         public Manager()
         {
-            currentURL = getHomeURL();
+            //currentURL = getHomeURL();
             //historyManager = new History(currentURL);
         }
 
