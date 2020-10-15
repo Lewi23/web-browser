@@ -67,7 +67,7 @@
             this.historySearchButton.TabIndex = 3;
             this.historySearchButton.Text = "Search";
             this.historySearchButton.UseVisualStyleBackColor = true;
-            this.historySearchButton.Click += new System.EventHandler(this.historySearch_Click);
+            this.historySearchButton.Click += new System.EventHandler(this.historySearchButton_Click);
             // 
             // deleteHistoryButton
             // 
@@ -78,7 +78,7 @@
             this.deleteHistoryButton.TabIndex = 5;
             this.deleteHistoryButton.Text = "Delete";
             this.deleteHistoryButton.UseVisualStyleBackColor = true;
-            this.deleteHistoryButton.Click += new System.EventHandler(this.deleteHistory_Click);
+            this.deleteHistoryButton.Click += new System.EventHandler(this.deleteHistoryButton_Click);
             // 
             // bookmarkBox
             // 
