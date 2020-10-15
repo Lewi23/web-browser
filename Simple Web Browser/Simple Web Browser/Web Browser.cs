@@ -82,7 +82,7 @@ namespace Simple_Web_Browser
         }
 
 
-        private async void refreshPageButon_Click(object sender, EventArgs e)
+        private void refreshPageButon_Click(object sender, EventArgs e)
         {
             manager.reloadPage();
         }
