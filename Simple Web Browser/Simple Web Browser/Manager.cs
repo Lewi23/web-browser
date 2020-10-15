@@ -18,16 +18,15 @@ namespace Simple_Web_Browser
 
         private string result;
         public string title;
-        public string currentURL;
+        private string currentURL;
         public string request;
 
         HTTP test = new HTTP();
         
-        //public History historyManager;
 
         //Bookmark & History manager
         Bookmark bookmark = new Bookmark();
-        public History hm1 = new History();
+        public History history = new History();
 
         //Write and read to the XML files
         XML<string> homepageXML = new XML<string>();
@@ -40,6 +39,13 @@ namespace Simple_Web_Browser
         {
             currentURL = getHomeURL();
             //historyManager = new History(currentURL);
+        }
+
+
+
+        public void reloadPage()
+        {
+            getWebsite(currentURL, false);
         }
 
         public void getNextPage()
@@ -100,6 +106,7 @@ namespace Simple_Web_Browser
 
             try
             {
+                // handle this it can throw
                 HttpResponseMessage responseMessage = await HTTP.Get(URL);
 
                 if(responseMessage.StatusCode == HttpStatusCode.OK)
@@ -109,7 +116,7 @@ namespace Simple_Web_Browser
 
                     if (historyItem)
                     {
-                        hm1.addToHistory(URL);
+                        history.addToHistory(URL);
                     }
 
                     RequestCompleteArgs args = new RequestCompleteArgs();

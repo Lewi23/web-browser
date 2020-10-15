@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Bookmark.cs" />
     <Compile Include="BrowserResponse.cs" />
+    <Compile Include="HttpResponseException.cs" />
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -84,8 +84,7 @@ namespace Simple_Web_Browser
 
         private async void refreshPageButon_Click(object sender, EventArgs e)
         {
-            // resultDisplay.Text = await manager.getWebsite(manager.currentURL, true);
-            // refreshPageButon.Click += new EventHandler(NameButtonClicked);
+            manager.reloadPage();
         }
       
 
@@ -94,7 +93,7 @@ namespace Simple_Web_Browser
 
             // Load the users preset form
             manager.setHomePage("https://www.google.com/");
-            manager.getWebsite(manager.currentURL, true);
+            manager.getWebsite(manager.getHomeURL(), true);
 
             // In theory you shouldn't ever be able to go forward but might be able to go backwords if history loads
         }
