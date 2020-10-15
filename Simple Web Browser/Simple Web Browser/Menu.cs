@@ -25,18 +25,6 @@ namespace Simple_Web_Browser
         public Menu()
         {
             InitializeComponent();
-          
-            
-        }
-
-        private void BookmarkManager_bookmarkItem(object sender, EventArgs e)
-        {
-            Console.WriteLine("triggered");
-            bookmarkBox.Items.Clear();
-            foreach (BookmarkArgs bookmark in Bookmark.bookmarkList)
-            { 
-                bookmarkBox.Items.Add(bookmark.bookmarkName);
-            }
         }
 
         public Menu(Form callingForm)
@@ -54,44 +42,71 @@ namespace Simple_Web_Browser
             historyManager.loadHistory();
             bookmarkManager.loadBookmarks();
 
+
+            // Disable UI buttons until the user selects and item
             historySearchButton.Enabled = false;
             deleteHistoryButton.Enabled = false;
 
+            editBookmarkButton.Enabled = false;
+            deleteBookmarkButton.Enabled = false;
         }
+
+        private void BookmarkManager_bookmarkItem(object sender, EventArgs e)
+        {
+            Console.WriteLine("triggered");
+            bookmarkBox.Items.Clear();
+            foreach (BookmarkArgs bookmark in Bookmark.bookmarkList)
+            { 
+                bookmarkBox.Items.Add(bookmark.bookmarkName);
+            }
+        }
+
+        
+
+        
 
         private void HistoryManager_historyItem(object sender, EventArgs e)
         {
 
             historyBox.Items.Clear();
-            //reversedList = History.historyList;
-            //reversedList.Reverse();
-            foreach (HistoryItem historyItem in History.historyList)
+            //Reversing the list 
+            for (int i = History.historyList.Count - 1; i > 0; i--)
             {
-                historyBox.Items.Add(historyItem.historyURL + historyItem.accessTime);
+                historyBox.Items.Add("URL: " + History.historyList[i].historyURL + " | Access time: " + History.historyList[i].accessTime);
             }
 
         }
 
-
-        private void historySearch_Click(object sender, EventArgs e)
+        private void historySearchButton_Click(object sender, EventArgs e)
         {
-            System.Console.WriteLine(historyBox.SelectedIndex);
-            //Trying to control pointer when we jump around 
-            //this.mainForm.manager.historyManager.setIndex(historyBox.SelectedIndex);
-            //this.mainForm.manager.loadSelected(historyBox.SelectedIndex + 1);
-
             if (historyBox.SelectedItem != null)
             {
                 this.mainForm.manager.searchHistory(historyBox.SelectedIndex);
             }
-
-            
-
         }
 
-        private void deleteHistory_Click(object sender, EventArgs e)
+        private void historyRefreshButton_Click(object sender, EventArgs e)
         {
-            historyManager.deleteHistoryItem(historyBox.SelectedIndex);
+            historyManager.loadHistory();
+        }
+
+        private void deleteHistoryButton_Click(object sender, EventArgs e)
+        {
+            if (historyBox.SelectedItem != null)
+            {
+                historyManager.deleteHistoryItem(historyBox.SelectedIndex);
+                deleteHistoryButton.Enabled = false;
+                historySearchButton.Enabled = false;
+            } 
+        }
+
+        private void historyBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (historyBox.SelectedIndex != -1)
+            {
+                historySearchButton.Enabled = true;
+                deleteHistoryButton.Enabled = true;
+            }
         }
 
         private void searchBookMarkButton_Click(object sender, EventArgs e)
@@ -112,34 +127,39 @@ namespace Simple_Web_Browser
         private void bookmarkBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             // THIS CAN ERROR CLICK BELOW BOOKMARK 
-            bookmarkNameEntry.Text = Bookmark.bookmarkList[bookmarkBox.SelectedIndex].bookmarkName;
-            bookmarkURLEntry.Text = Bookmark.bookmarkList[bookmarkBox.SelectedIndex].bookmarkURL;
+            if (bookmarkBox.SelectedIndex != -1)
+            {
+                editBookmarkButton.Enabled = true;
+                deleteBookmarkButton.Enabled = true;
+
+                bookmarkNameEntry.Text = Bookmark.bookmarkList[bookmarkBox.SelectedIndex].bookmarkName;
+                bookmarkURLEntry.Text = Bookmark.bookmarkList[bookmarkBox.SelectedIndex].bookmarkURL;
+            }
         }
 
         private void deleteBookmarkButton_Click(object sender, EventArgs e)
         {
-            bookmarkManager.deleteBookmark(bookmarkBox.SelectedIndex);
-            bookmarkNameEntry.Text = "Bookmark name";
-            bookmarkURLEntry.Text = "Bookmark URL";
+
+            if(bookmarkBox.SelectedItem != null)
+            {
+                bookmarkManager.deleteBookmark(bookmarkBox.SelectedIndex);
+                bookmarkNameEntry.Text = "Bookmark name";
+                bookmarkURLEntry.Text = "Bookmark URL";
+            }
+           
         }
 
         private void editBookmarkButton_Click(object sender, EventArgs e)
         {
-            bookmarkManager.editBookmark(bookmarkBox.SelectedIndex, bookmarkNameEntry.Text, bookmarkURLEntry.Text);
-        }
-
-        private void historyRefreshButton_Click(object sender, EventArgs e)
-        {
-            historyManager.loadHistory();
-        }
-
-        private void historyBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(historyBox.SelectedIndex != -1)
+            if (bookmarkBox.SelectedItem != null)
             {
-                historySearchButton.Enabled = true;
-                deleteHistoryButton.Enabled = true;
-            } 
+                bookmarkManager.editBookmark(bookmarkBox.SelectedIndex, bookmarkNameEntry.Text, bookmarkURLEntry.Text);
+            }
+                
         }
+
+        
+
+        
     }
 }
