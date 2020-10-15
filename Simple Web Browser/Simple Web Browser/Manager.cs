@@ -45,12 +45,14 @@ namespace Simple_Web_Browser
         public void getNextPage()
         {
             History.pagePointer++;
+            Console.WriteLine("GetNextPage Pointer " + History.pagePointer);
             getWebsite(History.historyList[History.pagePointer].historyURL, false);
         }
 
         public void getPreviousPage()
         {
             History.pagePointer--;
+            Console.WriteLine("GetPreviousPage Pointer " + History.pagePointer);
             getWebsite(History.historyList[History.pagePointer].historyURL, false);
         }
 
@@ -123,9 +125,9 @@ namespace Simple_Web_Browser
 
                 }
 
-            } catch(HttpResponseException e)
+            } catch(Exception e)
             {
-                Console.WriteLine(e.Message + " handled");
+                Console.WriteLine(e);
             }
     
         }
