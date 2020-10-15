@@ -98,20 +98,15 @@ namespace Simple_Web_Browser
 
             try
             {
-                
-
                 HttpResponseMessage responseMessage = await HTTP.Get(URL);
 
                 if(responseMessage.StatusCode == HttpStatusCode.OK)
                 {
                     BrowserResponse browser = new BrowserResponse(responseMessage);
                     result = await browser.getContent();
-                Console.WriteLine();
 
                     if (historyItem)
                     {
-                        //Console.WriteLine("HISTORY ADDED");
-                        //historyManager.addToHistory(URL);
                         hm1.addToHistory(URL);
                     }
 
@@ -121,30 +116,16 @@ namespace Simple_Web_Browser
                     args.request = responseMessage.StatusCode.ToString(); // need to fix this it's hardcoded
                     args.URL = currentURL;
                     OnRequestComplete(args);
+
                 } else {
 
-                    switch (responseMessage.StatusCode)
-                    {
-                        case HttpStatusCode.BadRequest:
-                            throw new Exception("Bad Request");
-                            break;
-                        case HttpStatusCode.Forbidden:
-                            throw new Exception("Forbidden");
-                            break;
-                        case HttpStatusCode.NotFound:
-                            throw new Exception("Not Found");
-                            break;
-                        default:
-                            throw new Exception(responseMessage.StatusCode.ToString());
-                            break;
-                    }
+                    throw new HttpResponseException(responseMessage);
+
                 }
 
-            } catch(Exception e)
+            } catch(HttpResponseException e)
             {
-                Console.WriteLine(e.Message);
-                System.Windows.Forms.MessageBox.Show(e.Message, "Error");
-
+                Console.WriteLine(e.Message + " handled");
             }
     
         }
