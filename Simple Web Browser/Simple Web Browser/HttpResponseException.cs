@@ -6,7 +6,6 @@ namespace Simple_Web_Browser
 {
     internal class HttpResponseException : Exception
     {
-      
         public HttpResponseException(HttpResponseMessage message)
         {
             // Error messages from : https://docs.microsoft.com/en-us/dotnet/api/system.net.httpstatuscode?view=netcore-3.1
