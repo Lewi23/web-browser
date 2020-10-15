@@ -29,20 +29,21 @@
         private void InitializeComponent()
         {
             this.historyBox = new System.Windows.Forms.ListBox();
-            this.historySearch = new System.Windows.Forms.Button();
-            this.deleteHistory = new System.Windows.Forms.Button();
+            this.historySearchButton = new System.Windows.Forms.Button();
+            this.deleteHistoryButton = new System.Windows.Forms.Button();
             this.bookmarkBox = new System.Windows.Forms.ListBox();
             this.bookmarkNameEntry = new System.Windows.Forms.TextBox();
             this.bookmarkURLEntry = new System.Windows.Forms.TextBox();
             this.addBookmarkButton = new System.Windows.Forms.Button();
             this.deleteBookmarkButton = new System.Windows.Forms.Button();
-            this.searchBookMarkButton = new System.Windows.Forms.Button();
+            this.searchBookmarkButton = new System.Windows.Forms.Button();
             this.historyLabel = new System.Windows.Forms.Label();
             this.bookmarkLabel = new System.Windows.Forms.Label();
             this.editBookmarkButton = new System.Windows.Forms.Button();
             this.historyRefreshButton = new System.Windows.Forms.Button();
             this.settingsLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.homepageURLBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // historyBox
@@ -51,33 +52,33 @@
             this.historyBox.FormattingEnabled = true;
             this.historyBox.HorizontalScrollbar = true;
             this.historyBox.ItemHeight = 20;
-            this.historyBox.Location = new System.Drawing.Point(12, 154);
+            this.historyBox.Location = new System.Drawing.Point(12, 221);
             this.historyBox.Name = "historyBox";
             this.historyBox.Size = new System.Drawing.Size(578, 224);
             this.historyBox.TabIndex = 2;
             this.historyBox.SelectedIndexChanged += new System.EventHandler(this.historyBox_SelectedIndexChanged);
             // 
-            // historySearch
+            // historySearchButton
             // 
-            this.historySearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.historySearch.Location = new System.Drawing.Point(12, 115);
-            this.historySearch.Name = "historySearch";
-            this.historySearch.Size = new System.Drawing.Size(188, 33);
-            this.historySearch.TabIndex = 3;
-            this.historySearch.Text = "Search";
-            this.historySearch.UseVisualStyleBackColor = true;
-            this.historySearch.Click += new System.EventHandler(this.historySearch_Click);
+            this.historySearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.historySearchButton.Location = new System.Drawing.Point(12, 182);
+            this.historySearchButton.Name = "historySearchButton";
+            this.historySearchButton.Size = new System.Drawing.Size(188, 33);
+            this.historySearchButton.TabIndex = 3;
+            this.historySearchButton.Text = "Search";
+            this.historySearchButton.UseVisualStyleBackColor = true;
+            this.historySearchButton.Click += new System.EventHandler(this.historySearch_Click);
             // 
-            // deleteHistory
+            // deleteHistoryButton
             // 
-            this.deleteHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.deleteHistory.Location = new System.Drawing.Point(406, 114);
-            this.deleteHistory.Name = "deleteHistory";
-            this.deleteHistory.Size = new System.Drawing.Size(182, 34);
-            this.deleteHistory.TabIndex = 5;
-            this.deleteHistory.Text = "Delete";
-            this.deleteHistory.UseVisualStyleBackColor = true;
-            this.deleteHistory.Click += new System.EventHandler(this.deleteHistory_Click);
+            this.deleteHistoryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.deleteHistoryButton.Location = new System.Drawing.Point(406, 181);
+            this.deleteHistoryButton.Name = "deleteHistoryButton";
+            this.deleteHistoryButton.Size = new System.Drawing.Size(182, 34);
+            this.deleteHistoryButton.TabIndex = 5;
+            this.deleteHistoryButton.Text = "Delete";
+            this.deleteHistoryButton.UseVisualStyleBackColor = true;
+            this.deleteHistoryButton.Click += new System.EventHandler(this.deleteHistory_Click);
             // 
             // bookmarkBox
             // 
@@ -85,7 +86,7 @@
             this.bookmarkBox.FormattingEnabled = true;
             this.bookmarkBox.HorizontalScrollbar = true;
             this.bookmarkBox.ItemHeight = 20;
-            this.bookmarkBox.Location = new System.Drawing.Point(12, 513);
+            this.bookmarkBox.Location = new System.Drawing.Point(12, 580);
             this.bookmarkBox.Name = "bookmarkBox";
             this.bookmarkBox.Size = new System.Drawing.Size(578, 224);
             this.bookmarkBox.TabIndex = 6;
@@ -94,7 +95,7 @@
             // bookmarkNameEntry
             // 
             this.bookmarkNameEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.bookmarkNameEntry.Location = new System.Drawing.Point(12, 481);
+            this.bookmarkNameEntry.Location = new System.Drawing.Point(12, 548);
             this.bookmarkNameEntry.Name = "bookmarkNameEntry";
             this.bookmarkNameEntry.Size = new System.Drawing.Size(280, 26);
             this.bookmarkNameEntry.TabIndex = 7;
@@ -103,7 +104,7 @@
             // bookmarkURLEntry
             // 
             this.bookmarkURLEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.bookmarkURLEntry.Location = new System.Drawing.Point(308, 481);
+            this.bookmarkURLEntry.Location = new System.Drawing.Point(308, 548);
             this.bookmarkURLEntry.Name = "bookmarkURLEntry";
             this.bookmarkURLEntry.Size = new System.Drawing.Size(280, 26);
             this.bookmarkURLEntry.TabIndex = 8;
@@ -112,7 +113,7 @@
             // addBookmarkButton
             // 
             this.addBookmarkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.addBookmarkButton.Location = new System.Drawing.Point(12, 743);
+            this.addBookmarkButton.Location = new System.Drawing.Point(12, 810);
             this.addBookmarkButton.Name = "addBookmarkButton";
             this.addBookmarkButton.Size = new System.Drawing.Size(190, 31);
             this.addBookmarkButton.TabIndex = 9;
@@ -123,7 +124,7 @@
             // deleteBookmarkButton
             // 
             this.deleteBookmarkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.deleteBookmarkButton.Location = new System.Drawing.Point(408, 743);
+            this.deleteBookmarkButton.Location = new System.Drawing.Point(408, 810);
             this.deleteBookmarkButton.Name = "deleteBookmarkButton";
             this.deleteBookmarkButton.Size = new System.Drawing.Size(182, 31);
             this.deleteBookmarkButton.TabIndex = 10;
@@ -131,22 +132,22 @@
             this.deleteBookmarkButton.UseVisualStyleBackColor = true;
             this.deleteBookmarkButton.Click += new System.EventHandler(this.deleteBookmarkButton_Click);
             // 
-            // searchBookMarkButton
+            // searchBookmarkButton
             // 
-            this.searchBookMarkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.searchBookMarkButton.Location = new System.Drawing.Point(12, 444);
-            this.searchBookMarkButton.Name = "searchBookMarkButton";
-            this.searchBookMarkButton.Size = new System.Drawing.Size(578, 31);
-            this.searchBookMarkButton.TabIndex = 11;
-            this.searchBookMarkButton.Text = "Search";
-            this.searchBookMarkButton.UseVisualStyleBackColor = true;
-            this.searchBookMarkButton.Click += new System.EventHandler(this.searchBookMarkButton_Click);
+            this.searchBookmarkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.searchBookmarkButton.Location = new System.Drawing.Point(12, 511);
+            this.searchBookmarkButton.Name = "searchBookmarkButton";
+            this.searchBookmarkButton.Size = new System.Drawing.Size(578, 31);
+            this.searchBookmarkButton.TabIndex = 11;
+            this.searchBookmarkButton.Text = "Search";
+            this.searchBookmarkButton.UseVisualStyleBackColor = true;
+            this.searchBookmarkButton.Click += new System.EventHandler(this.searchBookMarkButton_Click);
             // 
             // historyLabel
             // 
             this.historyLabel.AutoSize = true;
             this.historyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.historyLabel.Location = new System.Drawing.Point(12, 77);
+            this.historyLabel.Location = new System.Drawing.Point(12, 144);
             this.historyLabel.Name = "historyLabel";
             this.historyLabel.Size = new System.Drawing.Size(80, 26);
             this.historyLabel.TabIndex = 12;
@@ -156,7 +157,7 @@
             // 
             this.bookmarkLabel.AutoSize = true;
             this.bookmarkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.bookmarkLabel.Location = new System.Drawing.Point(9, 407);
+            this.bookmarkLabel.Location = new System.Drawing.Point(9, 474);
             this.bookmarkLabel.Name = "bookmarkLabel";
             this.bookmarkLabel.Size = new System.Drawing.Size(122, 26);
             this.bookmarkLabel.TabIndex = 13;
@@ -165,7 +166,7 @@
             // editBookmarkButton
             // 
             this.editBookmarkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.editBookmarkButton.Location = new System.Drawing.Point(208, 743);
+            this.editBookmarkButton.Location = new System.Drawing.Point(208, 810);
             this.editBookmarkButton.Name = "editBookmarkButton";
             this.editBookmarkButton.Size = new System.Drawing.Size(194, 31);
             this.editBookmarkButton.TabIndex = 14;
@@ -176,7 +177,7 @@
             // historyRefreshButton
             // 
             this.historyRefreshButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.historyRefreshButton.Location = new System.Drawing.Point(206, 115);
+            this.historyRefreshButton.Location = new System.Drawing.Point(206, 182);
             this.historyRefreshButton.Name = "historyRefreshButton";
             this.historyRefreshButton.Size = new System.Drawing.Size(194, 33);
             this.historyRefreshButton.TabIndex = 15;
@@ -198,31 +199,41 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(13, 47);
+            this.label1.Location = new System.Drawing.Point(13, 88);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 20);
             this.label1.TabIndex = 17;
             this.label1.Text = "Home page URL:";
             // 
+            // homepageURLBox
+            // 
+            this.homepageURLBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.homepageURLBox.Location = new System.Drawing.Point(152, 88);
+            this.homepageURLBox.Name = "homepageURLBox";
+            this.homepageURLBox.Size = new System.Drawing.Size(419, 26);
+            this.homepageURLBox.TabIndex = 18;
+            this.homepageURLBox.Text = "";
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 784);
+            this.ClientSize = new System.Drawing.Size(596, 856);
+            this.Controls.Add(this.homepageURLBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.settingsLabel);
             this.Controls.Add(this.historyRefreshButton);
             this.Controls.Add(this.editBookmarkButton);
             this.Controls.Add(this.bookmarkLabel);
             this.Controls.Add(this.historyLabel);
-            this.Controls.Add(this.searchBookMarkButton);
+            this.Controls.Add(this.searchBookmarkButton);
             this.Controls.Add(this.deleteBookmarkButton);
             this.Controls.Add(this.addBookmarkButton);
             this.Controls.Add(this.bookmarkURLEntry);
             this.Controls.Add(this.bookmarkNameEntry);
             this.Controls.Add(this.bookmarkBox);
-            this.Controls.Add(this.deleteHistory);
-            this.Controls.Add(this.historySearch);
+            this.Controls.Add(this.deleteHistoryButton);
+            this.Controls.Add(this.historySearchButton);
             this.Controls.Add(this.historyBox);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.Name = "Menu";
@@ -235,19 +246,20 @@
 
         #endregion
         private System.Windows.Forms.ListBox historyBox;
-        private System.Windows.Forms.Button historySearch;
-        private System.Windows.Forms.Button deleteHistory;
+        private System.Windows.Forms.Button historySearchButton;
+        private System.Windows.Forms.Button deleteHistoryButton;
         private System.Windows.Forms.ListBox bookmarkBox;
         private System.Windows.Forms.TextBox bookmarkNameEntry;
         private System.Windows.Forms.TextBox bookmarkURLEntry;
         private System.Windows.Forms.Button addBookmarkButton;
         private System.Windows.Forms.Button deleteBookmarkButton;
-        private System.Windows.Forms.Button searchBookMarkButton;
+        private System.Windows.Forms.Button searchBookmarkButton;
         private System.Windows.Forms.Label historyLabel;
         private System.Windows.Forms.Label bookmarkLabel;
         private System.Windows.Forms.Button editBookmarkButton;
         private System.Windows.Forms.Button historyRefreshButton;
         private System.Windows.Forms.Label settingsLabel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox homepageURLBox;
     }
 }

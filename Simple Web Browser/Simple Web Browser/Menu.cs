@@ -54,6 +54,9 @@ namespace Simple_Web_Browser
             historyManager.loadHistory();
             bookmarkManager.loadBookmarks();
 
+            historySearchButton.Enabled = false;
+            deleteHistoryButton.Enabled = false;
+
         }
 
         private void HistoryManager_historyItem(object sender, EventArgs e)
@@ -77,7 +80,12 @@ namespace Simple_Web_Browser
             //this.mainForm.manager.historyManager.setIndex(historyBox.SelectedIndex);
             //this.mainForm.manager.loadSelected(historyBox.SelectedIndex + 1);
 
-            this.mainForm.manager.searchHistory(historyBox.SelectedIndex);
+            if (historyBox.SelectedItem != null)
+            {
+                this.mainForm.manager.searchHistory(historyBox.SelectedIndex);
+            }
+
+            
 
         }
 
@@ -127,7 +135,11 @@ namespace Simple_Web_Browser
 
         private void historyBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if(historyBox.SelectedIndex != -1)
+            {
+                historySearchButton.Enabled = true;
+                deleteHistoryButton.Enabled = true;
+            } 
         }
     }
 }
