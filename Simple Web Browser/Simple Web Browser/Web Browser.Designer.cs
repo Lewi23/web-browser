@@ -1,6 +1,6 @@
 ﻿namespace Simple_Web_Browser
 {
-    partial class Form1
+    partial class Browser
     {
         /// <summary>
         /// Required designer variable.
@@ -180,7 +180,7 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // Form1
+            // Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -198,9 +198,9 @@
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.resultDisplay);
             this.Controls.Add(this.menuButton);
-            this.Name = "Form1";
+            this.Name = "Browser";
             this.Text = "Simple Web Browser";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Browser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
