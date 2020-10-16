@@ -17,32 +17,25 @@ namespace Simple_Web_Browser
     {
 
         private string result;
-        public string title;
         private string currentURL;
-        public string request;
-
-        HTTP test = new HTTP();
-        
-
-        //Bookmark & History manager
-        Bookmark bookmark = new Bookmark();
-        public History history = new History();
-
-        //Write and read to the XML files
-        XML<string> homepageXML = new XML<string>();
-
-        // HTTP and web browsing 
-
+       
         public event EventHandler<RequestCompleteArgs> RequestComplete;
+
+        Bookmark bookmarkManager = new Bookmark();
+        History historyManager = new History();
+        XML<string> XMLManager = new XML<string>();
+        HTTP http = new HTTP();
+
+        
 
         public Manager()
         {
-            //currentURL = getHomeURL();
-            //historyManager = new History(currentURL);
+
         }
 
-
-
+        /// <summary>
+        /// Calls get website with the current URL to reload the page
+        /// </summary>
         public void reloadPage()
         {
             getWebsite(currentURL, false);
@@ -51,14 +44,12 @@ namespace Simple_Web_Browser
         public void getNextPage()
         {
             History.pagePointer++;
-            Console.WriteLine("GetNextPage Pointer " + History.pagePointer);
             getWebsite(History.historyList[History.pagePointer].historyURL, false);
         }
 
         public void getPreviousPage()
         {
             History.pagePointer--;
-            Console.WriteLine("GetPreviousPage Pointer " + History.pagePointer);
             getWebsite(History.historyList[History.pagePointer].historyURL, false);
         }
 
@@ -69,28 +60,34 @@ namespace Simple_Web_Browser
 
         public void searchBookmark(int index)
         {
-            try
-            {
-                getWebsite(Bookmark.bookmarkList[index].bookmarkURL, true);
-            } catch(Exception e)
-            {
-                Console.WriteLine(e);
-            }
-
+            getWebsite(Bookmark.bookmarkList[index].bookmarkURL, true);
         }
 
-        
-        
+
+        setHomepage testpage = new setHomepage();
 
         public string getHomeURL()
         {
-            //return homepageXML.getHomePageURI();
-            return homepageXML.readXMLToGenericType(Resources.Homepage);
+            if (XMLManager.readXML(Resources.Homepage) == "")
+            {
+
+                do
+                {
+                    testpage.ShowDialog();
+                // Keep asking for valid input until we get a 'valid' website
+                } while (!Uri.IsWellFormedUriString(testpage.homepageURLBox.Text, UriKind.Absolute));
+
+                
+                XMLManager.writeToXML<string>(testpage.homepageURLBox.Text, Resources.Homepage);
+
+            }
+
+            return XMLManager.readXML(Resources.Homepage);
         }
 
         public void setHomePage(string homepage)
         {
-            homepageXML.writeListToXML<string>(homepage, Resources.Homepage);
+            XMLManager.writeToXML<string>(homepage, Resources.Homepage);
         }
 
         
@@ -102,11 +99,11 @@ namespace Simple_Web_Browser
         /// <param name="historyItem"> True (yes the item should be added to history) False (do not add to history) </param>
         public async void getWebsite(String URL, bool historyItem) {
 
+            // Set the currentURL to the last loaded webpage
             currentURL = URL;
 
             try
             {
-                // handle this it can throw
                 HttpResponseMessage responseMessage = await HTTP.Get(URL);
 
                 if(responseMessage.StatusCode == HttpStatusCode.OK)
@@ -116,7 +113,7 @@ namespace Simple_Web_Browser
 
                     if (historyItem)
                     {
-                        history.addToHistory(URL);
+                        historyManager.addToHistory(URL);
                     }
 
                     RequestCompleteArgs args = new RequestCompleteArgs();
@@ -147,8 +144,6 @@ namespace Simple_Web_Browser
                 handler(this, e);
             }
         }
-
-        
     }
     public class RequestCompleteArgs : EventArgs
     {
