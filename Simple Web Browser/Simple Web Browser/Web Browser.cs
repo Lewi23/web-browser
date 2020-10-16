@@ -12,14 +12,13 @@ using System.Text.RegularExpressions;
 
 namespace Simple_Web_Browser
 {
-    public partial class Form1 : Form
+    public partial class Browser : Form
     {
 
         public Manager manager;
         public History historyManager;
-        // History historyManager = manager.historyManager;
 
-        public Form1()
+        public Browser()
         {
             InitializeComponent();
             manager = new Manager();
@@ -38,25 +37,43 @@ namespace Simple_Web_Browser
 
         private void backPageButton_Click(object sender, EventArgs e)
         {
-
-            // manager.getWebsite(manager.historyManager.getPreviousPage(), false);
             if (historyManager.canStepBack())
             {
                 manager.getPreviousPage();
+                forwardPageButton.Enabled = true;
+
+                //check the next canStepBack() item if it's false we have reached the end of history
+                if (!historyManager.canStepBack())
+                {
+                    backPageButton.Enabled = false;
+                }
+                    
+            } else
+            {
+                // We can no longer step back
+                backPageButton.Enabled = false;
             }
 
         }
 
         private void forwardPageButton_Click(object sender, EventArgs e)
         {
-
-            //manager.getWebsite(manager.historyManager.getNextPage(), false);
             if (historyManager.canStepForward())
             {
                 manager.getNextPage();
-            }
-            
+                backPageButton.Enabled = true;
 
+                //check the next canStepForward() item if it's false we have reached the end of history
+                if (!historyManager.canStepForward())
+                {
+                    forwardPageButton.Enabled = false;
+                }
+            }
+            else
+            {
+                // We can no longer step forward
+                forwardPageButton.Enabled = false;
+            }
         }
 
       
@@ -65,6 +82,7 @@ namespace Simple_Web_Browser
         {
            
             manager.getWebsite(inputBox.Text, true);
+            backPageButton.Enabled = true;
 
         }
 
@@ -88,37 +106,28 @@ namespace Simple_Web_Browser
         }
       
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Browser_Load(object sender, EventArgs e)
         {
+            
 
-          
             // Load the users preset form
             manager.setHomePage(manager.getHomeURL());
             manager.getWebsite(manager.getHomeURL(), true);
 
+            historyManager.loadHistory();
+            Console.WriteLine(History.historyList.Count);
+
+            if (History.historyList.Count > 0)
+                backPageButton.Enabled = true;
+            else
+                backPageButton.Enabled = false;
+
+            // This is false until we search a page
+            forwardPageButton.Enabled = false;
+
+
+
             // In theory you shouldn't ever be able to go forward but might be able to go backwords if history loads
-        }
-
-        /*
-        private void HistoryManager_HistoryItem(object sender, HistoryItemArgs e)
-        {
-           // System.Console.WriteLine("EVENT CALLED");
-
-            HistoryItemArgs item = new HistoryItemArgs();
-            item.pageURL = e.pageURL;
-            item.CurrentTime = e.CurrentTime;
-
-            System.Console.WriteLine(item.pageURL);
-            System.Console.WriteLine(item.CurrentTime);
-
-            manager.historyManager.HistoryList.Add(item);
-        }
-        */
-
-
-        private void resultDisplay_TextChanged(object sender, EventArgs e)
-        {
-
         }
         
         private void button1_Click(object sender, EventArgs e)
@@ -137,6 +146,11 @@ namespace Simple_Web_Browser
             {
                 manager.getNextPage();
             }
+        }
+
+        private void resultDisplay_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
