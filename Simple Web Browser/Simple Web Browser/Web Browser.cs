@@ -91,6 +91,7 @@ namespace Simple_Web_Browser
         private void Form1_Load(object sender, EventArgs e)
         {
 
+          
             // Load the users preset form
             manager.setHomePage(manager.getHomeURL());
             manager.getWebsite(manager.getHomeURL(), true);
