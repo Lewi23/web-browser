@@ -20,6 +20,7 @@ namespace Simple_Web_Browser
 
         public Bookmark bookmarkManager = new Bookmark();
         public History historyManager = new History();
+        Manager manager = new Manager();
         
         public Menu()
         {
@@ -205,7 +206,13 @@ namespace Simple_Web_Browser
             {
                 this.mainForm.manager.setHomepage(homepageURLBox.Text);
                 setHomepageButton.Enabled = false;
-            }   
+            } else
+            {
+                System.Windows.Forms.MessageBox.Show("Invalid URL", "Error");
+                homepageURLBox.Text = manager.getHomeURL();
+                setHomepageButton.Enabled = false;
+            }
+
         }
 
         private void homepageURLBox_TextChanged(object sender, EventArgs e)
