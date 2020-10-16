@@ -50,10 +50,11 @@ namespace Simple_Web_Browser
             historyList.RemoveAt(index);
 
             saveHistoryLocally();
-            // This is handling an edge case of deletion ( if you delete the page you are on with only 1 other page)
+            //pagePointer--;
+            //This is handling an edge case of deletion ( if you delete the page you are on with only 1 other page)
             if (pagePointer > 1)
             {
-                //pagePointer--;
+                pagePointer--;
             }
             
             Console.WriteLine("THE PAGE POINTER : " + pagePointer);
@@ -64,7 +65,7 @@ namespace Simple_Web_Browser
 
         public void saveHistoryLocally()
         {
-            xml.writeListToXML(historyList, Resources.SearchHistory);
+            xml.writeGenericToXML(historyList, Resources.SearchHistory);
         }
 
         public List<HistoryItem> loadLocalHistory()
