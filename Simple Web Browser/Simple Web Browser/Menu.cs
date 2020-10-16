@@ -205,12 +205,7 @@ namespace Simple_Web_Browser
             {
                 this.mainForm.manager.setHomepage(homepageURLBox.Text);
                 setHomepageButton.Enabled = false;
-            } else
-            {
-                // throw a custom pop-up here
-            }
-
-                
+            }   
         }
 
         private void homepageURLBox_TextChanged(object sender, EventArgs e)
