@@ -20,7 +20,7 @@ namespace Simple_Web_Browser
         // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/serialization/how-to-write-object-data-to-an-xml-file
 
         //MIGHT WANT TO RENAME
-        public void writeGenericToXML<T>(T obj, string filePath)
+        public void writeToXML<T>(T obj, string filePath)
         {
             
             XmlSerializer writer = new XmlSerializer(typeof(T));
@@ -47,7 +47,7 @@ namespace Simple_Web_Browser
             
         }
 
-        public T readXMLToGenericType(string filePath)
+        public T readXML(string filePath)
         {
             T value;
 
