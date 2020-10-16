@@ -65,7 +65,7 @@ namespace Simple_Web_Browser
 
         public void saveHistoryLocally()
         {
-            xml.writeGenericToXML(historyList, Resources.SearchHistory);
+            xml.writeToXML(historyList, Resources.SearchHistory);
         }
 
         public List<HistoryItem> loadLocalHistory()
