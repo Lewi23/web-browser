@@ -25,12 +25,18 @@ namespace Simple_Web_Browser
         History historyManager = new History();
         XML<string> XMLManager = new XML<string>();
         HTTP http = new HTTP();
+        setHomepage getHomepage = new setHomepage();
 
-        
+
 
         public Manager()
         {
 
+        }
+        
+        public bool validURL(string URL)
+        {
+            return Uri.IsWellFormedUriString(URL, UriKind.Absolute);
         }
 
         /// <summary>
@@ -43,28 +49,53 @@ namespace Simple_Web_Browser
 
         public void getNextPage()
         {
-            History.pagePointer++;
-            getWebsite(History.historyList[History.pagePointer].historyURL, false);
+            try
+            {
+                History.pagePointer++;
+                getWebsite(History.historyList[History.pagePointer].historyURL, false);
+            } catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void getPreviousPage()
         {
-            History.pagePointer--;
-            getWebsite(History.historyList[History.pagePointer].historyURL, false);
+            try
+            {
+                History.pagePointer--;
+                getWebsite(History.historyList[History.pagePointer].historyURL, false);
+            } catch(IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
         }
 
         public void searchHistory(int index)
         {
-            getWebsite(History.historyList[index].historyURL, true);
+
+            try
+            {
+                getWebsite(History.historyList[index].historyURL, true);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void searchBookmark(int index)
         {
-            getWebsite(Bookmark.bookmarkList[index].bookmarkURL, true);
+            try
+            {
+                getWebsite(Bookmark.bookmarkList[index].bookmarkURL, true);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
-
-
-        setHomepage testpage = new setHomepage();
 
         public string getHomeURL()
         {
@@ -73,24 +104,22 @@ namespace Simple_Web_Browser
 
                 do
                 {
-                    testpage.ShowDialog();
+                    getHomepage.ShowDialog();
                 // Keep asking for valid input until we get a 'valid' website
-                } while (!Uri.IsWellFormedUriString(testpage.homepageURLBox.Text, UriKind.Absolute));
+                } while (!validURL(getHomepage.homepageURLBox.Text));
 
                 
-                XMLManager.writeToXML<string>(testpage.homepageURLBox.Text, Resources.Homepage);
+                XMLManager.writeToXML<string>(getHomepage.homepageURLBox.Text, Resources.Homepage);
 
             }
 
             return XMLManager.readXML(Resources.Homepage);
         }
 
-        public void setHomePage(string homepage)
+        public void setHomepage(string homepage)
         {
             XMLManager.writeToXML<string>(homepage, Resources.Homepage);
         }
-
-        
 
         /// <summary>
         /// return the website
