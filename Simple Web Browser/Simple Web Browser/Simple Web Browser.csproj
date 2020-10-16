@@ -59,7 +59,6 @@
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="History.cs" />
-    <Compile Include="popup.cs" />
     <Compile Include="getHomepage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,7 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Homepage.xml" />
-    <Content Include="Data\Bookmarks.xml" />
+    <Content Include="Data\Bookmark.xml" />
     <Content Include="Data\SearchHistory.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

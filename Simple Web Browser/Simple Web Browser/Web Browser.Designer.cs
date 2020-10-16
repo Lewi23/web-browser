@@ -31,7 +31,7 @@
             this.menuButton = new System.Windows.Forms.Button();
             this.resultDisplay = new System.Windows.Forms.RichTextBox();
             this.searchButton = new System.Windows.Forms.Button();
-            this.inputBox = new System.Windows.Forms.TextBox();
+            this.URLinputBox = new System.Windows.Forms.TextBox();
             this.backPageButton = new System.Windows.Forms.Button();
             this.forwardPageButton = new System.Windows.Forms.Button();
             this.refreshPageButon = new System.Windows.Forms.Button();
@@ -80,13 +80,14 @@
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
-            // inputBox
+            // URLinputBox
             // 
-            this.inputBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.inputBox.Location = new System.Drawing.Point(163, 15);
-            this.inputBox.Name = "inputBox";
-            this.inputBox.Size = new System.Drawing.Size(447, 26);
-            this.inputBox.TabIndex = 3;
+            this.URLinputBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.URLinputBox.Location = new System.Drawing.Point(163, 15);
+            this.URLinputBox.Name = "URLInputBox";
+            this.URLinputBox.Size = new System.Drawing.Size(447, 26);
+            this.URLinputBox.TabIndex = 3;
+            this.URLinputBox.TextChanged += new System.EventHandler(this.URLInputBox_TextChanged);
             // 
             // backPageButton
             // 
@@ -194,7 +195,7 @@
             this.Controls.Add(this.refreshPageButon);
             this.Controls.Add(this.forwardPageButton);
             this.Controls.Add(this.backPageButton);
-            this.Controls.Add(this.inputBox);
+            this.Controls.Add(this.URLinputBox);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.resultDisplay);
             this.Controls.Add(this.menuButton);
@@ -211,7 +212,7 @@
         private System.Windows.Forms.Button menuButton;
         public System.Windows.Forms.RichTextBox resultDisplay;
         private System.Windows.Forms.Button searchButton;
-        private System.Windows.Forms.TextBox inputBox;
+        private System.Windows.Forms.TextBox URLinputBox;
         private System.Windows.Forms.Button backPageButton;
         private System.Windows.Forms.Button forwardPageButton;
         private System.Windows.Forms.Button refreshPageButon;
