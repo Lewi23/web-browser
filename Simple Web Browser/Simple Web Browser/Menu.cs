@@ -127,16 +127,26 @@ namespace Simple_Web_Browser
         }
 
         private void addBookmarkButton_Click(object sender, EventArgs e)
-        { 
-            bookmarkManager.addBookmark(bookmarkNameEntry.Text, bookmarkURLEntry.Text);
-            bookmarkNameEntry.Text = "Bookmark name";
-            bookmarkURLEntry.Text = "Bookmark URL";
+        {
+
+            if (this.mainForm.manager.validURL(bookmarkURLEntry.Text))
+            {
+                bookmarkManager.addBookmark(bookmarkNameEntry.Text, bookmarkURLEntry.Text);
+                bookmarkNameEntry.Text = "Bookmark name";
+                bookmarkURLEntry.Text = "Bookmark URL";
+
+                bookmarkManager.saveBookmarksLocally();
+            } else
+            {
+                MessageBox.Show("Invalid bookmark URL", "Bookmark Error");
+            }
+            
 
             deleteBookmarkButton.Enabled = false;
             searchBookmarkButton.Enabled = false;
             editBookmarkButton.Enabled = false;
 
-            bookmarkManager.saveBookmarksLocally();
+            
         }
 
         private void bookmarkBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -168,16 +178,23 @@ namespace Simple_Web_Browser
 
         private void editBookmarkButton_Click(object sender, EventArgs e)
         {
-            if (bookmarkBox.SelectedItem != null)
+            if (this.mainForm.manager.validURL(bookmarkURLEntry.Text))
             {
-                bookmarkManager.editBookmark(bookmarkBox.SelectedIndex, bookmarkNameEntry.Text, bookmarkURLEntry.Text);
+                if (bookmarkBox.SelectedItem != null)
+                {
+                    bookmarkManager.editBookmark(bookmarkBox.SelectedIndex, bookmarkNameEntry.Text, bookmarkURLEntry.Text);
 
-                bookmarkNameEntry.Text = "Bookmark name";
-                bookmarkURLEntry.Text = "Bookmark URL";
+                    bookmarkNameEntry.Text = "Bookmark name";
+                    bookmarkURLEntry.Text = "Bookmark URL";
 
-                deleteBookmarkButton.Enabled = false;
-                searchBookmarkButton.Enabled = false;
-                editBookmarkButton.Enabled = false;
+                    deleteBookmarkButton.Enabled = false;
+                    searchBookmarkButton.Enabled = false;
+                    editBookmarkButton.Enabled = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid bookmark URL", "Bookmark Error");
             }
         }
 
@@ -186,7 +203,7 @@ namespace Simple_Web_Browser
             // https://docs.microsoft.com/en-us/dotnet/api/system.uri.iswellformeduristring?redirectedfrom=MSDN&view=netcore-3.1#System_Uri_IsWellFormedUriString_System_String_System_UriKind_
             if (Uri.IsWellFormedUriString(homepageURLBox.Text, UriKind.Absolute))
             {
-                this.mainForm.manager.setHomePage(homepageURLBox.Text);
+                this.mainForm.manager.setHomepage(homepageURLBox.Text);
                 setHomepageButton.Enabled = false;
             } else
             {
