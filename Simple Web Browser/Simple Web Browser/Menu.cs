@@ -65,10 +65,14 @@ namespace Simple_Web_Browser
         {
             historyBox.Items.Clear();
             //Reversing the list 
-            for (int i = History.historyList.Count - 1; i > 0; i--)
+            //for (int i = History.historyList.Count - 1; i > 0; i--)
+            foreach(HistoryItem historyItem in History.historyList)
             {
-                historyBox.Items.Add("URL: " + History.historyList[i].historyURL + " | Access time: " + History.historyList[i].accessTime);
+                historyBox.Items.Add("URL: " + historyItem.historyURL + " | Access time: " + historyItem.accessTime);
             }
+            //{
+            //    historyBox.Items.Add("URL: " + History.historyList[i].historyURL + " | Access time: " + History.historyList[i].accessTime);
+            //}
 
         }
 
@@ -89,6 +93,7 @@ namespace Simple_Web_Browser
         {
             if (historyBox.SelectedItem != null)
             {
+                System.Console.WriteLine("trying to delete");
                 historyManager.deleteHistoryItem(historyBox.SelectedIndex);
                 deleteHistoryButton.Enabled = false;
                 historySearchButton.Enabled = false;
@@ -178,7 +183,6 @@ namespace Simple_Web_Browser
 
         private void setHomepageButton_Click(object sender, EventArgs e)
         {
-
             // https://docs.microsoft.com/en-us/dotnet/api/system.uri.iswellformeduristring?redirectedfrom=MSDN&view=netcore-3.1#System_Uri_IsWellFormedUriString_System_String_System_UriKind_
             if (Uri.IsWellFormedUriString(homepageURLBox.Text, UriKind.Absolute))
             {

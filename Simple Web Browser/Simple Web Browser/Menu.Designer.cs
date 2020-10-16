@@ -49,6 +49,8 @@
             // 
             // historyBox
             // 
+            this.historyBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.historyBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.historyBox.FormattingEnabled = true;
             this.historyBox.HorizontalScrollbar = true;
@@ -83,6 +85,8 @@
             // 
             // bookmarkBox
             // 
+            this.bookmarkBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bookmarkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.bookmarkBox.FormattingEnabled = true;
             this.bookmarkBox.HorizontalScrollbar = true;
