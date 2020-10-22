@@ -109,8 +109,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\Bookmarks.xml" />
     <Content Include="Data\Homepage.xml" />
-    <Content Include="Data\Bookmark.xml" />
     <Content Include="Data\SearchHistory.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

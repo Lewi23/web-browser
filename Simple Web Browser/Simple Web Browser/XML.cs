@@ -16,20 +16,23 @@ namespace Simple_Web_Browser
         {
             
         }
-        // https://stackoverflow.com/questions/8334527/save-listt-to-xml-file
-        // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/serialization/how-to-write-object-data-to-an-xml-file
-
-        //MIGHT WANT TO RENAME
+   
+        
         public void writeToXML<T>(T obj, string filePath)
         {
-            
-            XmlSerializer writer = new XmlSerializer(typeof(T));
-
-            //var path = Properties.Resources.Bookmarks;
-            FileStream file = File.Create(filePath);
-
-            writer.Serialize(file, obj);
-            file.Close();
+            try
+            {
+                using (FileStream file = File.Create(filePath))
+                {
+                    XmlSerializer writer = new XmlSerializer(typeof(T));
+                    writer.Serialize(file, obj);
+                    file.Close();
+                }
+            } catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+                
+            } 
         }
 
         public List<T> readXMLToList(string filePath)
@@ -37,10 +40,17 @@ namespace Simple_Web_Browser
 
             List<T> localList = new List<T>();
 
-            using (FileStream fileStream = File.OpenRead(filePath))
+            try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
-                localList = (List<T>)serializer.Deserialize(fileStream);
+                using (FileStream fileStream = File.OpenRead(filePath))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
+                    localList = (List<T>)serializer.Deserialize(fileStream);
+                }
+            } catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+                System.Windows.Forms.MessageBox.Show(e.Message, "File not found");
             }
 
             return localList;
@@ -49,16 +59,23 @@ namespace Simple_Web_Browser
 
         public T readXML(string filePath)
         {
-            T value;
+            T value = default(T);
 
-            using (FileStream fileStream = File.OpenRead(filePath))
+            try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(T));
-                value = (T)serializer.Deserialize(fileStream);
+                using (FileStream fileStream = File.OpenRead(filePath))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(T));
+                    value = (T)serializer.Deserialize(fileStream);
+                } 
             }
-
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+                System.Windows.Forms.MessageBox.Show(e.Message, "File not found");
+            }
+            
             return value;
-
         }
      
 
