@@ -18,4 +18,4 @@ namespace Simple_Web_Browser
     }
     
         
-    }
+}
