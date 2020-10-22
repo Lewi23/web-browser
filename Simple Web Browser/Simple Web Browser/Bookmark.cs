@@ -13,9 +13,9 @@ namespace Simple_Web_Browser
     {
 
         public event EventHandler bookmarkItem;
-        public static List<BookmarkArgs> bookmarkList = new List<BookmarkArgs>();
+        public static List<BookmarkItem> bookmarkList = new List<BookmarkItem>();
 
-        XML<BookmarkArgs> xml = new XML<BookmarkArgs>();
+        XML<BookmarkItem> xml = new XML<BookmarkItem>();
 
         public Bookmark()
         {
@@ -28,8 +28,8 @@ namespace Simple_Web_Browser
         }
 
         public void addBookmark(string bookmarkName, string bookmarkURL)
-        { 
-            BookmarkArgs bookmark = new BookmarkArgs();
+        {
+            BookmarkItem bookmark = new BookmarkItem();
             bookmark.bookmarkName = bookmarkName;
             bookmark.bookmarkURL = bookmarkURL;
             bookmarkList.Add(bookmark);
@@ -39,9 +39,16 @@ namespace Simple_Web_Browser
 
         public void deleteBookmark(int index)
         {
-            bookmarkList.RemoveAt(index);
-            saveBookmarksLocally();
-            OnBookmarkUpdate(EventArgs.Empty);
+            try
+            {
+                bookmarkList.RemoveAt(index);
+                saveBookmarksLocally();
+                OnBookmarkUpdate(EventArgs.Empty);
+            } catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message, "Error");
+            }
+            
         }
         
         public void editBookmark(int index, string bookmarkName, string bookmarkURL)
@@ -54,12 +61,12 @@ namespace Simple_Web_Browser
 
         public void saveBookmarksLocally()
         {
-            xml.writeListToXML(bookmarkList, Resources.Bookmarks);
+            xml.writeToXML(bookmarkList, Resources.Bookmarks);
         }
 
-        public List<BookmarkArgs> loadLocalBookmarks()
+        public List<BookmarkItem> loadLocalBookmarks()
         {
-            List<BookmarkArgs> list;
+            List<BookmarkItem> list;
             list = xml.readXMLToList(Resources.Bookmarks);
 
             return list;
@@ -76,7 +83,7 @@ namespace Simple_Web_Browser
         }
     }
 
-    public class BookmarkArgs 
+    public class BookmarkItem
     {
         public string bookmarkName { get; set; }
         public string bookmarkURL { get; set; }
