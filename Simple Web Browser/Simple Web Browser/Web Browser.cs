@@ -28,7 +28,6 @@ namespace Simple_Web_Browser
 
         }
 
-
         private void menuButton_Click(object sender, EventArgs e)
         {
             Menu frm = new Menu(this);
@@ -80,9 +79,15 @@ namespace Simple_Web_Browser
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-           
-            manager.getWebsite(inputBox.Text, true);
-            backPageButton.Enabled = true;
+            if (manager.validURL(URLinputBox.Text))
+            {
+                manager.getWebsite(URLinputBox.Text, true);
+                backPageButton.Enabled = true;
+            } else
+            {
+                System.Windows.Forms.MessageBox.Show("Invalid URL", "Error");
+            }
+            
 
         }
 
@@ -93,7 +98,7 @@ namespace Simple_Web_Browser
             //Console.WriteLine(e.title);
 
             resultDisplay.Text = e.pageData;
-            inputBox.Text = e.URL;
+            URLinputBox.Text = e.URL;
             titleHolder.Text = e.title;
             HTTPHolder.Text = e.request;
 
@@ -111,7 +116,7 @@ namespace Simple_Web_Browser
             
 
             // Load the users preset form
-            manager.setHomePage(manager.getHomeURL());
+            manager.setHomepage(manager.getHomeURL());
             manager.getWebsite(manager.getHomeURL(), true);
 
             historyManager.loadHistory();
@@ -130,27 +135,5 @@ namespace Simple_Web_Browser
             // In theory you shouldn't ever be able to go forward but might be able to go backwords if history loads
         }
         
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Step back : " + historyManager.canStepBack());
-            if (historyManager.canStepBack())
-            {
-                manager.getPreviousPage();
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Step forward : " + historyManager.canStepForward());
-            if (historyManager.canStepForward())
-            {
-                manager.getNextPage();
-            }
-        }
-
-        private void resultDisplay_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
