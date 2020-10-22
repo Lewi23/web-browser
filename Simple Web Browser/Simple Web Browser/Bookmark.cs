@@ -9,6 +9,9 @@ using System.Xml.Serialization;
 
 namespace Simple_Web_Browser
 {
+    /// <summary>
+    /// This class is responsible for managing the bookmarks for the web browser
+    /// </summary>
     public class Bookmark
     {
 

@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace Simple_Web_Browser
 {
+    /// <summary>
+    /// This class is responsible for managing the history of the web browser
+    /// </summary>
     public class History
     {
 
@@ -43,7 +46,7 @@ namespace Simple_Web_Browser
         }
 
         /// <summary>
-        /// Add a historyItem to the hisotryList and updates the local hisotry to reflect this
+        /// Add a HistoryItem to the hisotryList and updates the local hisotry to reflect this
         /// </summary>
         /// <param name="url">The URL to be added</param>
         public void addToHistory(string url)
@@ -59,9 +62,9 @@ namespace Simple_Web_Browser
         }
 
         /// <summary>
-        /// Removes a historyItem from historyList and updates local history to reflect this 
+        /// Removes a HistoryItem from historyList and updates local history to reflect this 
         /// </summary>
-        /// <param name="index">The index of the item to be removed</param>
+        /// <param name="index">The index of the HistoryItem to be removed</param>
         public void deleteHistoryItem(int index)
         {
             try
@@ -105,9 +108,9 @@ namespace Simple_Web_Browser
         }
 
         /// <summary>
-        /// Event Handler for for updating hisotry
+        /// Used to trigger an event in another class when the history is updated
         /// </summary>
-        /// <param name="e">The event args e</param>
+        /// <param name="e">The args passed to the event</param>
         protected virtual void OnHistoryUpdate(EventArgs e)
         {
             EventHandler handler = historyItem;
@@ -119,7 +122,7 @@ namespace Simple_Web_Browser
 
     }
     /// <summary>
-    /// Class used to represent the structure of a history item
+    /// Class used to represent the structure of a HistoryItem
     /// </summary>
     public class HistoryItem
     {
