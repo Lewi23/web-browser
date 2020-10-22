@@ -153,9 +153,7 @@ namespace Simple_Web_Browser
                     OnRequestComplete(args);
 
                 } else {
-
                     throw new HttpResponseException(responseMessage);
-
                 }
 
             } catch(Exception e)
