@@ -12,12 +12,20 @@ namespace Simple_Web_Browser
     class XML<T>
     {
     
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public XML()
         {
             
         }
-   
-        
+
+        /// <summary>
+        /// Writes the generic object T to the file provided
+        /// </summary>
+        /// <typeparam name="T">The generic type the class was instantiated with</typeparam>
+        /// <param name="obj">The object to be written to file</param>
+        /// <param name="filePath">The path of the file to be written to</param>
         public void writeToXML<T>(T obj, string filePath)
         {
             try
@@ -28,13 +36,19 @@ namespace Simple_Web_Browser
                     writer.Serialize(file, obj);
                     file.Close();
                 }
-            } catch (FileNotFoundException e)
+            } catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                
+                System.Windows.Forms.MessageBox.Show(e.Message);
             } 
         }
 
+
+        /// <summary>
+        /// Returns the data read from file in a List<T>
+        /// </summary>
+        /// <param name="filePath">The path of the file to be read from</param>
+        /// <returns>List<T> of values read from file</returns>
         public List<T> readXMLToList(string filePath)
         {
 
@@ -47,16 +61,21 @@ namespace Simple_Web_Browser
                     XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
                     localList = (List<T>)serializer.Deserialize(fileStream);
                 }
-            } catch (FileNotFoundException e)
+            } catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                System.Windows.Forms.MessageBox.Show(e.Message, "File not found");
+                System.Windows.Forms.MessageBox.Show(e.Message);
             }
 
             return localList;
             
         }
 
+        /// <summary>
+        /// Reads a generic value from file
+        /// </summary>
+        /// <param name="filePath">The path of the file to be read from</param>
+        /// <returns>The generic value read from file</returns>
         public T readXML(string filePath)
         {
             T value = default(T);
@@ -69,10 +88,10 @@ namespace Simple_Web_Browser
                     value = (T)serializer.Deserialize(fileStream);
                 } 
             }
-            catch (FileNotFoundException e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                System.Windows.Forms.MessageBox.Show(e.Message, "File not found");
+                System.Windows.Forms.MessageBox.Show(e.Message);
             }
             
             return value;
