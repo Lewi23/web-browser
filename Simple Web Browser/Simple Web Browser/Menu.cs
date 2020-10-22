@@ -113,7 +113,7 @@ namespace Simple_Web_Browser
         private void BookmarkManager_bookmarkItem(object sender, EventArgs e)
         {
             bookmarkBox.Items.Clear();
-            foreach (BookmarkArgs bookmark in Bookmark.bookmarkList)
+            foreach (BookmarkItem bookmark in Bookmark.bookmarkList)
             {
                 bookmarkBox.Items.Add(bookmark.bookmarkName);
             }
