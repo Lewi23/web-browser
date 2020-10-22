@@ -53,7 +53,6 @@ namespace Simple_Web_Browser
             historyItem.accessTime = DateTime.Now;
             historyList.Add(historyItem);
 
-            //pagePointer++;
             saveHistoryLocally();
 
             OnHistoryUpdate(EventArgs.Empty);
@@ -65,17 +64,23 @@ namespace Simple_Web_Browser
         /// <param name="index">The index of the item to be removed</param>
         public void deleteHistoryItem(int index)
         {
-            historyList.RemoveAt(index);
-
-            saveHistoryLocally();
-
-            //This is handling an edge case of deletion ( if you delete the page you are on with only 1 other page)
-            if (pagePointer > 1)
+            try
             {
-                pagePointer--;
+                historyList.RemoveAt(index);
+                saveHistoryLocally();
+
+                //This is handling an edge case of deletion ( if you delete the page you are on with only 1 other page)
+                if (pagePointer > 1)
+                {
+                    pagePointer--;
+                }
+
+                OnHistoryUpdate(EventArgs.Empty);
             }
-            
-            OnHistoryUpdate(EventArgs.Empty);
+            catch(ArgumentOutOfRangeException e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
         }
 
         /// <summary>
