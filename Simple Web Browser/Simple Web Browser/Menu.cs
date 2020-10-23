@@ -16,7 +16,7 @@ namespace Simple_Web_Browser
         //History historyManager = new History;
         // https://stackoverflow.com/questions/1665533/communicate-between-two-windows-forms-in-c-sharp
         // communcatiing between two forms
-        private Browser mainForm = null;
+        private webBrowser mainForm = null;
 
         public Bookmark bookmarkManager = new Bookmark();
         public History historyManager = new History();
@@ -29,7 +29,7 @@ namespace Simple_Web_Browser
 
         public Menu(Form callingForm)
         {
-            mainForm = callingForm as Browser;
+            mainForm = callingForm as webBrowser;
             InitializeComponent();
         }
 

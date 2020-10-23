@@ -1,6 +1,6 @@
 ﻿namespace Simple_Web_Browser
 {
-    partial class Browser
+    partial class webBrowser
     {
         /// <summary>
         /// Required designer variable.
@@ -65,7 +65,6 @@
             this.resultDisplay.Size = new System.Drawing.Size(754, 473);
             this.resultDisplay.TabIndex = 1;
             this.resultDisplay.Text = "";
-            //this.resultDisplay.TextChanged += new System.EventHandler(this.resultDisplay_TextChanged);
             // 
             // searchButton
             // 
@@ -85,7 +84,6 @@
             this.URLinputBox.Name = "URLinputBox";
             this.URLinputBox.Size = new System.Drawing.Size(447, 26);
             this.URLinputBox.TabIndex = 3;
-            //this.URLinputBox.TextChanged += new System.EventHandler(this.URLInputBox_TextChanged);
             // 
             // backPageButton
             // 
@@ -159,7 +157,7 @@
             this.HTTPHolder.Size = new System.Drawing.Size(0, 20);
             this.HTTPHolder.TabIndex = 10;
             // 
-            // Browser
+            // webBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -175,9 +173,9 @@
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.resultDisplay);
             this.Controls.Add(this.menuButton);
-            this.Name = "Browser";
+            this.Name = "webBrowser";
             this.Text = "Simple Web Browser";
-            this.Load += new System.EventHandler(this.Browser_Load);
+            this.Load += new System.EventHandler(this.webBrowser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

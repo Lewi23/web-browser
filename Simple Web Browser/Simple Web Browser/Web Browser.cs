@@ -12,28 +12,46 @@ using System.Text.RegularExpressions;
 
 namespace Simple_Web_Browser
 {
-    public partial class Browser : Form
+    /// <summary>
+    /// This class implements how the form elements behave for the web browser 
+    /// </summary>
+    public partial class webBrowser : Form
     {
 
         public Manager manager;
         public History historyManager;
 
-        public Browser()
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public webBrowser()
         {
             InitializeComponent();
             manager = new Manager();
             historyManager = new History();
+
+            //Linking to the event created in manager
             manager.RequestComplete += m_RequestComplete;
-            //manager.historyManager.HistoryItem += HistoryManager_HistoryItem;
+            
 
         }
 
+        /// <summary>
+        /// Open the Menu form 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuButton_Click(object sender, EventArgs e)
         {
-            Menu frm = new Menu(this);
-            frm.Show();
+            Menu form = new Menu(this);
+            form.Show();
         }
 
+        /// <summary>
+        /// Takes the user to the previous page if it exists otherwise disable the button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void backPageButton_Click(object sender, EventArgs e)
         {
             if (historyManager.canStepBack())
@@ -55,6 +73,11 @@ namespace Simple_Web_Browser
 
         }
 
+        /// <summary>
+        /// Takes the user to the next page if it exists otherwise disable the button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void forwardPageButton_Click(object sender, EventArgs e)
         {
             if (historyManager.canStepForward())
@@ -76,7 +99,11 @@ namespace Simple_Web_Browser
         }
 
       
-
+        /// <summary>
+        /// Loads the URL from the URL input box if it is valid.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void searchButton_Click(object sender, EventArgs e)
         {
             if (manager.validURL(URLinputBox.Text))
@@ -85,17 +112,17 @@ namespace Simple_Web_Browser
                 backPageButton.Enabled = true;
             } else
             {
-                System.Windows.Forms.MessageBox.Show("Invalid URL", "Error");
+                System.Windows.Forms.MessageBox.Show("Invalid URL");
             }
-            
-
         }
 
+        /// <summary>
+        /// Event triggered from manager class, updates all of the web page data on the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void m_RequestComplete(object sender, RequestCompleteArgs e)
         {
-            //Console.WriteLine(e.pageData);
-            //Console.WriteLine(e.request);
-            //Console.WriteLine(e.title);
 
             resultDisplay.Text = e.pageData;
             URLinputBox.Text = e.URL;
@@ -104,24 +131,33 @@ namespace Simple_Web_Browser
 
         }
 
-
+        /// <summary>
+        /// Reloads the current page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void refreshPageButon_Click(object sender, EventArgs e)
         {
             manager.reloadPage();
         }
       
-
-        private void Browser_Load(object sender, EventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void webBrowser_Load(object sender, EventArgs e)
         {
             
-
-            // Load the users preset form
+            // load the users homepage into manager
             manager.setHomepage(manager.getHomeURL());
+            // get the website that is the home URL
             manager.getWebsite(manager.getHomeURL(), true);
 
+            // Need to load history here to check if the back buttons can be enabled on launch
             historyManager.loadHistory();
-            Console.WriteLine(History.historyList.Count);
-
+          
+            // Checking if the back page button is enabled
             if (History.historyList.Count > 0)
                 backPageButton.Enabled = true;
             else
@@ -130,9 +166,6 @@ namespace Simple_Web_Browser
             // This is false until we search a page
             forwardPageButton.Enabled = false;
 
-
-
-            // In theory you shouldn't ever be able to go forward but might be able to go backwords if history loads
         }
         
     }

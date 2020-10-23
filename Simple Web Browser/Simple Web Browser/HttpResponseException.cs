@@ -6,6 +6,10 @@ namespace Simple_Web_Browser
 {
     internal class HttpResponseException : Exception
     {
+        /// <summary>
+        /// Handles
+        /// </summary>
+        /// <param name="message">The HTTP response message</param>
         public HttpResponseException(HttpResponseMessage message)
         {
             // Error messages from : https://docs.microsoft.com/en-us/dotnet/api/system.net.httpstatuscode?view=netcore-3.1
