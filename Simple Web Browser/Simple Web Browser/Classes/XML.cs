@@ -13,7 +13,7 @@ namespace Simple_Web_Browser
     /// This class provides functionality for writing and reading to and from XML files
     /// </summary>
     /// <typeparam name="T">Specify the generic type to use for this instantiation</typeparam>
-    class XML<T>
+    public class XML<T>
     {
     
         /// <summary>
