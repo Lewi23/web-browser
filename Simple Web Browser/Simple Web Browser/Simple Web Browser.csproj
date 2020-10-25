@@ -79,40 +79,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bookmark.cs" />
-    <Compile Include="BrowserResponse.cs" />
-    <Compile Include="HttpResponseException.cs" />
-    <Compile Include="Menu.cs">
+    <Compile Include="Classes\Bookmark.cs" />
+    <Compile Include="Classes\BrowserResponse.cs" />
+    <Compile Include="Classes\HttpResponseException.cs" />
+    <Compile Include="Forms\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu.Designer.cs">
+    <Compile Include="Forms\Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="History.cs" />
-    <Compile Include="getHomepage.cs">
+    <Compile Include="Classes\History.cs" />
+    <Compile Include="Forms\getHomepage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="getHomepage.Designer.cs">
+    <Compile Include="Forms\getHomepage.Designer.cs">
       <DependentUpon>getHomepage.cs</DependentUpon>
     </Compile>
-    <Compile Include="XML.cs" />
-    <Compile Include="HTTP.cs" />
-    <Compile Include="Web Browser.cs">
+    <Compile Include="Classes\XML.cs" />
+    <Compile Include="Classes\HTTP.cs" />
+    <Compile Include="Forms\Web Browser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Web Browser.Designer.cs">
+    <Compile Include="Forms\Web Browser.Designer.cs">
       <DependentUpon>Web Browser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Manager.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Classes\Manager.cs" />
+    <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="getHomepage.resx">
+    <EmbeddedResource Include="Forms\getHomepage.resx">
       <DependentUpon>getHomepage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Web Browser.resx">
+    <EmbeddedResource Include="Forms\Web Browser.resx">
       <DependentUpon>Web Browser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu.resx">
+    <EmbeddedResource Include="Forms\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
