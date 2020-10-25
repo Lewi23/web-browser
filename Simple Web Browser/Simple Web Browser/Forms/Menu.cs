@@ -33,7 +33,7 @@ namespace Simple_Web_Browser
             InitializeComponent();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void Menu_Load(object sender, EventArgs e)
         {
 
             bookmarkManager.bookmarkItem += BookmarkManager_bookmarkItem;

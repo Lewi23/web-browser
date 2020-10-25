@@ -65,6 +65,7 @@
             this.resultDisplay.Size = new System.Drawing.Size(754, 473);
             this.resultDisplay.TabIndex = 1;
             this.resultDisplay.Text = "";
+            //this.resultDisplay.TextChanged += new System.EventHandler(this.resultDisplay_TextChanged);
             // 
             // searchButton
             // 

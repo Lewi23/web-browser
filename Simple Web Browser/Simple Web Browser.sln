@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple Web Browser", "Simple Web Browser\Simple Web Browser.csproj", "{42584EA8-0A02-4983-9D00-4FE822DE5949}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple Web Browser Tests", "..\Simple Web Browser Tests\Simple Web Browser Tests.csproj", "{2F214D74-992F-45DE-AF85-EC419BBA81F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple Web Browser Tests", "..\Tests\Simple Web Browser Tests\Simple Web Browser Tests.csproj", "{227D8212-2879-42BA-A87F-14BD5F80CB12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{42584EA8-0A02-4983-9D00-4FE822DE5949}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42584EA8-0A02-4983-9D00-4FE822DE5949}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42584EA8-0A02-4983-9D00-4FE822DE5949}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F214D74-992F-45DE-AF85-EC419BBA81F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F214D74-992F-45DE-AF85-EC419BBA81F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F214D74-992F-45DE-AF85-EC419BBA81F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F214D74-992F-45DE-AF85-EC419BBA81F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{227D8212-2879-42BA-A87F-14BD5F80CB12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{227D8212-2879-42BA-A87F-14BD5F80CB12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{227D8212-2879-42BA-A87F-14BD5F80CB12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{227D8212-2879-42BA-A87F-14BD5F80CB12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

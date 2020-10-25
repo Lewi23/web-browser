@@ -167,6 +167,6 @@ namespace Simple_Web_Browser
             forwardPageButton.Enabled = false;
 
         }
-        
+
     }
 }
