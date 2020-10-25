@@ -26,7 +26,7 @@ namespace Simple_Web_Browser
         XML<string> XMLManager = new XML<string>();
         HTTP http = new HTTP();
         setHomepage getHomepage = new setHomepage();
-
+        BrowserResponse browser;
 
 
         public Manager()
@@ -128,16 +128,17 @@ namespace Simple_Web_Browser
         /// <param name="historyItem"> True (yes the item should be added to history) False (do not add to history) </param>
         public async void getWebsite(String URL, bool historyItem) {
 
-            // Set the currentURL to the last loaded webpage
+            // Setting the currentURL to the last loaded webpage
             currentURL = URL;
 
             try
             {
-                HttpResponseMessage responseMessage = await HTTP.Get(URL);
+                HttpResponseMessage httpResponse = await HTTP.Get(URL);
 
-                if(responseMessage.StatusCode == HttpStatusCode.OK)
+                if(httpResponse.StatusCode == HttpStatusCode.OK)
                 {
-                    BrowserResponse browser = new BrowserResponse(responseMessage);
+
+                    browser = new BrowserResponse(httpResponse);
                     result = await browser.getContent();
 
                     if (historyItem)
@@ -147,13 +148,15 @@ namespace Simple_Web_Browser
 
                     RequestCompleteArgs args = new RequestCompleteArgs();
                     args.pageData = result;
+                    // Used the following resource for the regex
+                    //https://www.experts-exchange.com/questions/23135727/regular-expression-to-match-title-tag-on-html-page.html
                     args.title = Regex.Match(result, "<title>([^<]*)</title>").Groups[1].Value;
-                    args.request = responseMessage.StatusCode.ToString(); // need to fix this it's hardcoded
+                    args.request = httpResponse.StatusCode.ToString(); 
                     args.URL = currentURL;
                     OnRequestComplete(args);
 
                 } else {
-                    throw new HttpResponseException(responseMessage);
+                    throw new HttpResponseException(httpResponse);
                 }
 
             } catch(Exception e)

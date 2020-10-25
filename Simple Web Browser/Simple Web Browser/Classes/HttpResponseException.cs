@@ -4,10 +4,13 @@ using System.Net.Http;
 
 namespace Simple_Web_Browser
 {
+    /// <summary>
+    /// Custom HTTP error class
+    /// </summary>
     internal class HttpResponseException : Exception
     {
         /// <summary>
-        /// Handles
+        /// Provides support for the three required exceptions (400,403 and 404) and has a default case for the reset
         /// </summary>
         /// <param name="message">The HTTP response message</param>
         public HttpResponseException(HttpResponseMessage message)
