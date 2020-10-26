@@ -99,11 +99,17 @@ namespace Simple_Web_Browser_Tests
         }
 
         [TestMethod]
-        public void delete_out_of_bounds()
+        public void delete_history_out_of_range()
         {
             historyManager.addToHistory("https://www.google.com/");
             historyManager.addToHistory("https://www.google.com/");
 
+            historyManager.deleteHistoryItem(int.MaxValue);
+        }
+
+        [TestMethod]
+        public void delete_when_history_is_empty()
+        {
             historyManager.deleteHistoryItem(int.MaxValue);
         }
 

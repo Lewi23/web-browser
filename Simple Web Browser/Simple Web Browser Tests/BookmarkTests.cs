@@ -26,6 +26,21 @@ namespace Simple_Web_Browser_Tests
         }
 
         [TestMethod]
+        public void add_two_bookmarks_with_same_name()
+        {
+            bookmarkManager.addBookmark("BBC", "https://www.bbc.co.uk/");
+            bookmarkManager.addBookmark("BBC", "https://www.bbc.co.uk/");
+
+            Assert.AreEqual(2, Bookmark.bookmarkList.Count);
+        }
+
+        [TestMethod]
+        public void add_null_bookmark()
+        {
+            bookmarkManager.addBookmark(null, null);
+        }
+
+        [TestMethod]
         public void delete_bookmark()
         {
             bookmarkManager.addBookmark("BBC", "https://www.bbc.co.uk/");
@@ -46,6 +61,12 @@ namespace Simple_Web_Browser_Tests
         }
 
         [TestMethod]
+        public void delete_when_bookmark_is_empty()
+        {
+            bookmarkManager.deleteBookmark(int.MaxValue);
+        }
+
+        [TestMethod]
         public void edit_bookmark()
         {
             bookmarkManager.addBookmark("BBC", "https://www.bbc.co.uk/");
@@ -59,13 +80,46 @@ namespace Simple_Web_Browser_Tests
         [TestMethod]
         public void edit_bookmark_out_of_bounds()
         {
-            BookmarkItem item1 = new BookmarkItem();
-
-            Bookmark.bookmarkList.Add(item1);
-
-            bookmarkManager.editBookmark(int.MaxValue, "Test name", "Test URL");
-
+            bookmarkManager.editBookmark(int.MaxValue, "Search Engine", "https://www.google.com/");
         }
+
+        [TestMethod]
+        public void edit_bookmark_empty_bookmark_name()
+        {
+
+            bookmarkManager.addBookmark("Google", "https://www.google.com/");
+            bookmarkManager.editBookmark(0, "", "https://www.google.com/");
+
+            Assert.AreEqual("", Bookmark.bookmarkList[0].bookmarkName);
+        }
+
+        [TestMethod]
+        public void edit_bookmark_empty_bookmark_url()
+        {
+            bookmarkManager.addBookmark("Google", "https://www.google.com/");
+            bookmarkManager.editBookmark(0, "Google", "");
+
+            Assert.AreEqual("", Bookmark.bookmarkList[0].bookmarkURL);
+        }
+
+        [TestMethod]
+        public void edit_bookmark_name_to_null()
+        {
+            bookmarkManager.addBookmark("Google", "https://www.google.com/");
+            bookmarkManager.editBookmark(0, null, "https://www.google.com/");
+
+            Assert.AreEqual(null, Bookmark.bookmarkList[0].bookmarkName);
+        }
+
+        [TestMethod]
+        public void edit_bookmark_url_to_null()
+        {
+            bookmarkManager.addBookmark("Google", "https://www.google.com/");
+            bookmarkManager.editBookmark(0, "Google", null);
+
+            Assert.AreEqual(null, Bookmark.bookmarkList[0].bookmarkURL);
+        }
+
 
         [TestMethod]
         public void persistent_bookmarks()
