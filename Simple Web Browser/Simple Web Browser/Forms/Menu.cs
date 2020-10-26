@@ -255,7 +255,7 @@ namespace Simple_Web_Browser
         /// <param name="e"></param>
         private void setHomepageButton_Click(object sender, EventArgs e)
         {
-            // https://docs.microsoft.com/en-us/dotnet/api/system.uri.iswellformeduristring?redirectedfrom=MSDN&view=netcore-3.1#System_Uri_IsWellFormedUriString_System_String_System_UriKind_
+        
             if (Uri.IsWellFormedUriString(homepageURLBox.Text, UriKind.Absolute))
             {
                 this.mainForm.manager.setHomepage(homepageURLBox.Text);
