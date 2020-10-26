@@ -11,7 +11,6 @@ namespace Simple_Web_Browser
     {
 
         public event EventHandler bookmarkItem;
-
         public static List<BookmarkItem> bookmarkList;
         XML<BookmarkItem> xml = new XML<BookmarkItem>();
 
@@ -20,10 +19,7 @@ namespace Simple_Web_Browser
         /// </summary>
         public Bookmark()
         {
-            bookmarkList = new List<BookmarkItem>();
             bookmarkList = loadLocalBookmarks();
-
-            
         }
 
         /// <summary>
