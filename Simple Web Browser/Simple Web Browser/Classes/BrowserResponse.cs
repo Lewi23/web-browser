@@ -5,7 +5,7 @@ using System.Net.Http;
 namespace Simple_Web_Browser
 {
     /// <summary>
-    /// Returns the content of the webpage 
+    /// This class is responsible for getting the contents of a webpage 
     /// </summary>
     class BrowserResponse
     {
