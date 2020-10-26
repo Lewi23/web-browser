@@ -15,11 +15,11 @@ namespace Simple_Web_Browser
         XML<BookmarkItem> bookmarkXMLManager = new XML<BookmarkItem>();
 
         /// <summary>
-        /// Default constructor, loads the local boomkarks into bookmarkList
+        /// Default constructor
         /// </summary>
         public Bookmark()
         {
-            bookmarkList = loadLocalBookmarks();
+            bookmarkList = new List<BookmarkItem>();
         }
 
         /// <summary>
@@ -27,6 +27,7 @@ namespace Simple_Web_Browser
         /// </summary>
         public void loadBookmarks()
         {
+            bookmarkList = loadLocalBookmarks();
             OnBookmarkUpdate(EventArgs.Empty);
         }
 
@@ -56,7 +57,7 @@ namespace Simple_Web_Browser
                 bookmarkList.RemoveAt(index);
                 saveBookmarksLocally();
                 OnBookmarkUpdate(EventArgs.Empty);
-            } catch(Exception e)
+            } catch(ArgumentOutOfRangeException e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
@@ -72,10 +73,17 @@ namespace Simple_Web_Browser
         /// <param name="bookmarkURL">The new bookmark URL </param>
         public void editBookmark(int index, string bookmarkName, string bookmarkURL)
         {
-            bookmarkList[index].bookmarkName = bookmarkName;
-            bookmarkList[index].bookmarkURL = bookmarkURL;
-            saveBookmarksLocally();
-            OnBookmarkUpdate(EventArgs.Empty);
+            try
+            {
+                bookmarkList[index].bookmarkName = bookmarkName;
+                bookmarkList[index].bookmarkURL = bookmarkURL;
+                saveBookmarksLocally();
+                OnBookmarkUpdate(EventArgs.Empty);
+
+            } catch(ArgumentOutOfRangeException e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
         }
 
         /// <summary>
