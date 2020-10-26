@@ -67,6 +67,26 @@ namespace Simple_Web_Browser_Tests
         }
 
         [TestMethod]
+        public void add_empty_string_to_history()
+        {
+
+            historyManager.addToHistory("");
+
+            Assert.AreEqual(1, History.historyList.Count);
+
+        }
+
+        [TestMethod]
+        public void add_null_to_history()
+        {
+
+            historyManager.addToHistory(null);
+
+            Assert.AreEqual(1, History.historyList.Count);
+
+        }
+
+        [TestMethod]
         public void delete_history_item()
         {
 

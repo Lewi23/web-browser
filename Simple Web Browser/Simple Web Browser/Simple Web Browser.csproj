@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="Classes\Bookmark.cs" />
     <Compile Include="Classes\BrowserResponse.cs" />
+    <Compile Include="Classes\History.cs" />
     <Compile Include="Classes\HttpResponseException.cs" />
     <Compile Include="Forms\Menu.cs">
       <SubType>Form</SubType>
@@ -88,7 +89,6 @@
     <Compile Include="Forms\Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\History.cs" />
     <Compile Include="Forms\setHomepage.cs">
       <SubType>Form</SubType>
     </Compile>
