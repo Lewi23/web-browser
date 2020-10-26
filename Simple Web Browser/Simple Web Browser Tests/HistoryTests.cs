@@ -84,11 +84,11 @@ namespace Simple_Web_Browser_Tests
             historyManager.addToHistory("https://www.google.com/");
             historyManager.addToHistory("https://www.google.com/");
 
-            historyManager.deleteHistoryItem(5);
+            historyManager.deleteHistoryItem(int.MaxValue);
         }
 
         [TestMethod]
-        public void persisent_history()
+        public void persistent_history()
         {
             historyManager.addToHistory("https://www.google.com/");
             historyManager.addToHistory("https://www.google.com/");
