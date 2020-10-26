@@ -98,7 +98,6 @@ namespace Simple_Web_Browser
         /// <param name="index">The index of the history element to be searched </param>
         public void searchHistory(int index)
         {
-
             try
             {
                 loadWebsite(History.historyList[index].historyURL, true);
