@@ -42,7 +42,6 @@
             this.homepageLabel.Size = new System.Drawing.Size(247, 26);
             this.homepageLabel.TabIndex = 0;
             this.homepageLabel.Text = "Please set a homepage:";
-            this.homepageLabel.Click += new System.EventHandler(this.homepageLabel_Click);
             // 
             // homepageURLBox
             // 
@@ -73,7 +72,6 @@
             this.Controls.Add(this.homepageLabel);
             this.Name = "setHomepage";
             this.Text = "Simple Web Browser";
-            this.Load += new System.EventHandler(this.setHomepage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

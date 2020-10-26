@@ -1,33 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Simple_Web_Browser
 {
-    public partial class Menu : Form
+    public partial class menu : Form
     {
-        //History historyManager = new History;
+        
         // https://stackoverflow.com/questions/1665533/communicate-between-two-windows-forms-in-c-sharp
-        // communcatiing between two forms
+        // communcatiing between the two forms (Web Browser and Menu)
         private webBrowser mainForm = null;
 
         public Bookmark bookmarkManager = new Bookmark();
         public History historyManager = new History();
         Manager manager = new Manager();
         
-        public Menu()
+        public menu()
         {
             InitializeComponent();
         }
 
-        public Menu(Form callingForm)
+        public menu(Form callingForm)
         {
             mainForm = callingForm as webBrowser;
             InitializeComponent();

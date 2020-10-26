@@ -35,7 +35,7 @@ namespace Simple_Web_Browser
         /// <param name="e"></param>
         private void menuButton_Click(object sender, EventArgs e)
         {
-            Menu form = new Menu(this);
+            menu form = new menu(this);
             form.Show();
         }
 

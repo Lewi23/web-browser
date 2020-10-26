@@ -89,11 +89,11 @@
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\History.cs" />
-    <Compile Include="Forms\getHomepage.cs">
+    <Compile Include="Forms\setHomepage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\getHomepage.Designer.cs">
-      <DependentUpon>getHomepage.cs</DependentUpon>
+    <Compile Include="Forms\setHomepage.Designer.cs">
+      <DependentUpon>setHomepage.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\XML.cs" />
     <Compile Include="Classes\HTTP.cs" />
@@ -106,8 +106,8 @@
     <Compile Include="Classes\Manager.cs" />
     <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\getHomepage.resx">
-      <DependentUpon>getHomepage.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\setHomepage.resx">
+      <DependentUpon>setHomepage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Web Browser.resx">
       <DependentUpon>Web Browser.cs</DependentUpon>

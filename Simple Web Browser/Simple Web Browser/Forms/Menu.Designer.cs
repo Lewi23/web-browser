@@ -1,6 +1,6 @@
 ﻿namespace Simple_Web_Browser
 {
-    partial class Menu
+    partial class menu
     {
         /// <summary>
         /// Required designer variable.
@@ -230,7 +230,7 @@
             this.homepageURLBox.TabIndex = 20;
             this.homepageURLBox.TextChanged += new System.EventHandler(this.homepageURLBox_TextChanged);
             // 
-            // Menu
+            // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -253,7 +253,7 @@
             this.Controls.Add(this.historySearchButton);
             this.Controls.Add(this.historyBox);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.Name = "Menu";
+            this.Name = "menu";
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.ResumeLayout(false);
