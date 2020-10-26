@@ -21,7 +21,7 @@ namespace Simple_Web_Browser
         /// </summary>
         public History()
         {
-            historyList = loadLocalHistory();
+            historyList = new List<HistoryItem>();
         }
 
         /// <summary>
@@ -35,12 +35,13 @@ namespace Simple_Web_Browser
         /// </summary>
         /// <returns>True if it is possible to step forward in hisotry otherwise false</returns>
         public bool canStepForward() => historyList.ElementAtOrDefault(pagePointer + 1) != null ? true : false;
-      
+
         /// <summary>
         /// Loads history from local storage
         /// </summary>
         public void loadHistory()
         {
+            historyList = loadLocalHistory();
             OnHistoryUpdate(EventArgs.Empty);
             pagePointer = historyList.Count - 1;
         }
@@ -80,7 +81,7 @@ namespace Simple_Web_Browser
 
                 OnHistoryUpdate(EventArgs.Empty);
             }
-            catch(ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
