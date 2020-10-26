@@ -14,7 +14,7 @@ namespace Simple_Web_Browser
         public static List<HistoryItem> historyList;
         public event EventHandler historyItem;
         public static int pagePointer;
-        XML<HistoryItem> xml = new XML<HistoryItem>();
+        XML<HistoryItem> historyXMLManager = new XML<HistoryItem>();
 
         /// <summary>
         /// Default constructor, loads the local history into historyList
@@ -91,7 +91,7 @@ namespace Simple_Web_Browser
         /// </summary>
         public void saveHistoryLocally()
         {
-            xml.writeToXML(historyList, Resources.SearchHistory);
+            historyXMLManager.writeToXML(historyList, Resources.SearchHistory);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Simple_Web_Browser
         public List<HistoryItem> loadLocalHistory()
         {
             List<HistoryItem> list;
-            list = xml.readXMLToList(Resources.SearchHistory);
+            list = historyXMLManager.readXMLToList(Resources.SearchHistory);
 
             return list;
 
