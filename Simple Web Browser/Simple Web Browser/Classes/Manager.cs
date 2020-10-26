@@ -13,27 +13,41 @@ using System.Net;
 
 namespace Simple_Web_Browser
 {
+    /// <summary>
+    /// This class is the control centre for the web browser controlling the main functionality
+    /// Responsible for managing the history and bookmarks as well 
+    /// </summary>
     public class Manager
     {
 
         private string result;
         private string currentURL;
-       
         public event EventHandler<RequestCompleteArgs> RequestComplete;
 
-        Bookmark bookmarkManager = new Bookmark();
-        History historyManager = new History();
-        XML<string> XMLManager = new XML<string>();
-        HTTP http = new HTTP();
-        setHomepage getHomepage = new setHomepage();
+        Bookmark bookmarkManager;
+        History historyManager;
+        XML<string> XMLManager;
+        HTTP http;
+        setHomepage getHomepage;
         BrowserResponse browser;
 
-
+        /// <summary>
+        /// Default constructor, instantiates managers
+        /// </summary>
         public Manager()
         {
-
+            bookmarkManager = new Bookmark();
+            historyManager = new History();
+            XMLManager = new XML<string>();
+            http = new HTTP();
+            getHomepage = new setHomepage();
         }
         
+        /// <summary>
+        /// Validates a URL
+        /// </summary>
+        /// <param name="URL">The URL to be checked</param>
+        /// <returns>True if a valid url, false otherwise</returns>
         public bool validURL(string URL)
         {
             return Uri.IsWellFormedUriString(URL, UriKind.Absolute);
@@ -44,27 +58,33 @@ namespace Simple_Web_Browser
         /// </summary>
         public void reloadPage()
         {
-            getWebsite(currentURL, false);
+            loadWebsite(currentURL, false);
         }
 
+        /// <summary>
+        /// Gets the previous page from hisotry
+        /// </summary>
         public void getNextPage()
         {
             try
             {
                 History.pagePointer++;
-                getWebsite(History.historyList[History.pagePointer].historyURL, false);
+                loadWebsite(History.historyList[History.pagePointer].historyURL, false);
             } catch (IndexOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
 
+        /// <summary>
+        /// Gets the next page from history
+        /// </summary>
         public void getPreviousPage()
         {
             try
             {
                 History.pagePointer--;
-                getWebsite(History.historyList[History.pagePointer].historyURL, false);
+                loadWebsite(History.historyList[History.pagePointer].historyURL, false);
             } catch(IndexOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
@@ -72,12 +92,16 @@ namespace Simple_Web_Browser
             
         }
 
+        /// <summary>
+        /// Search a history entry
+        /// </summary>
+        /// <param name="index">The index of the history element to be searched </param>
         public void searchHistory(int index)
         {
 
             try
             {
-                getWebsite(History.historyList[index].historyURL, true);
+                loadWebsite(History.historyList[index].historyURL, true);
             }
             catch (IndexOutOfRangeException e)
             {
@@ -85,11 +109,15 @@ namespace Simple_Web_Browser
             }
         }
 
+        /// <summary>
+        /// Search a bookmark entry
+        /// </summary>
+        /// <param name="index">The index of the bookmark element to be searched</param>
         public void searchBookmark(int index)
         {
             try
             {
-                getWebsite(Bookmark.bookmarkList[index].bookmarkURL, true);
+                loadWebsite(Bookmark.bookmarkList[index].bookmarkURL, true);
             }
             catch (IndexOutOfRangeException e)
             {
@@ -97,36 +125,43 @@ namespace Simple_Web_Browser
             }
         }
 
+        /// <summary>
+        /// If no home URL has been set it will request this and store it to local storage.
+        /// Otherwise it gets the locally stored URL
+        /// </summary>
+        /// <returns>The home URL the user set</returns>
         public string getHomeURL()
         {
             if (XMLManager.readXML(Resources.Homepage) == "")
             {
-
                 do
                 {
                     getHomepage.ShowDialog();
                 // Keep asking for valid input until we get a 'valid' website
                 } while (!validURL(getHomepage.homepageURLBox.Text));
 
-                
+                // Write the new URL to local storage
                 XMLManager.writeToXML<string>(getHomepage.homepageURLBox.Text, Resources.Homepage);
-
             }
 
             return XMLManager.readXML(Resources.Homepage);
         }
 
+        /// <summary>
+        /// Updates the locally stored home URL
+        /// </summary>
+        /// <param name="homepage">The new hompeage URL</param>
         public void setHomepage(string homepage)
         {
             XMLManager.writeToXML<string>(homepage, Resources.Homepage);
         }
 
         /// <summary>
-        /// return the website
+        /// Loads the provided URL (via triggering an event) 
         /// </summary>
         /// <param name="URL">The URL that has been requested</param>
         /// <param name="historyItem"> True (yes the item should be added to history) False (do not add to history) </param>
-        public async void getWebsite(String URL, bool historyItem) {
+        public async void loadWebsite(string URL, bool historyItem) {
 
             // Setting the currentURL to the last loaded webpage
             currentURL = URL;
@@ -166,6 +201,10 @@ namespace Simple_Web_Browser
     
         }
 
+        /// <summary>
+        /// Used to trigger an event in another class when the a page request is completed
+        /// </summary>
+        /// <param name="e">The args passed to the event</param>
         protected virtual void OnRequestComplete(RequestCompleteArgs e)
         {
             EventHandler<RequestCompleteArgs> handler = RequestComplete;
@@ -175,6 +214,10 @@ namespace Simple_Web_Browser
             }
         }
     }
+
+    /// <summary>
+    /// Class used to represent the structure of a completed request
+    /// </summary>
     public class RequestCompleteArgs : EventArgs
     {
         public string pageData { get; set; }

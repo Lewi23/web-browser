@@ -100,7 +100,7 @@ namespace Simple_Web_Browser
         {
             if (manager.validURL(URLinputBox.Text))
             {
-                manager.getWebsite(URLinputBox.Text, true);
+                manager.loadWebsite(URLinputBox.Text, true);
                 backPageButton.Enabled = true;
             } else
             {
@@ -134,7 +134,7 @@ namespace Simple_Web_Browser
         }
       
         /// <summary>
-        /// 
+        /// Sets up the users browser by loading their home URL and history to determine if they can navigate
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -144,17 +144,21 @@ namespace Simple_Web_Browser
             // load the users homepage into manager
             manager.setHomepage(manager.getHomeURL());
             // get the website that is the home URL
-            manager.getWebsite(manager.getHomeURL(), true);
+            manager.loadWebsite(manager.getHomeURL(), true);
 
             // Need to load history here to check if the back buttons can be enabled on launch
             historyManager.loadHistory();
           
             // Checking if the back page button is enabled
             if (History.historyList.Count > 0)
+            {
                 backPageButton.Enabled = true;
+            }
             else
+            {
                 backPageButton.Enabled = false;
-
+            }
+                
             // This is false until we search a page
             forwardPageButton.Enabled = false;
 
