@@ -12,7 +12,7 @@ namespace Simple_Web_Browser
 
         public event EventHandler bookmarkItem;
         public static List<BookmarkItem> bookmarkList;
-        XML<BookmarkItem> xml = new XML<BookmarkItem>();
+        XML<BookmarkItem> bookmarkXMLManager = new XML<BookmarkItem>();
 
         /// <summary>
         /// Default constructor, loads the local boomkarks into bookmarkList
@@ -83,7 +83,7 @@ namespace Simple_Web_Browser
         /// </summary>
         public void saveBookmarksLocally()
         {
-            xml.writeToXML(bookmarkList, Resources.Bookmarks);
+            bookmarkXMLManager.writeToXML(bookmarkList, Resources.Bookmarks);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Simple_Web_Browser
         public List<BookmarkItem> loadLocalBookmarks()
         {
             List<BookmarkItem> list;
-            list = xml.readXMLToList(Resources.Bookmarks);
+            list = bookmarkXMLManager.readXMLToList(Resources.Bookmarks);
 
             return list; 
 
