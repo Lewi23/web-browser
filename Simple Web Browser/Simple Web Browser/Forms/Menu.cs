@@ -110,7 +110,6 @@ namespace Simple_Web_Browser
         {
             if (historyBox.SelectedItem != null)
             {
-                System.Console.WriteLine("trying to delete");
                 historyManager.deleteHistoryItem(historyBox.SelectedIndex);
                 deleteHistoryButton.Enabled = false;
                 historySearchButton.Enabled = false;
