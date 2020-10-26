@@ -72,6 +72,7 @@
             this.Controls.Add(this.homepageLabel);
             this.Name = "setHomepage";
             this.Text = "Simple Web Browser";
+            //this.Load += new System.EventHandler(this.setHomepage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
