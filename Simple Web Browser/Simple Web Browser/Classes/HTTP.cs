@@ -7,6 +7,9 @@ using System.Net.Http;
 
 namespace Simple_Web_Browser
 {
+    /// <summary>
+    /// This class is responsible for returning the HTTP response message
+    /// </summary>
     class HTTP
     {
         // Influence taken from
