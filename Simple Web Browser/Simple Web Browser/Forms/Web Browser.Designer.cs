@@ -65,7 +65,6 @@
             this.resultDisplay.Size = new System.Drawing.Size(754, 473);
             this.resultDisplay.TabIndex = 1;
             this.resultDisplay.Text = "";
-            //this.resultDisplay.TextChanged += new System.EventHandler(this.resultDisplay_TextChanged);
             // 
             // searchButton
             // 
@@ -88,33 +87,36 @@
             // 
             // backPageButton
             // 
-            this.backPageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.backPageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.backPageButton.Location = new System.Drawing.Point(13, 13);
             this.backPageButton.Name = "backPageButton";
             this.backPageButton.Size = new System.Drawing.Size(44, 32);
             this.backPageButton.TabIndex = 4;
-            this.backPageButton.Text = "⬅️";
+            this.backPageButton.Text = "←";
             this.backPageButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.backPageButton.UseVisualStyleBackColor = true;
             this.backPageButton.Click += new System.EventHandler(this.backPageButton_Click);
             // 
             // forwardPageButton
             // 
+            this.forwardPageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.forwardPageButton.Location = new System.Drawing.Point(63, 13);
             this.forwardPageButton.Name = "forwardPageButton";
             this.forwardPageButton.Size = new System.Drawing.Size(42, 32);
             this.forwardPageButton.TabIndex = 5;
-            this.forwardPageButton.Text = "fwd";
+            this.forwardPageButton.Text = "→";
+            this.forwardPageButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.forwardPageButton.UseVisualStyleBackColor = true;
             this.forwardPageButton.Click += new System.EventHandler(this.forwardPageButton_Click);
             // 
             // refreshPageButon
             // 
+            this.refreshPageButon.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.refreshPageButon.Location = new System.Drawing.Point(112, 13);
             this.refreshPageButon.Name = "refreshPageButon";
             this.refreshPageButon.Size = new System.Drawing.Size(45, 32);
             this.refreshPageButon.TabIndex = 6;
-            this.refreshPageButon.Text = "refresh";
+            this.refreshPageButon.Text = "⟳";
             this.refreshPageButon.UseVisualStyleBackColor = true;
             this.refreshPageButon.Click += new System.EventHandler(this.refreshPageButon_Click);
             // 
