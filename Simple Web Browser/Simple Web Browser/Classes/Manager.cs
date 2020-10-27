@@ -70,7 +70,7 @@ namespace Simple_Web_Browser
             {
                 History.pagePointer++;
                 loadWebsite(History.historyList[History.pagePointer].historyURL, false);
-            } catch (IndexOutOfRangeException e)
+            } catch (ArgumentOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -85,7 +85,7 @@ namespace Simple_Web_Browser
             {
                 History.pagePointer--;
                 loadWebsite(History.historyList[History.pagePointer].historyURL, false);
-            } catch(IndexOutOfRangeException e)
+            } catch(ArgumentOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -102,7 +102,7 @@ namespace Simple_Web_Browser
             {
                 loadWebsite(History.historyList[index].historyURL, true);
             }
-            catch (IndexOutOfRangeException e)
+            catch (ArgumentOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -118,7 +118,7 @@ namespace Simple_Web_Browser
             {
                 loadWebsite(Bookmark.bookmarkList[index].bookmarkURL, true);
             }
-            catch (IndexOutOfRangeException e)
+            catch (ArgumentOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
