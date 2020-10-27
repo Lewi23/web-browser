@@ -43,6 +43,37 @@ namespace Simple_Web_Browser_Tests
         }
 
         [TestMethod]
+        public void search_history()
+        {
+            HistoryItem item1 = new HistoryItem();
+            History.historyList.Add(item1);
+
+            manager.searchHistory(0);
+        }
+
+        [TestMethod]
+        public void search_history_out_of_range()
+        {
+            manager.searchHistory(int.MaxValue);
+        }
+
+        [TestMethod]
+        public void search_bookmark()
+        {
+            BookmarkItem item1 = new BookmarkItem();
+            Bookmark.bookmarkList.Add(item1);
+
+            manager.searchBookmark(0);
+        }
+
+        [TestMethod]
+        public void search_bookmark_out_of_range()
+        {
+            manager.searchBookmark(int.MaxValue);
+        }
+     
+
+        [TestMethod]
         public void get_home_url()
         {
             manager.getHomeURL();
@@ -106,6 +137,48 @@ namespace Simple_Web_Browser_Tests
         public void load_website_http_404()
         {
             manager.loadWebsite("http://httpstat.us/404", false);
+        }
+
+        [TestMethod]
+        public void get_next_page()
+        {
+            HistoryItem item1 = new HistoryItem();
+            HistoryItem item2 = new HistoryItem();
+            History.historyList.Add(item1);
+            History.historyList.Add(item2);
+
+            History.pagePointer = 0;
+
+            manager.getNextPage();
+        }
+
+        [TestMethod]
+        public void get_next_page_out_of_range()
+        {
+            History.pagePointer = int.MaxValue;
+
+            manager.getNextPage();
+        }
+
+        [TestMethod]
+        public void get_previous_page()
+        {
+            HistoryItem item1 = new HistoryItem();
+            HistoryItem item2 = new HistoryItem();
+            History.historyList.Add(item1);
+            History.historyList.Add(item2);
+
+            History.pagePointer = 1;
+
+            manager.getPreviousPage();
+        }
+
+        [TestMethod]
+        public void get_previous_page_out_of_range()
+        {
+            History.pagePointer = int.MaxValue;
+
+            manager.getPreviousPage();
         }
     }
 }

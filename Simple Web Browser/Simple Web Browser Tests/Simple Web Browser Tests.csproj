@@ -49,10 +49,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HistoryTests.cs" />
+    <Compile Include="Tests\HistoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BookmarkTests.cs" />
-    <Compile Include="ManagerTests.cs" />
+    <Compile Include="Tests\BookmarkTests.cs" />
+    <Compile Include="Tests\ManagerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
