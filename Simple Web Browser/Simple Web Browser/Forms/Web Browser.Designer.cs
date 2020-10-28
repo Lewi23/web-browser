@@ -45,7 +45,7 @@
             // 
             this.menuButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.menuButton.Location = new System.Drawing.Point(680, 12);
+            this.menuButton.Location = new System.Drawing.Point(700, 13);
             this.menuButton.Name = "menuButton";
             this.menuButton.Size = new System.Drawing.Size(87, 33);
             this.menuButton.TabIndex = 0;
@@ -62,7 +62,7 @@
             this.resultDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.resultDisplay.Location = new System.Drawing.Point(13, 124);
             this.resultDisplay.Name = "resultDisplay";
-            this.resultDisplay.Size = new System.Drawing.Size(754, 473);
+            this.resultDisplay.Size = new System.Drawing.Size(774, 473);
             this.resultDisplay.TabIndex = 1;
             this.resultDisplay.Text = "";
             // 
@@ -71,9 +71,9 @@
             this.searchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.searchButton.Location = new System.Drawing.Point(616, 13);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(58, 32);
+            this.searchButton.Size = new System.Drawing.Size(78, 32);
             this.searchButton.TabIndex = 2;
-            this.searchButton.Text = "Go";
+            this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
@@ -164,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 600);
+            this.ClientSize = new System.Drawing.Size(796, 600);
             this.Controls.Add(this.HTTPHolder);
             this.Controls.Add(this.titleHolder);
             this.Controls.Add(this.label1);
