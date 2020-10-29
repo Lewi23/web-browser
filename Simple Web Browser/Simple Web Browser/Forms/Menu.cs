@@ -108,12 +108,20 @@ namespace Simple_Web_Browser
         /// <param name="e"></param>
         private void deleteHistoryButton_Click(object sender, EventArgs e)
         {
-            if (historyBox.SelectedItem != null)
+
+            try
             {
-                historyManager.deleteHistoryItem(historyBox.SelectedIndex);
-                deleteHistoryButton.Enabled = false;
-                historySearchButton.Enabled = false;
-            } 
+                if (historyBox.SelectedItem != null)
+                {
+                    historyManager.deleteHistoryItem(historyBox.SelectedIndex);
+                    deleteHistoryButton.Enabled = false;
+                    historySearchButton.Enabled = false;
+                }
+            }
+            catch (ArgumentOutOfRangeException a)
+            {
+                System.Windows.Forms.MessageBox.Show(a.Message);
+            }
         }
 
         /// <summary>

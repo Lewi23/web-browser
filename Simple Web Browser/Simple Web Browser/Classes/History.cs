@@ -35,7 +35,7 @@ namespace Simple_Web_Browser
         /// </summary>
         /// <returns>True if it is possible to step forward in hisotry otherwise false</returns>
         public bool canStepForward() => historyList.ElementAtOrDefault(pagePointer + 1) != null ? true : false;
-
+        
         /// <summary>
         /// Loads history from local storage
         /// </summary>
@@ -68,8 +68,6 @@ namespace Simple_Web_Browser
         /// <param name="index">The index of the HistoryItem to be removed</param>
         public void deleteHistoryItem(int index)
         {
-            try
-            {
                 historyList.RemoveAt(index);
                 saveHistoryLocally();
 
@@ -80,11 +78,7 @@ namespace Simple_Web_Browser
                 }
 
                 OnHistoryUpdate(EventArgs.Empty);
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                System.Windows.Forms.MessageBox.Show(e.Message);
-            }
+
         }
 
         /// <summary>

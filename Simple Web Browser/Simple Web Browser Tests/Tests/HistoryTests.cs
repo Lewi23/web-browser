@@ -101,16 +101,34 @@ namespace Simple_Web_Browser_Tests
         [TestMethod]
         public void delete_history_out_of_range()
         {
-            historyManager.addToHistory("https://www.google.com/");
-            historyManager.addToHistory("https://www.google.com/");
+            try
+            {
+                historyManager.addToHistory("https://www.google.com/");
+                historyManager.addToHistory("https://www.google.com/");
 
-            historyManager.deleteHistoryItem(int.MaxValue);
+                historyManager.deleteHistoryItem(int.MaxValue);
+                Assert.Fail();
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e);
+            }
+
         }
 
         [TestMethod]
         public void delete_when_history_is_empty()
         {
-            historyManager.deleteHistoryItem(int.MaxValue);
+            try
+            {
+                historyManager.deleteHistoryItem(int.MaxValue);
+                Assert.Fail();
+            } catch(ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e);
+            }
+
+            
         }
 
         [TestMethod]
