@@ -134,7 +134,7 @@ namespace Simple_Web_Browser_Tests
         }
 
         [TestMethod]
-        public void load_website()
+        public async Task load_website()
         {
             try
             {
@@ -148,7 +148,7 @@ namespace Simple_Web_Browser_Tests
         }
 
         [TestMethod]
-        public void load_website_empty_url()
+        public async Task load_website_empty_url()
         {
             try
             {
@@ -162,7 +162,7 @@ namespace Simple_Web_Browser_Tests
         }
 
         [TestMethod]
-        public void load_website_null()
+        public async Task load_website_null()
         {
             try
             {
@@ -176,7 +176,7 @@ namespace Simple_Web_Browser_Tests
         }
 
         [TestMethod]
-        public void load_website_http_200()
+        public async Task load_website_http_200()
         {
             try
             {
@@ -190,11 +190,11 @@ namespace Simple_Web_Browser_Tests
         }
 
         [TestMethod]
-        public void load_website_http_400()
+        public async Task load_website_http_400()
         {
             try
             {
-                Task.Run(() => manager._loadWebsite("http://httpstat.us/400", false));
+                var result = Task.Run(() => manager._loadWebsite("http://httpstat.us/400", false)).Result;
                 Assert.Fail();
             }
             catch (Exception e)
@@ -204,27 +204,29 @@ namespace Simple_Web_Browser_Tests
         }
 
         [TestMethod]
-        public void load_website_http_403()
+        public async Task load_website_http_403()
         {
             try
             {
-                Task.Run(() => manager._loadWebsite("http://httpstat.us/403", false));
+                var result = Task.Run(() => manager._loadWebsite("http://httpstat.us/403", false)).Result;
                 Assert.Fail();
+
             }
             catch (Exception e)
             {
                 Console.Write(e);
             }
         }
-
 
         [TestMethod]
         public async Task load_website_http_404()
         {
+           
             try
             {
-                Task.Run(() => manager._loadWebsite("http://httpstat.us/404", false));
+                var result = Task.Run(() => manager._loadWebsite("http://httpstat.us/404", false)).Result;
                 Assert.Fail();
+                
             } catch(Exception e)
             {
                 Console.Write(e);
