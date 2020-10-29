@@ -39,9 +39,9 @@
             this.homepageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.homepageLabel.Location = new System.Drawing.Point(12, 9);
             this.homepageLabel.Name = "homepageLabel";
-            this.homepageLabel.Size = new System.Drawing.Size(247, 26);
+            this.homepageLabel.Size = new System.Drawing.Size(297, 26);
             this.homepageLabel.TabIndex = 0;
-            this.homepageLabel.Text = "Please set a homepage:";
+            this.homepageLabel.Text = "Please set a homepage URL:";
             // 
             // homepageURLBox
             // 
@@ -72,7 +72,6 @@
             this.Controls.Add(this.homepageLabel);
             this.Name = "setHomepage";
             this.Text = "Simple Web Browser";
-            //this.Load += new System.EventHandler(this.setHomepage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
