@@ -46,7 +46,6 @@ namespace Simple_Web_Browser
 
             if(historyList.Count == 0)
             {
-                Console.WriteLine("CALLED");
                 pagePointer = -1;
             }
             else
@@ -54,8 +53,6 @@ namespace Simple_Web_Browser
                 pagePointer = historyList.Count - 1;
             }
 
-            //pagePointer = historyList.Count -1;
-            //pagePointer = historyList.Count;
             Console.WriteLine(pagePointer);
         }
 

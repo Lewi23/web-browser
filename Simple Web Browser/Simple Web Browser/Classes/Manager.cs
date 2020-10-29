@@ -68,7 +68,6 @@ namespace Simple_Web_Browser
         public void getNextPage()
         {
             History.pagePointer++;
-            Console.Write("trying to load" + History.pagePointer);
             loadWebsite(History.historyList[History.pagePointer].historyURL, false);
         }
 
@@ -78,7 +77,6 @@ namespace Simple_Web_Browser
         public void getPreviousPage()
         {
             History.pagePointer--;
-            Console.Write("trying to load" + History.pagePointer);
             loadWebsite(History.historyList[History.pagePointer].historyURL, false);            
         }
 
