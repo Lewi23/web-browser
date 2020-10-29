@@ -43,7 +43,20 @@ namespace Simple_Web_Browser
         {
             historyList = loadLocalHistory();
             OnHistoryUpdate(EventArgs.Empty);
-            pagePointer = historyList.Count - 1;
+
+            if(historyList.Count == 0)
+            {
+                Console.WriteLine("CALLED");
+                pagePointer = -1;
+            }
+            else
+            {
+                pagePointer = historyList.Count - 1;
+            }
+
+            //pagePointer = historyList.Count -1;
+            //pagePointer = historyList.Count;
+            Console.WriteLine(pagePointer);
         }
 
         /// <summary>
@@ -52,6 +65,8 @@ namespace Simple_Web_Browser
         /// <param name="url">The URL to be added</param>
         public void addToHistory(string url)
         {
+            pagePointer++;
+
             HistoryItem historyItem = new HistoryItem();
             historyItem.historyURL = url;
             historyItem.accessTime = DateTime.Now;

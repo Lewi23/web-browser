@@ -62,7 +62,8 @@ namespace Simple_Web_Browser
                 }
                 else
                 {
-                    // We can no longer step back
+                    Console.WriteLine("Cant go back" + History.pagePointer);
+                    //We can no longer step back
                     backPageButton.Enabled = false;
                 }
             }
@@ -97,6 +98,7 @@ namespace Simple_Web_Browser
                 }
                 else
                 {
+                    Console.WriteLine("Cant go forward" + History.pagePointer);
                     // We can no longer step forward
                     forwardPageButton.Enabled = false;
                 }
@@ -170,11 +172,11 @@ namespace Simple_Web_Browser
             // Checking if the back page button is enabled
             if (History.historyList.Count > 0)
             {
-                backPageButton.Enabled = true;
+               backPageButton.Enabled = true;
             }
             else
             {
-                backPageButton.Enabled = false;
+               backPageButton.Enabled = false;
             }
                 
             // This is false until we search a page
