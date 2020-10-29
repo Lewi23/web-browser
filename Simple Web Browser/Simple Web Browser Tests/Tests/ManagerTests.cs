@@ -42,7 +42,15 @@ namespace Simple_Web_Browser_Tests
         [TestMethod]
         public void reload_page()
         {
-            manager.reloadPage();
+            try
+            {
+                manager.reloadPage();
+            }
+            catch (Exception e)
+            {
+                Assert.Fail();
+            }
+
         }
 
         [TestMethod]
@@ -110,27 +118,58 @@ namespace Simple_Web_Browser_Tests
      
 
         [TestMethod]
-        public void get_home_url()
+        public void get_home_url_persistent()
         {
-            manager.getHomeURL();
+
+            try
+            {
+                manager.getHomeURL();
+            } catch (Exception e)
+            {
+                Assert.Fail();
+            }
+            
         }
 
         [TestMethod]
         public void set_home_page_empty_url()
         {
-            manager.setHomepage("");
+            try
+            {
+                manager.setHomepage("");
+            }
+            catch (Exception e)
+            {
+                Assert.Fail();
+            }
         }
 
         [TestMethod]
         public void set_home_page_null()
         {
-            manager.setHomepage(null);
+            try
+            {
+                manager.setHomepage(null);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail();
+            }
+
+
         }
 
         [TestMethod]
         public void set_home_page()
         {
-            manager.setHomepage("https://www.google.com/");
+            try
+            {
+                manager.setHomepage("https://www.google.com/");
+            }
+            catch (Exception e)
+            {
+                Assert.Fail();
+            }
         }
 
         [TestMethod]

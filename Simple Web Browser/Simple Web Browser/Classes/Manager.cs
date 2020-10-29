@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Simple_Web_Browser.Properties;
 using System.Collections;
 using System.Net;
+using System.Windows.Forms.VisualStyles;
 
 namespace Simple_Web_Browser
 {
@@ -66,14 +67,8 @@ namespace Simple_Web_Browser
         /// </summary>
         public void getNextPage()
         {
-            try
-            {
-                History.pagePointer++;
-                loadWebsite(History.historyList[History.pagePointer].historyURL, false);
-            } catch (ArgumentOutOfRangeException e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            History.pagePointer++;
+            loadWebsite(History.historyList[History.pagePointer].historyURL, false);
         }
 
         /// <summary>
@@ -81,15 +76,8 @@ namespace Simple_Web_Browser
         /// </summary>
         public void getPreviousPage()
         {
-            try
-            {
-                History.pagePointer--;
-                loadWebsite(History.historyList[History.pagePointer].historyURL, false);
-            } catch(ArgumentOutOfRangeException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            
+            History.pagePointer--;
+            loadWebsite(History.historyList[History.pagePointer].historyURL, false);            
         }
 
         /// <summary>
@@ -98,14 +86,8 @@ namespace Simple_Web_Browser
         /// <param name="index">The index of the history element to be searched </param>
         public void searchHistory(int index)
         {
-            try
-            {
-                loadWebsite(History.historyList[index].historyURL, true);
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            loadWebsite(History.historyList[index].historyURL, true);
+
         }
 
         /// <summary>
@@ -114,14 +96,7 @@ namespace Simple_Web_Browser
         /// <param name="index">The index of the bookmark element to be searched</param>
         public void searchBookmark(int index)
         {
-            try
-            {
-                loadWebsite(Bookmark.bookmarkList[index].bookmarkURL, true);
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            loadWebsite(Bookmark.bookmarkList[index].bookmarkURL, true);
         }
 
         /// <summary>
@@ -136,7 +111,8 @@ namespace Simple_Web_Browser
                 do
                 {
                     getHomepage.ShowDialog();
-                // Keep asking for valid input until we get a 'valid' website
+                    
+                    // Keep asking for valid input until we get a 'valid' website
                 } while (!validURL(getHomepage.homepageURLBox.Text));
 
                 // Write the new URL to local storage
@@ -155,21 +131,36 @@ namespace Simple_Web_Browser
             XMLManager.writeToXML<string>(homepage, Resources.Homepage);
         }
 
+
+        /// <summary>
+        /// Public class to call _loadWebsite(); and handle any http errors
+        /// </summary>
+        /// <param name="URL">The URL to be loaded</param>
+        /// <param name="historyItem">True (yes the item should be added to history) False (do not add to history)</param>
+        public async void loadWebsite(string URL, bool historyItem)
+        {
+            try
+            {
+                await _loadWebsite(URL, historyItem);
+            } catch(HttpRequestException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
         /// <summary>
         /// Loads the provided URL (via triggering an event) 
         /// </summary>
         /// <param name="URL">The URL that has been requested</param>
         /// <param name="historyItem"> True (yes the item should be added to history) False (do not add to history) </param>
-        public async void loadWebsite(string URL, bool historyItem) {
+        public async Task<bool> _loadWebsite(string URL, bool historyItem) {
 
             // Setting the currentURL to the last loaded webpage
             currentURL = URL;
 
-            try
-            {
-                HttpResponseMessage httpResponse = await HTTP.Get(URL);
+            HttpResponseMessage httpResponse = await HTTP.Get(URL);
 
-                if(httpResponse.StatusCode == HttpStatusCode.OK)
+            if (httpResponse.StatusCode == HttpStatusCode.OK)
                 {
 
                     browser = new BrowserResponse(httpResponse);
@@ -181,23 +172,46 @@ namespace Simple_Web_Browser
                     }
 
                     RequestCompleteArgs args = new RequestCompleteArgs();
+
                     args.pageData = result;
                     // Used the following resource for the regex
                     //https://www.experts-exchange.com/questions/23135727/regular-expression-to-match-title-tag-on-html-page.html
                     args.title = Regex.Match(result, "<title>([^<]*)</title>").Groups[1].Value;
                     args.request = httpResponse.StatusCode.ToString(); 
                     args.URL = currentURL;
+
                     OnRequestComplete(args);
 
-                } else {
-                    throw new HttpResponseException(httpResponse);
-                }
+                    return true;
 
-            } catch(Exception e)
+                }
+            else
             {
-                Console.WriteLine(e);
-            }
-    
+                // Display the relevant HTTPresponse status code error messageS
+                // Error messages from : https://docs.microsoft.com/en-us/dotnet/api/system.net.httpstatuscode?view=netcore-3.1
+                switch (httpResponse.StatusCode)
+                {
+                    case HttpStatusCode.BadRequest:
+                        System.Windows.Forms.MessageBox.Show("The request could not be understood by the server", "400 Bad Request");
+                        break;
+                    case HttpStatusCode.Forbidden:
+                        System.Windows.Forms.MessageBox.Show("The server refuses to fulfill the request", "403 Forbidden");
+                        break;
+                    case HttpStatusCode.NotFound:
+                        System.Windows.Forms.MessageBox.Show("The requested resource does not exist on the server", "404 Not Found");
+                        break;
+                    default:
+                        // Handling all other status codes (apart from 200)
+                        System.Windows.Forms.MessageBox.Show(httpResponse.StatusCode.ToString(), "Unhandeled status code");
+                        break;
+                    }
+                }
+            //Throws an exception if invalid response
+            httpResponse.EnsureSuccessStatusCode();
+            // The webpage was not loaded
+            return false;
+            
+
         }
 
         /// <summary>
