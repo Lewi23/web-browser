@@ -38,7 +38,7 @@ namespace Simple_Web_Browser
         /// <param name="e"></param>
         private void Menu_Load(object sender, EventArgs e)
         {
-            // Link to events
+            //Linking the delegates to the methods
             bookmarkManager.bookmarkItem += BookmarkManager_bookmarkItem;
             historyManager.historyItem += HistoryManager_historyItem;
 
@@ -208,16 +208,25 @@ namespace Simple_Web_Browser
         /// <param name="e"></param>
         private void deleteBookmarkButton_Click(object sender, EventArgs e)
         {
-            if(bookmarkBox.SelectedItem != null)
+            try
             {
-                bookmarkManager.deleteBookmark(bookmarkBox.SelectedIndex);
-                bookmarkNameEntry.Text = "Bookmark name";
-                bookmarkURLEntry.Text = "Bookmark URL";
+                if (bookmarkBox.SelectedItem != null)
+                {
+                    bookmarkManager.deleteBookmark(bookmarkBox.SelectedIndex);
+                    bookmarkNameEntry.Text = "Bookmark name";
+                    bookmarkURLEntry.Text = "Bookmark URL";
 
-                deleteBookmarkButton.Enabled = false;
-                searchBookmarkButton.Enabled = false;
-                editBookmarkButton.Enabled = false;
+                    deleteBookmarkButton.Enabled = false;
+                    searchBookmarkButton.Enabled = false;
+                    editBookmarkButton.Enabled = false;
+                }
             }
+            catch (ArgumentOutOfRangeException a)
+            {
+                System.Windows.Forms.MessageBox.Show(a.Message);
+            }
+
+
         }
 
         /// <summary>
@@ -227,23 +236,30 @@ namespace Simple_Web_Browser
         /// <param name="e"></param>
         private void editBookmarkButton_Click(object sender, EventArgs e)
         {
-            if (this.mainForm.manager.validURL(bookmarkURLEntry.Text))
+
+            try
             {
-                if (bookmarkBox.SelectedItem != null)
+                if (this.mainForm.manager.validURL(bookmarkURLEntry.Text))
                 {
-                    bookmarkManager.editBookmark(bookmarkBox.SelectedIndex, bookmarkNameEntry.Text, bookmarkURLEntry.Text);
+                    if (bookmarkBox.SelectedItem != null)
+                    {
+                        bookmarkManager.editBookmark(bookmarkBox.SelectedIndex, bookmarkNameEntry.Text, bookmarkURLEntry.Text);
 
-                    bookmarkNameEntry.Text = "Bookmark name";
-                    bookmarkURLEntry.Text = "Bookmark URL";
+                        bookmarkNameEntry.Text = "Bookmark name";
+                        bookmarkURLEntry.Text = "Bookmark URL";
 
-                    deleteBookmarkButton.Enabled = false;
-                    searchBookmarkButton.Enabled = false;
-                    editBookmarkButton.Enabled = false;
+                        deleteBookmarkButton.Enabled = false;
+                        searchBookmarkButton.Enabled = false;
+                        editBookmarkButton.Enabled = false;
+                    }
                 }
-            }
-            else
+                else
+                {
+                    MessageBox.Show("Invalid bookmark URL", "Bookmark Error");
+                }
+            } catch (ArgumentOutOfRangeException a)
             {
-                MessageBox.Show("Invalid bookmark URL", "Bookmark Error");
+                System.Windows.Forms.MessageBox.Show(a.Message);
             }
         }
 

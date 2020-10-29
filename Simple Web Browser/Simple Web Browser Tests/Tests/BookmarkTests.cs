@@ -38,6 +38,7 @@ namespace Simple_Web_Browser_Tests
         public void add_null_bookmark()
         {
             bookmarkManager.addBookmark(null, null);
+            Assert.AreEqual(1, Bookmark.bookmarkList.Count);
         }
 
         [TestMethod]
@@ -54,16 +55,32 @@ namespace Simple_Web_Browser_Tests
         [TestMethod]
         public void delete_bookmark_out_of_range()
         {
-            bookmarkManager.addBookmark("BBC", "https://www.bbc.co.uk/");
-            bookmarkManager.addBookmark("Google", "https://www.google.com/");
+            try
+            {
+                bookmarkManager.addBookmark("BBC", "https://www.bbc.co.uk/");
+                bookmarkManager.addBookmark("Google", "https://www.google.com/");
+                bookmarkManager.deleteBookmark(int.MaxValue);
+                Assert.Fail();
 
-            bookmarkManager.deleteBookmark(int.MaxValue);
+            } catch(ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         [TestMethod]
         public void delete_when_bookmark_is_empty()
         {
-            bookmarkManager.deleteBookmark(int.MaxValue);
+            try
+            {
+                bookmarkManager.deleteBookmark(int.MaxValue);
+                Assert.Fail();
+
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         [TestMethod]
@@ -80,7 +97,15 @@ namespace Simple_Web_Browser_Tests
         [TestMethod]
         public void edit_bookmark_out_of_bounds()
         {
-            bookmarkManager.editBookmark(int.MaxValue, "Search Engine", "https://www.google.com/");
+            try
+            {
+                bookmarkManager.editBookmark(int.MaxValue, "Search Engine", "https://www.google.com/");
+                Assert.Fail();
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         [TestMethod]

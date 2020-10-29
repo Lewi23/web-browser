@@ -52,16 +52,9 @@ namespace Simple_Web_Browser
         /// <param name="index">The index of the bookmarkItem to be removed</param>
         public void deleteBookmark(int index)
         {
-            try
-            {
                 bookmarkList.RemoveAt(index);
                 saveBookmarksLocally();
                 OnBookmarkUpdate(EventArgs.Empty);
-            } catch(ArgumentOutOfRangeException e)
-            {
-                System.Windows.Forms.MessageBox.Show(e.Message);
-            }
-            
         }
         
         /// <summary>
@@ -73,17 +66,11 @@ namespace Simple_Web_Browser
         /// <param name="bookmarkURL">The new bookmark URL </param>
         public void editBookmark(int index, string bookmarkName, string bookmarkURL)
         {
-            try
-            {
                 bookmarkList[index].bookmarkName = bookmarkName;
                 bookmarkList[index].bookmarkURL = bookmarkURL;
                 saveBookmarksLocally();
                 OnBookmarkUpdate(EventArgs.Empty);
 
-            } catch(ArgumentOutOfRangeException e)
-            {
-                System.Windows.Forms.MessageBox.Show(e.Message);
-            }
         }
 
         /// <summary>
