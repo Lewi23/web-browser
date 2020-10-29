@@ -22,7 +22,7 @@ namespace Simple_Web_Browser
             manager = new Manager();
             historyManager = new History();
 
-            //Linking to the event created in manager
+            //Linking the delegate to the method
             manager.RequestComplete += m_RequestComplete;
             
 
@@ -46,22 +46,31 @@ namespace Simple_Web_Browser
         /// <param name="e"></param>
         private void backPageButton_Click(object sender, EventArgs e)
         {
-            if (historyManager.canStepBack())
+            try
             {
-                manager.getPreviousPage();
-                forwardPageButton.Enabled = true;
-
-                //check the next canStepBack() item if it's false we have reached the end of history
-                if (!historyManager.canStepBack())
+                if (historyManager.canStepBack())
                 {
+                    manager.getPreviousPage();
+                    forwardPageButton.Enabled = true;
+
+                    //check the next canStepBack() item if it's false we have reached the end of history
+                    if (!historyManager.canStepBack())
+                    {
+                        backPageButton.Enabled = false;
+                    }
+
+                }
+                else
+                {
+                    // We can no longer step back
                     backPageButton.Enabled = false;
                 }
-                    
-            } else
-            {
-                // We can no longer step back
-                backPageButton.Enabled = false;
             }
+            catch(ArgumentOutOfRangeException a)
+            {
+                System.Windows.Forms.MessageBox.Show(a.Message);
+            }
+            
 
         }
 
@@ -72,31 +81,40 @@ namespace Simple_Web_Browser
         /// <param name="e"></param>
         private void forwardPageButton_Click(object sender, EventArgs e)
         {
-            if (historyManager.canStepForward())
-            {
-                manager.getNextPage();
-                backPageButton.Enabled = true;
 
-                //check the next canStepForward() item if it's false we have reached the end of history
-                if (!historyManager.canStepForward())
+            try
+            {
+                if (historyManager.canStepForward())
                 {
+                    manager.getNextPage();
+                    backPageButton.Enabled = true;
+
+                    //check the next canStepForward() item if it's false we have reached the end of history
+                    if (!historyManager.canStepForward())
+                    {
+                        forwardPageButton.Enabled = false;
+                    }
+                }
+                else
+                {
+                    // We can no longer step forward
                     forwardPageButton.Enabled = false;
                 }
             }
-            else
+            catch (ArgumentOutOfRangeException a)
             {
-                // We can no longer step forward
-                forwardPageButton.Enabled = false;
+                System.Windows.Forms.MessageBox.Show(a.Message); 
             }
         }
+        
 
-      
-        /// <summary>
-        /// Loads the URL from the URL input box if it is valid.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void searchButton_Click(object sender, EventArgs e)
+
+    /// <summary>
+    /// Loads the URL from the URL input box if it is valid.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void searchButton_Click(object sender, EventArgs e)
         {
             if (manager.validURL(URLinputBox.Text))
             {

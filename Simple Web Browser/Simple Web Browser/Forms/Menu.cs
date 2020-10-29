@@ -85,9 +85,16 @@ namespace Simple_Web_Browser
         /// <param name="e"></param>
         private void historySearchButton_Click(object sender, EventArgs e)
         {
-            if (historyBox.SelectedItem != null)
+            try
             {
-                this.mainForm.manager.searchHistory(historyBox.SelectedIndex);
+                if (historyBox.SelectedItem != null)
+                {
+                    this.mainForm.manager.searchHistory(historyBox.SelectedIndex);
+                }
+            }
+            catch (ArgumentOutOfRangeException a)
+            {
+                System.Windows.Forms.MessageBox.Show(a.Message);
             }
         }
 
@@ -159,9 +166,16 @@ namespace Simple_Web_Browser
         /// <param name="e"></param>
         private void searchBookmarkButton_Click(object sender, EventArgs e)
         {
-            if (bookmarkBox.SelectedItem != null)
+            try
             {
-                this.mainForm.manager.searchBookmark(bookmarkBox.SelectedIndex);
+                if (bookmarkBox.SelectedItem != null)
+                {
+                    this.mainForm.manager.searchBookmark(bookmarkBox.SelectedIndex);
+                }
+            }
+            catch (ArgumentOutOfRangeException a)
+            {
+                System.Windows.Forms.MessageBox.Show(a.Message);
             }
         }
 
