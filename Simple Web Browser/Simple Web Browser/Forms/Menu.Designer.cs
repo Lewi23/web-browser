@@ -140,7 +140,7 @@
             // searchBookmarkButton
             // 
             this.searchBookmarkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.searchBookmarkButton.Location = new System.Drawing.Point(12, 453);
+            this.searchBookmarkButton.Location = new System.Drawing.Point(12, 445);
             this.searchBookmarkButton.Name = "searchBookmarkButton";
             this.searchBookmarkButton.Size = new System.Drawing.Size(578, 31);
             this.searchBookmarkButton.TabIndex = 11;
