@@ -176,9 +176,11 @@
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.resultDisplay);
             this.Controls.Add(this.menuButton);
+            this.KeyPreview = true;
             this.Name = "webBrowser";
             this.Text = "Simple Web Browser";
             this.Load += new System.EventHandler(this.webBrowser_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.webBrowser_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

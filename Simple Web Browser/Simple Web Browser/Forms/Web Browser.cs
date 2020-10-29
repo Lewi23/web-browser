@@ -182,5 +182,31 @@ namespace Simple_Web_Browser
 
         }
 
+        /// <summary>
+        /// Keybinds for ease of use
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void webBrowser_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F5:
+                    refreshPageButon.PerformClick();
+                    break;
+                case Keys.Enter:
+                    searchButton.PerformClick();
+                    break;
+                case Keys.F11:
+                    menuButton.PerformClick();
+                    break;
+                case Keys.F1:
+                    backPageButton.PerformClick();
+                    break;
+                case Keys.F2:
+                    forwardPageButton.PerformClick();
+                    break;
+            }
+        }
     }
 }
