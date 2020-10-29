@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Simple_Web_Browser;
 
@@ -10,6 +12,7 @@ namespace Simple_Web_Browser_Tests
     {
         Manager manager;
         History historyManager;
+        
 
         [TestInitialize]
         public void Setup()
@@ -45,31 +48,64 @@ namespace Simple_Web_Browser_Tests
         [TestMethod]
         public void search_history()
         {
-            HistoryItem item1 = new HistoryItem();
-            History.historyList.Add(item1);
+            try
+            {
+                HistoryItem item1 = new HistoryItem();
+                History.historyList.Add(item1);
 
-            manager.searchHistory(0);
+                manager.searchHistory(0);
+
+            } catch(ArgumentOutOfRangeException e)
+            {
+                Assert.Fail();
+            }
         }
 
         [TestMethod]
         public void search_history_out_of_range()
         {
-            manager.searchHistory(int.MaxValue);
+           
+            try
+            {
+                manager.searchHistory(int.MaxValue);
+                Assert.Fail();
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         [TestMethod]
         public void search_bookmark()
         {
-            BookmarkItem item1 = new BookmarkItem();
-            Bookmark.bookmarkList.Add(item1);
+            try
+            {
+                BookmarkItem item1 = new BookmarkItem();
+                Bookmark.bookmarkList.Add(item1);
 
-            manager.searchBookmark(0);
+                manager.searchBookmark(0);
+
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Assert.Fail();
+            }
+
         }
 
         [TestMethod]
         public void search_bookmark_out_of_range()
         {
-            manager.searchBookmark(int.MaxValue);
+            try
+            {
+                manager.searchBookmark(int.MaxValue);
+                Assert.Fail();
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e);
+            }
         }
      
 
@@ -100,43 +136,100 @@ namespace Simple_Web_Browser_Tests
         [TestMethod]
         public void load_website()
         {
-            manager.loadWebsite("https://www.google.com/", false);
+            try
+            {
+                Task.Run(() => manager._loadWebsite("https://www.google.com/", false));
+            }
+            catch (Exception e)
+            {
+                Assert.Fail();
+                Console.Write(e);
+            }
         }
 
         [TestMethod]
         public void load_website_empty_url()
         {
-            manager.loadWebsite("", false);
+            try
+            {
+                Task.Run(() => manager._loadWebsite("", false));
+            }
+            catch (Exception e)
+            {
+                Assert.Fail();
+                Console.Write(e);
+            }
         }
 
         [TestMethod]
         public void load_website_null()
         {
-            manager.loadWebsite(null, false);
+            try
+            {
+                Task.Run(() => manager._loadWebsite(null, false));
+            }
+            catch (Exception e)
+            {
+                Assert.Fail();
+                Console.Write(e);
+            }
         }
 
         [TestMethod]
         public void load_website_http_200()
         {
-            manager.loadWebsite("http://httpstat.us/200", false);
+            try
+            {
+                Task.Run(() => manager._loadWebsite("http://httpstat.us/200", false));
+            }
+            catch (Exception e)
+            {
+                Assert.Fail();
+                Console.Write(e);
+            }
         }
 
         [TestMethod]
         public void load_website_http_400()
         {
-            manager.loadWebsite("http://httpstat.us/400", false);
+            try
+            {
+                Task.Run(() => manager._loadWebsite("http://httpstat.us/400", false));
+                Assert.Fail();
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
         }
 
         [TestMethod]
         public void load_website_http_403()
         {
-            manager.loadWebsite("http://httpstat.us/403", false);
+            try
+            {
+                Task.Run(() => manager._loadWebsite("http://httpstat.us/403", false));
+                Assert.Fail();
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
         }
 
+
         [TestMethod]
-        public void load_website_http_404()
+        public async Task load_website_http_404()
         {
-            manager.loadWebsite("http://httpstat.us/404", false);
+            try
+            {
+                Task.Run(() => manager._loadWebsite("http://httpstat.us/404", false));
+                Assert.Fail();
+            } catch(Exception e)
+            {
+                Console.Write(e);
+            }
+
         }
 
         [TestMethod]
@@ -149,7 +242,14 @@ namespace Simple_Web_Browser_Tests
 
             History.pagePointer = 0;
 
-            manager.getNextPage();
+            try
+            {
+                manager.getNextPage();
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Assert.Fail();
+            }
         }
 
         [TestMethod]
@@ -157,7 +257,7 @@ namespace Simple_Web_Browser_Tests
         {
             History.pagePointer = int.MaxValue;
 
-            manager.getNextPage();
+            Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => manager.getNextPage());
         }
 
         [TestMethod]
@@ -170,15 +270,21 @@ namespace Simple_Web_Browser_Tests
 
             History.pagePointer = 1;
 
-            manager.getPreviousPage();
+            try
+            {
+                manager.getPreviousPage();
+            } catch(ArgumentOutOfRangeException e)
+            {
+                Assert.Fail();
+            }
         }
 
         [TestMethod]
         public void get_previous_page_out_of_range()
         {
             History.pagePointer = int.MaxValue;
-
-            manager.getPreviousPage();
+            
+            Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => manager.getPreviousPage());
         }
     }
 }
