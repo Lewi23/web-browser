@@ -11,6 +11,7 @@ using Simple_Web_Browser.Properties;
 using System.Collections;
 using System.Net;
 using System.Windows.Forms.VisualStyles;
+using System.IO;
 
 namespace Simple_Web_Browser
 {
@@ -20,6 +21,9 @@ namespace Simple_Web_Browser
     /// </summary>
     public class Manager
     {
+
+        static string path = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.FullName;
+        string homepagePath = path + "\\Data\\Homepage.xml";
 
         private string result;
         private string currentURL;
@@ -106,7 +110,7 @@ namespace Simple_Web_Browser
         /// <returns>The home URL the user set</returns>
         public string getHomeURL()
         {
-            if (XMLManager.readXML(Resources.Homepage) == "")
+            if (XMLManager.readXML(homepagePath) == "")
             {
                 do
                 {
@@ -116,10 +120,10 @@ namespace Simple_Web_Browser
                 } while (!validURL(getHomepage.homepageURLBox.Text));
 
                 // Write the new URL to local storage
-                XMLManager.writeToXML<string>(getHomepage.homepageURLBox.Text, Resources.Homepage);
+                XMLManager.writeToXML<string>(getHomepage.homepageURLBox.Text, homepagePath);
             }
 
-            return XMLManager.readXML(Resources.Homepage);
+            return XMLManager.readXML(homepagePath);
         }
 
         /// <summary>
@@ -128,7 +132,7 @@ namespace Simple_Web_Browser
         /// <param name="homepage">The new hompeage URL</param>
         public void setHomepage(string homepage)
         {
-            XMLManager.writeToXML<string>(homepage, Resources.Homepage);
+            XMLManager.writeToXML<string>(homepage, homepagePath);
         }
 
 

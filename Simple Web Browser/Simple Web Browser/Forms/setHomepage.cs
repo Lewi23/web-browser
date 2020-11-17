@@ -23,6 +23,6 @@ namespace Simple_Web_Browser
             this.Close();
         }
 
-   
+     
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Simple_Web_Browser.Properties;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Simple_Web_Browser
@@ -10,6 +11,9 @@ namespace Simple_Web_Browser
     /// </summary>
     public class History
     {
+
+        static string path = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.FullName;
+        string searchHistoryPath = path + "\\Data\\SearchHistory.xml";
 
         public static List<HistoryItem> historyList;
         public event EventHandler historyItem;
@@ -98,7 +102,7 @@ namespace Simple_Web_Browser
         /// </summary>
         public void saveHistoryLocally()
         {
-            historyXMLManager.writeToXML(historyList, Resources.SearchHistory);
+            historyXMLManager.writeToXML(historyList, searchHistoryPath);
         }
 
         /// <summary>
@@ -108,7 +112,7 @@ namespace Simple_Web_Browser
         public List<HistoryItem> loadLocalHistory()
         {
             List<HistoryItem> list;
-            list = historyXMLManager.readXMLToList(Resources.SearchHistory);
+            list = historyXMLManager.readXMLToList(searchHistoryPath);
 
             return list;
 

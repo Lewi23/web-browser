@@ -1,6 +1,7 @@
 ﻿using Simple_Web_Browser.Properties;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Simple_Web_Browser
 {
@@ -9,6 +10,9 @@ namespace Simple_Web_Browser
     /// </summary>
     public class Bookmark
     {
+
+        static string path = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.FullName;
+        string bookmarkPath = path + "\\Data\\Bookmarks.xml";
 
         public event EventHandler bookmarkItem;
         public static List<BookmarkItem> bookmarkList;
@@ -78,7 +82,7 @@ namespace Simple_Web_Browser
         /// </summary>
         public void saveBookmarksLocally()
         {
-            bookmarkXMLManager.writeToXML(bookmarkList, Resources.Bookmarks);
+            bookmarkXMLManager.writeToXML(bookmarkList, bookmarkPath);
         }
 
         /// <summary>
@@ -88,7 +92,7 @@ namespace Simple_Web_Browser
         public List<BookmarkItem> loadLocalBookmarks()
         {
             List<BookmarkItem> list;
-            list = bookmarkXMLManager.readXMLToList(Resources.Bookmarks);
+            list = bookmarkXMLManager.readXMLToList(bookmarkPath);
 
             return list; 
 
