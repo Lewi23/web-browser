@@ -56,7 +56,7 @@ namespace Simple_Web_Browser
             .Save("Bookmarks.xml");
             }
 
-            if (!File.Exists(Application.StartupPath + "\\Homepage.xml"))
+            if (File.Exists(Application.StartupPath + "\\Homepage.xml"))
             {
                 new XDocument(
                 new XElement("string")

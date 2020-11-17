@@ -18,6 +18,7 @@ namespace Simple_Web_Browser_Tests
         public void Setup()
         {
             manager = new Manager();
+            manager.buildJSONFiles();
             historyManager = new History();
         }
 
@@ -48,6 +49,7 @@ namespace Simple_Web_Browser_Tests
             }
             catch (Exception e)
             {
+                Console.Write(e);
                 Assert.Fail();
             }
 
@@ -65,6 +67,7 @@ namespace Simple_Web_Browser_Tests
 
             } catch(ArgumentOutOfRangeException e)
             {
+                Console.Write(e);
                 Assert.Fail();
             }
         }
@@ -97,6 +100,7 @@ namespace Simple_Web_Browser_Tests
             }
             catch (ArgumentOutOfRangeException e)
             {
+                Console.Write(e);
                 Assert.Fail();
             }
 
@@ -126,6 +130,7 @@ namespace Simple_Web_Browser_Tests
                 manager.getHomeURL();
             } catch (Exception e)
             {
+                Console.Write(e);
                 Assert.Fail();
             }
             
@@ -140,6 +145,7 @@ namespace Simple_Web_Browser_Tests
             }
             catch (Exception e)
             {
+                Console.Write(e);
                 Assert.Fail();
             }
         }
@@ -153,6 +159,7 @@ namespace Simple_Web_Browser_Tests
             }
             catch (Exception e)
             {
+                Console.Write(e);
                 Assert.Fail();
             }
 
@@ -168,6 +175,7 @@ namespace Simple_Web_Browser_Tests
             }
             catch (Exception e)
             {
+                Console.Write(e);
                 Assert.Fail();
             }
         }
@@ -289,6 +297,7 @@ namespace Simple_Web_Browser_Tests
             }
             catch (ArgumentOutOfRangeException e)
             {
+                Console.Write(e);
                 Assert.Fail();
             }
         }
@@ -316,6 +325,7 @@ namespace Simple_Web_Browser_Tests
                 manager.getPreviousPage();
             } catch(ArgumentOutOfRangeException e)
             {
+                Console.Write(e);
                 Assert.Fail();
             }
         }

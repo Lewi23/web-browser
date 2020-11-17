@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Simple_Web_Browser;
 
@@ -10,11 +11,19 @@ namespace Simple_Web_Browser_Tests
     {
      
         Bookmark bookmarkManager;
+        Manager manager;
 
         [TestInitialize]
         public void Setup()
         {
             bookmarkManager = new Bookmark();
+
+
+            new XDocument(
+                     new XElement("ArrayOfBookmarkItem")
+                 )
+             .Save("C:Bookmarks.xml");
+
         }
 
         [TestMethod]
@@ -144,25 +153,6 @@ namespace Simple_Web_Browser_Tests
 
             Assert.AreEqual(null, Bookmark.bookmarkList[0].bookmarkURL);
         }
-
-
-        [TestMethod]
-        public void persistent_bookmarks()
-        {
-            bookmarkManager.addBookmark("BBC", "https://www.bbc.co.uk/");
-            bookmarkManager.addBookmark("Google", "https://www.google.com/");
-
-            // Save our two local bookmark items to persistent storage
-            bookmarkManager.saveBookmarksLocally();
-
-            // Overwrite our current in memory bookmark list
-            Bookmark.bookmarkList = new List<BookmarkItem>();
-
-            // Reload bookmarks from persistent storage
-            Bookmark.bookmarkList = bookmarkManager.loadLocalBookmarks();
-
-            // Checking that bookmarkList has the two elements we added earlier
-            Assert.AreEqual(2, Bookmark.bookmarkList.Count);
-        }
+     
     }
 }

@@ -39,7 +39,6 @@ namespace Simple_Web_Browser
             } catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                System.Windows.Forms.MessageBox.Show(e.Message);
             } 
         }
 
@@ -64,7 +63,6 @@ namespace Simple_Web_Browser
             } catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                System.Windows.Forms.MessageBox.Show(e.Message);
             }
 
             return localList;
@@ -91,7 +89,6 @@ namespace Simple_Web_Browser
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                System.Windows.Forms.MessageBox.Show(e.Message);
             }
             
             return value;

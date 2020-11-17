@@ -10,11 +10,14 @@ namespace Simple_Web_Browser_Tests
     {
 
         History historyManager;
+        Manager manager;
 
-       [TestInitialize]
+        [TestInitialize]
         public void Setup()
         {
             historyManager = new History();
+            manager = new Manager();
+            manager.buildJSONFiles();
         }
 
         [TestMethod]
@@ -130,28 +133,6 @@ namespace Simple_Web_Browser_Tests
 
             
         }
-
-        [TestMethod]
-        public void persistent_history()
-        {
-            historyManager.addToHistory("https://www.google.com/");
-            historyManager.addToHistory("https://www.google.com/");
-
-            // Save our two local history items to persistent storage
-            historyManager.saveHistoryLocally();
-
-            // Overwrite our current in memory history list
-            History.historyList = new List<HistoryItem>();
-
-            // Reload history from persistent storage
-            History.historyList = historyManager.loadLocalHistory();
-
-            // Checking that historyList has the two elements we added earlier
-            Assert.AreEqual(2, History.historyList.Count);
-
-        }
-
-
 
     }
 }
