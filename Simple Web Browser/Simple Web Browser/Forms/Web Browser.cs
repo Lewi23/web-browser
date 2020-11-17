@@ -1,6 +1,9 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
-
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Simple_Web_Browser
 {
@@ -160,7 +163,10 @@ namespace Simple_Web_Browser
         /// <param name="e"></param>
         private void webBrowser_Load(object sender, EventArgs e)
         {
-            
+
+            // create JSON files if first load
+            manager.buildJSONFiles();
+
             // load the users homepage into manager
             manager.setHomepage(manager.getHomeURL());
             // get the website that is the home URL

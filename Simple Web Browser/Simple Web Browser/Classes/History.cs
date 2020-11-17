@@ -1,8 +1,7 @@
-﻿using Simple_Web_Browser.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Simple_Web_Browser
 {
@@ -12,8 +11,8 @@ namespace Simple_Web_Browser
     public class History
     {
 
-        static string path = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.FullName;
-        string searchHistoryPath = path + "\\Data\\SearchHistory.xml";
+        // create path to search history xml file 
+        string searchHistoryPath = Application.StartupPath + "\\SearchHistory.xml";
 
         public static List<HistoryItem> historyList;
         public event EventHandler historyItem;

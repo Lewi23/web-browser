@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
-using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Simple_Web_Browser.Properties;
-using System.Collections;
 using System.Net;
-using System.Windows.Forms.VisualStyles;
 using System.IO;
+using System.Xml.Linq;
 
 namespace Simple_Web_Browser
 {
@@ -22,8 +16,9 @@ namespace Simple_Web_Browser
     public class Manager
     {
 
-        static string path = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.FullName;
-        string homepagePath = path + "\\Data\\Homepage.xml";
+  
+        // create path to homepage xml file 
+        string homepagePath = Application.StartupPath + "\\Homepage.xml";
 
         private string result;
         private string currentURL;
@@ -46,6 +41,36 @@ namespace Simple_Web_Browser
             XMLManager = new XML<string>();
             http = new HTTP();
             getHomepage = new setHomepage();
+        }
+
+        /// <summary>
+        /// Builds the JSON files for storing the persistent data if they do not exisist
+        /// </summary>
+        public void buildJSONFiles()
+        {
+            if (!File.Exists(Application.StartupPath + "\\Bookmarks.xml"))
+            {
+                new XDocument(
+                    new XElement("ArrayOfBookmarkItem")
+                )
+            .Save("Bookmarks.xml");
+            }
+
+            if (!File.Exists(Application.StartupPath + "\\Homepage.xml"))
+            {
+                new XDocument(
+                new XElement("string")
+                )
+            .Save("Homepage.xml");
+            }
+
+            if (!File.Exists(Application.StartupPath + "\\SearchHistory.xml"))
+            {
+                new XDocument(
+                new XElement("ArrayOfHistoryItem")
+            )
+            .Save("SearchHistory.xml");
+            }
         }
         
         /// <summary>

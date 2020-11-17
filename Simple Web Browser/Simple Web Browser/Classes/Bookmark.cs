@@ -1,7 +1,6 @@
-﻿using Simple_Web_Browser.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Windows.Forms;
 
 namespace Simple_Web_Browser
 {
@@ -11,8 +10,9 @@ namespace Simple_Web_Browser
     public class Bookmark
     {
 
-        static string path = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.FullName;
-        string bookmarkPath = path + "\\Data\\Bookmarks.xml";
+
+        // Create path to bookmark xml file
+        string bookmarkPath = Application.StartupPath + "\\Bookmarks.xml";
 
         public event EventHandler bookmarkItem;
         public static List<BookmarkItem> bookmarkList;
